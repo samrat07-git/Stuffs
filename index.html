@@ -1,40 +1,99 @@
-<!DOCTYPE html>
-
-<html>
-<head>
-  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" href="styles/style.css"/>
-  <title>Hello, World!</title>
-</head>
-<body>
-  <h1>
-        Hello, ¥¥$$!
-  </h1>
-</body>
-</html>
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samrat Singh - Resume</title>
     <style>
+        /* Define CSS variables for themes */
+        :root {
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+            --header-bg: linear-gradient(90deg, #007bff, #00c4b4);
+            --nav-bg: #333;
+            --nav-text: white;
+            --nav-hover: #00c4b4;
+            --section-bg: white;
+            --section-shadow: rgba(0, 0, 0, 0.1);
+            --heading-color: #007bff;
+            --btn-bg: #007bff;
+            --btn-hover: #0056b3;
+            --skill-bg: #e9ecef;
+            --footer-bg: #333;
+            --footer-text: white;
+        }
+
+        /* Dark Theme */
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #e0e0e0;
+            --header-bg: linear-gradient(90deg, #2c3e50, #34495e);
+            --nav-bg: #222;
+            --nav-text: #e0e0e0;
+            --nav-hover: #3498db;
+            --section-bg: #2c2c2c;
+            --section-shadow: rgba(255, 255, 255, 0.1);
+            --heading-color: #3498db;
+            --btn-bg: #3498db;
+            --btn-hover: #2980b9;
+            --skill-bg: #3a3a3a;
+            --footer-bg: #222;
+            --footer-text: #e0e0e0;
+        }
+
+        /* Blue Theme */
+        [data-theme="blue"] {
+            --bg-color: #e6f0fa;
+            --text-color: #1a2a44;
+            --header-bg: linear-gradient(90deg, #1e90ff, #4682b4);
+            --nav-bg: #1a2a44;
+            --nav-text: white;
+            --nav-hover: #87ceeb;
+            --section-bg: #f0f8ff;
+            --section-shadow: rgba(0, 0, 0, 0.1);
+            --heading-color: #1e90ff;
+            --btn-bg: #1e90ff;
+            --btn-hover: #104e8b;
+            --skill-bg: #d1e4f3;
+            --footer-bg: #1a2a44;
+            --footer-text: white;
+        }
+
+        /* Green Theme */
+        [data-theme="green"] {
+            --bg-color: #e8f5e9;
+            --text-color: #1b3e1f;
+            --header-bg: linear-gradient(90deg, #4caf50, #66bb6a);
+            --nav-bg: #2e7d32;
+            --nav-text: white;
+            --nav-hover: #a5d6a7;
+            --section-bg: #f1f8e9;
+            --section-shadow: rgba(0, 0, 0, 0.1);
+            --heading-color: #4caf50;
+            --btn-bg: #4caf50;
+            --btn-hover: #388e3c;
+            --skill-bg: #c8e6c9;
+            --footer-bg: #2e7d32;
+            --footer-text: white;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Arial', sans-serif;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s; /* Smooth transitions */
         }
 
         body {
             line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f4;
+            color: var(--text-color);
+            background-color: var(--bg-color);
         }
 
         header {
-            background: linear-gradient(90deg, #007bff, #00c4b4);
-            color: white;
+            background: var(--header-bg);
+            color: var(--nav-text);
             text-align: center;
             padding: 3rem 1rem;
         }
@@ -42,6 +101,39 @@
         header h1 {
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
+            display: inline-block;
+            position: relative;
+        }
+
+        /* Text-changing animation for Samrat Singh */
+        .text-animation::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 2.5rem;
+            background: var(--nav-text);
+            right: -10px;
+            animation: blink 0.7s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .text-animation span {
+            display: inline-block;
+            opacity: 0;
+            animation: fadeIn 3s infinite alternate;
+        }
+
+        .text-animation span:nth-child(2) {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            50% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-10px); }
         }
 
         header p {
@@ -49,7 +141,7 @@
         }
 
         nav {
-            background: #333;
+            background: var(--nav-bg);
             padding: 1rem;
             position: sticky;
             top: 0;
@@ -61,39 +153,68 @@
             display: flex;
             justify-content: center;
             gap: 2rem;
+            align-items: center;
         }
 
         nav a {
-            color: white;
+            color: var(--nav-text);
             text-decoration: none;
             font-size: 1.1rem;
             transition: color 0.3s;
         }
 
         nav a:hover {
-            color: #00c4b4;
+            color: var(--nav-hover);
+        }
+
+        /* Theme dropdown styling */
+        .theme-selector {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            background: var(--btn-bg);
+            color: var(--nav-text);
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .theme-selector:hover {
+            background: var(--btn-hover);
         }
 
         section {
             padding: 2rem;
             max-width: 800px;
             margin: 0 auto;
-            background: white;
+            background: var(--section-bg);
             margin-bottom: 1rem;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px var(--section-shadow);
         }
 
         section h2 {
-            color: #007bff;
+            color: var(--heading-color);
             margin-bottom: 1rem;
-            border-bottom: 2px solid #007bff;
+            border-bottom: 2px solid var(--heading-color);
             padding-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        section h3 {
+            font-weight: bold;
         }
 
         ul {
             list-style: square;
             margin-left: 1.5rem;
+        }
+
+        .percentage {
+            font-size: 0.9rem;
+            color: var(--heading-color);
+            margin-left: 1rem;
+            display: inline-block;
         }
 
         .skills-grid {
@@ -104,7 +225,7 @@
         }
 
         .skill-item {
-            background: #e9ecef;
+            background: var(--skill-bg);
             padding: 0.5rem;
             text-align: center;
             border-radius: 5px;
@@ -122,8 +243,8 @@
         .btn {
             display: inline-block;
             padding: 0.5rem 1rem;
-            background: #007bff;
-            color: white;
+            background: var(--btn-bg);
+            color: var(--nav-text);
             text-decoration: none;
             border-radius: 5px;
             margin-top: 1rem;
@@ -131,14 +252,39 @@
         }
 
         .btn:hover {
-            background: #0056b3;
+            background: var(--btn-hover);
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .about-photo {
+            max-width: 150px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px var(--section-shadow);
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .photos-grid img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px var(--section-shadow);
         }
 
         footer {
             text-align: center;
             padding: 1rem;
-            background: #333;
-            color: white;
+            background: var(--footer-bg);
+            color: var(--footer-text);
             position: relative;
             bottom: 0;
             width: 100%;
@@ -154,16 +300,33 @@
                 gap: 1rem;
             }
 
+            .theme-selector {
+                width: 100%;
+                text-align: center;
+            }
+
             section {
                 padding: 1rem;
+            }
+
+            .about-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .about-photo {
+                max-width: 100px;
             }
         }
     </style>
 </head>
-<body>
+<body data-theme="light">
     <header>
-        <h1>Samrat Singh</h1>
-        <p>Computer Science Student | Aspiring Developer</p>
+        <h1 class="text-animation">
+            <span>Samrat Singh</span>
+            <span>CS Student</span>
+        </h1>
+        <p>Computer Science Student | Beginner ;)</p>
     </header>
 
     <nav>
@@ -173,19 +336,31 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="#photos">Photos</a></li>
+            <li>
+                <select class="theme-selector" onchange="changeTheme(this.value)">
+                    <option value="light">Light Theme</option>
+                    <option value="dark">Dark Theme</option>
+                    <option value="blue">Blue Theme</option>
+                    <option value="green">Green Theme</option>
+                </select>
+            </li>
         </ul>
     </nav>
 
     <section id="about">
         <h2>About Me</h2>
-        <p>Hi, I'm Samrat Singh, a passionate Class 12th Computer Science student with a keen interest in programming, web development, and problem-solving. I aim to build innovative solutions and contribute to the tech world.</p>
+        <div class="about-container">
+            <p>Hi, I'm Samrat Singh, a passionate Class 12th Computer Science student </p>
+            <img src="SAVE_20250430_232457.jpg" alt="Samrat Singh Profile Photo" class="about-photo">
+        </div>
     </section>
 
     <section id="education">
         <h2>Education</h2>
         <ul>
-            <li><strong>Class 12th (CBSE)</strong> - [Your School Name], [City] (2024-2025)</li>
-            <li><strong>Class 10th (CBSE)</strong> - [Your School Name], [City] (2022-2023) - [Percentage/CGPA]</li>
+            <li><strong>Class 10th (ICSE)</strong> - Saint Joseph's, Pakartalla-Kahalgaon (2023-2024) <span class="percentage">80%</span></li>
+            <li><strong>Class 12th (CBSE)</strong> - Saint Joseph's, NTPC Kahalgaon (Ongoing, Expected Completion: 2026)</li>
         </ul>
     </section>
 
@@ -206,34 +381,33 @@
         <div class="project">
             <h3>Personal Portfolio Website</h3>
             <p>A responsive website showcasing my skills and projects, built using HTML, CSS, and JavaScript.</p>
+            <a href="https://github.com/yourprofile/portfolio" class="btn" target="_blank">View on GitHub</a>
         </div>
         <div class="project">
             <h3>Simple Calculator</h3>
             <p>A web-based calculator application developed using JavaScript for basic arithmetic operations.</p>
+            <a href="https://github.com/yourprofile/calculator" class="btn" target="_blank">View on GitHub</a>
         </div>
-        <!-- Add more projects as needed -->
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project">
-            <h3>Personal Portfolio Website</h3>
-            <p>A responsive website showcasing my skills and projects, built using HTML, CSS, and JavaScript.</p>
+    </section>
+
+    <section id="photos">
+        <h2>Photos</h2>
+        <div class="photos-grid">
+            <img src="https://via.placeholder.com/200" alt="Project Screenshot">
+            <img src="https://via.placeholder.com/200" alt="Event Photo">
         </div>
-        <div class="project">
-            <h3>Simple Calculator</h3>
-            <p>A web-based calculator application developed using JavaScript for basic arithmetic operations.</p>
-        </div>  
     </section>
 
     <section id="contact">
         <h2>Contact</h2>
-        <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
-        <p>GitHub: <a href="https://github.com/yourprofile" target="_blank">github.com/yourprofile</a></p>
-        <a href="path/to/your-resume.pdf" class="btn" download>Download Resume</a>
+        <p>Email: <a href="mailto:samrat.singh@example.com">samrat.singh@example.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/samratsingh" target="_blank">linkedin.com/in/samratsingh</a></p>
+        <p>GitHub: <a href="https://github.com/samratsingh" target="_blank">github.com/samratsingh</a></p>
+        <a href="resume.pdf" class="btn" download>Download Resume</a>
     </section>
 
     <footer>
-        <p>&copy; 2025 Samrat Singh. All rights reserved.</p>
+        <p>© 2025 Samrat Singh. All rights reserved.</p>
     </footer>
 
     <script>
@@ -246,6 +420,19 @@
                 targetSection.scrollIntoView({ behavior: 'smooth' });
             });
         });
+
+        // Theme switching function
+        function changeTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme); // Save theme preference
+        }
+
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            document.querySelector('.theme-selector').value = savedTheme;
+        });
     </script>
 </body>
-</html>
+</html><input name="" type="image" src="../Pictures/assets_task_01jvmeb9kcfmprk0t39828qvmb_1747664131_img_3.webp" width="1024" height="1536" alt="">
