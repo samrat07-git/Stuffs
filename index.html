@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- Meta tags for SEO and social sharing -->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Samrat Singh's personal portfolio showcasing skills, projects, achievements, and favorite movies as a Computer Science student.">
+        <meta name="keywords" content="Samrat Singh, portfolio, computer science, student, projects, coding, movies">
+        <meta property="og:title" content="Samrat Singh - Portfolio">
+        <meta property="og:description" content="Explore Samrat Singh's portfolio, featuring coding projects, skills, achievements, and a curated collection of favorite movies.">
+        <meta property="og:image" content="/assets/og-image.jpg">
+        <meta property="og:url" content="https://yourwebsite.com">
         <title>Samrat Singh - Resume</title>
+        <link rel="icon" type="image/png" href="/assets/favicon.png">
         <style>
+            /* CSS Variables for theming */
             :root {
                 --bg-color: #f4f4f4;
                 --text-color: #333;
@@ -19,7 +28,9 @@
                 --btn-hover: #0056b3;
                 --skill-bg: #e9ecef;
                 --footer-bg: #333;
-                --footer-text: #fff
+                --footer-text: #fff;
+                --modal-bg: rgba(0,0,0,0.8);
+                --text-anim-bg: linear-gradient(45deg, rgba(0,123,255,0.2), rgba(0,196,180,0.2))
             }
             [data-theme=dark] {
                 --bg-color: #1a1a1a;
@@ -35,7 +46,9 @@
                 --btn-hover: #2980b9;
                 --skill-bg: #3a3a3a;
                 --footer-bg: #222;
-                --footer-text: #e0e0e0
+                --footer-text: #e0e0e0;
+                --modal-bg: rgba(255,255,255,0.2);
+                --text-anim-bg: linear-gradient(45deg, rgba(44,62,80,0.2), rgba(52,73,94,0.2))
             }
             [data-theme=blue] {
                 --bg-color: #e6f0fa;
@@ -50,7 +63,8 @@
                 --btn-bg: #1e90ff;
                 --btn-hover: #104e8b;
                 --skill-bg: #d1e4f3;
-                --footer-bg: #1a2a44
+                --footer-bg: #1a2a44;
+                --text-anim-bg: linear-gradient(45deg, rgba(30,144,255,0.2), rgba(70,130,180,0.2))
             }
             [data-theme=green] {
                 --bg-color: #e8f5e9;
@@ -59,14 +73,16 @@
                 --nav-bg: #2e7d32;
                 --nav-text: #fff;
                 --nav-hover: #a5d6a7;
-                --section-bg: #f1f8e9;
+                --section-bg: #f1f1e8;
                 --section-shadow: rgba(0,0,0,.1);
                 --heading-color: #4caf50;
                 --btn-bg: #4caf50;
                 --btn-hover: #388e3c;
                 --skill-bg: #c8e6c9;
-                --footer-bg: #2e7d32
+                --footer-bg: #2e7d32;
+                --text-anim-bg: linear-gradient(45deg, rgba(76,175,80,0.2), rgba(102,187,106,0.2))
             }
+            /* Base styles */
             * {
                 margin: 0;
                 padding: 0;
@@ -77,8 +93,9 @@
                 line-height: 1.6;
                 color: var(--text-color);
                 background-color: var(--bg-color);
-                transition: all .3s ease
+                transition: background-color .3s ease, color .3s ease
             }
+            /* Header styles with animated text background */
             header {
                 background: var(--header-bg);
                 color: var(--nav-text);
@@ -89,7 +106,10 @@
                 font-size: 2.5rem;
                 margin-bottom: .5rem;
                 display: inline-block;
-                position: relative
+                position: relative;
+                background: var(--text-anim-bg);
+                padding: 0.5rem 1rem;
+                border-radius: 8px
             }
             .text-animation::after {
                 content: '';
@@ -101,35 +121,25 @@
                 animation: blink .7s step-end infinite
             }
             @keyframes blink {
-                50% {
-                    opacity: 0
-                }
+                50% { opacity: 0 }
             }
             .text-animation span {
                 display: inline-block;
                 opacity: 0;
-                animation: textFadeScale 3s ease-in-out infinite alternate
+                animation: textFade 3s ease-in-out infinite alternate
             }
             .text-animation span:nth-child(2) {
                 animation-delay: 1.5s
             }
-            @keyframes textFadeScale {
-                0% {
-                    opacity: 0;
-                    transform: scale(.8) translateY(10px)
-                }
-                50% {
-                    opacity: 1;
-                    transform: scale(1) translateY(0)
-                }
-                100% {
-                    opacity: 0;
-                    transform: scale(1.2) translateY(-10px)
-                }
+            @keyframes textFade {
+                0% { opacity: 0 }
+                50% { opacity: 1 }
+                100% { opacity: 0 }
             }
             header p {
                 font-size: 1.2rem
             }
+            /* Theme selector styles */
             .theme-container {
                 background: var(--nav-bg);
                 padding: .5rem;
@@ -141,36 +151,26 @@
                 border-radius: 5px;
                 background: var(--btn-bg);
                 color: var(--nav-text);
-                border: 2px solid transparent;
+                border: none;
                 outline: none;
                 cursor: pointer;
-                transition: background .3s;
-                border-image: linear-gradient(45deg, red, green, blue, red) 1;
-                animation: rgbBorder 3s linear infinite
-            }
-            @keyframes rgbBorder {
-                0% {
-                    border-image: linear-gradient(45deg, red, green, blue, red) 1
-                }
-                100% {
-                    border-image: linear-gradient(405deg, red, green, blue, red) 1
-                }
+                transition: background .3s
             }
             .theme-selector option {
                 background: var(--nav-bg);
-                color: var(--nav-text);
-                border: 1px solid;
-                border-image: linear-gradient(45deg, red, green, blue, red) 1
+                color: var(--nav-text)
             }
-            .theme-selector:hover {
+            .theme-selector:hover, .theme-selector:focus {
                 background: var(--btn-hover)
             }
+            /* Navigation bar styles (horizontal) */
             nav {
                 background: var(--nav-bg);
                 padding: 1rem;
                 position: sticky;
                 top: 0;
-                z-index: 100
+                z-index: 100;
+                text-align: center
             }
             nav ul {
                 list-style: none;
@@ -185,11 +185,10 @@
                 text-decoration: none;
                 font-size: 1.1rem;
                 position: relative;
-                transition: color .3s, transform .3s
+                transition: color .3s
             }
-            nav a:hover, nav a:focus {
+            nav a:hover, nav a:focus, nav a.active {
                 color: var(--nav-hover);
-                transform: scale(1.1);
                 outline: 2px solid var(--nav-hover)
             }
             nav a::after {
@@ -202,9 +201,14 @@
                 background: var(--nav-hover);
                 transition: width .3s
             }
-            nav a:hover::after {
+            nav a:hover::after, nav a:focus::after, nav a.active::after {
                 width: 100%
             }
+            nav a[aria-current="page"] {
+                color: var(--nav-hover);
+                font-weight: bold
+            }
+            /* Slideshow styles */
             .slideshow-container {
                 max-width: 100%;
                 aspect-ratio: 2 / 1;
@@ -246,13 +250,14 @@
                 padding: .5rem;
                 cursor: pointer;
                 font-size: 1rem;
-                transition: background .3s, transform .3s
+                transition: background .3s
             }
             .slideshow-nav button:hover, .slideshow-nav button:focus {
                 background: var(--btn-hover);
-                transform: translateY(-2px);
-                outline: 2px solid var(--nav-hover)
+                outline: 2px solid var(--nav-hover);
+                outline-offset: 2px
             }
+            /* Main content styles */
             main {
                 transition: opacity .3s
             }
@@ -268,12 +273,10 @@
                 border-radius: 8px;
                 box-shadow: 0 2px 5px var(--section-shadow);
                 opacity: 0;
-                transform: translateY(20px);
-                transition: opacity .5s ease, transform .5s ease
+                transition: opacity .5s ease
             }
             section.fade-in {
-                opacity: 1;
-                transform: translateY(0)
+                opacity: 1
             }
             section h2 {
                 color: var(--heading-color);
@@ -295,6 +298,7 @@
                 margin-left: 1rem;
                 display: inline-block
             }
+            /* Skills grid styles */
             .skills-grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -306,17 +310,16 @@
                 padding: .5rem;
                 text-align: center;
                 border-radius: 5px;
-                transition: transform .3s, box-shadow .3s, background-color .3s
+                transition: background-color .3s
             }
             .skill-item:hover {
-                transform: scale(1.05);
-                box-shadow: 0 4px 10px var(--section-shadow);
                 background-color: var(--btn-bg);
                 color: var(--nav-text)
             }
             .project {
                 margin-bottom: 1.5rem
             }
+            /* Button styles */
             .btn {
                 display: inline-block;
                 padding: .5rem 1rem;
@@ -325,14 +328,13 @@
                 text-decoration: none;
                 border-radius: 5px;
                 margin-top: 1rem;
-                transition: background .3s, transform .3s, box-shadow .3s
+                transition: background .3s
             }
             .btn:hover, .btn:focus {
                 background: var(--btn-hover);
-                transform: translateY(-2px);
-                box-shadow: 0 4px 10px var(--section-shadow);
                 outline: 2px solid var(--nav-hover)
             }
+            /* About section styles */
             .about-container {
                 display: flex;
                 align-items: center;
@@ -343,25 +345,28 @@
                 border-radius: 8px;
                 box-shadow: 0 2px 5px var(--section-shadow)
             }
-            .photos-grid {
+            /* Photos, movies, videos grid styles */
+            .photos-grid, .movies-grid, .videos-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 1rem;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                grid-template-rows: repeat(2, auto);
+                gap: 1.5rem;
                 margin-top: 1rem
             }
             .photos-grid img {
                 width: 100%;
                 border-radius: 8px;
                 box-shadow: 0 2px 5px var(--section-shadow);
-                transition: transform .3s
+                cursor: pointer
             }
             .photos-grid img:hover {
-                transform: scale(1.05)
+                filter: brightness(1.1)
             }
             .photo-item {
                 position: relative
             }
             .download-btn {
+                display: none;
                 position: absolute;
                 bottom: 10px;
                 right: 10px;
@@ -373,13 +378,60 @@
                 font-size: .9rem;
                 border: none;
                 cursor: pointer;
-                transition: opacity .3s ease-in-out, transform .3s
+                transition: background .3s
             }
             .download-btn:hover, .download-btn:focus {
                 background: var(--btn-hover);
-                transform: translateY(-2px);
                 outline: 2px solid var(--nav-hover)
             }
+            /* Modal for enlarged photos */
+            .photo-modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: var(--modal-bg);
+                z-index: 1000;
+                justify-content: center;
+                align-items: center;
+                padding: 1rem
+            }
+            .photo-modal.active {
+                display: flex
+            }
+            .modal-content {
+                position: relative;
+                max-width: 80%;
+                max-height: 80%;
+            }
+            .modal-content img {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px var(--section-shadow)
+            }
+            .modal-content .download-btn {
+                display: block
+            }
+            .close-modal {
+                position: absolute;
+                top: -20px;
+                right: -20px;
+                background: var(--btn-bg);
+                color: var(--nav-text);
+                border: none;
+                padding: .5rem;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 1rem;
+                transition: background .3s
+            }
+            .close-modal:hover, .close-modal:focus {
+                background: var(--btn-hover)
+            }
+            /* Screen styles for movies, achievements, etc. */
             .screen {
                 display: none;
                 min-height: 100vh;
@@ -408,6 +460,44 @@
             .achievement {
                 margin-bottom: 1.5rem
             }
+            /* Movie and video card styles */
+            .movie-card, .video-card {
+                background: var(--section-bg);
+                padding: 1rem;
+                border-radius: 12px;
+                box-shadow: 0 5px 10px var(--section-shadow);
+                transition: box-shadow .3s
+            }
+            .movie-card:hover, .video-card:hover {
+                box-shadow: 0 10px 20px var(--section-shadow)
+            }
+            .movie-poster, .video-player {
+                width: 100%;
+                aspect-ratio: 16 / 9;
+                overflow: hidden;
+                border-radius: 8px;
+                box-shadow: 0 5px 10px var(--section-shadow)
+            }
+            .movie-poster img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover
+            }
+            .movie-poster img:hover {
+                filter: brightness(1.1)
+            }
+            .video-player video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover
+            }
+            .movie-description, .video-description {
+                margin-top: 1rem;
+                padding: 1rem;
+                background: var(--skill-bg);
+                border-radius: 8px
+            }
+            /* Footer styles */
             footer {
                 text-align: center;
                 padding: 1rem;
@@ -417,90 +507,52 @@
                 bottom: 0;
                 width: 100%
             }
+            /* Responsive styles */
             @media (max-width: 768px) {
-                header h1 {
-                    font-size: 2rem
+                header h1 { font-size: 2rem }
+                header p { font-size: 1rem }
+                nav ul { gap: 1rem }
+                nav a { font-size: 1rem }
+                .slideshow-container { max-width: 90%; aspect-ratio: 3 / 2 }
+                section, .screen-content { padding: 1.5rem; max-width: 95% }
+                .about-container { flex-direction: column; align-items: center }
+                .about-photo { max-width: 120px }
+                .skills-grid, .photos-grid, .movies-grid, .videos-grid {
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
                 }
-                header p {
-                    font-size: 1rem
-                }
-                nav ul {
-                    gap: 1rem
-                }
-                nav a {
-                    font-size: 1rem
-                }
-                .slideshow-container {
-                    max-width: 90%;
-                    aspect-ratio: 3 / 2
-                }
-                section, .screen-content {
-                    padding: 1.5rem;
-                    max-width: 95%
-                }
-                .about-container {
-                    flex-direction: column;
-                    align-items: center
-                }
-                .about-photo {
-                    max-width: 120px
-                }
-                .skills-grid, .photos-grid {
-                    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr))
-                }
+                .movie-card, .video-card { max-width: 100% }
+                .modal-content { max-width: 90% }
             }
             @media (max-width: 480px) {
-                header h1 {
-                    font-size: 1.6rem
+                header h1 { font-size: 1.6rem }
+                header p { font-size: .9rem }
+                nav ul { gap: 0.8rem }
+                nav a { font-size: .9rem }
+                .theme-selector { width: 100%; font-size: .9rem }
+                .slideshow-container { max-width: 100%; aspect-ratio: 4 / 3 }
+                .slideshow-nav button { padding: .3rem; font-size: .8rem }
+                section, .screen-content { padding: 1rem }
+                .about-photo { max-width: 100px }
+                .skills-grid, .photos-grid, .movies-grid, .videos-grid {
+                    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr))
                 }
-                header p {
-                    font-size: .9rem
-                }
-                nav ul {
-                    flex-direction: column;
-                    gap: .8rem
-                }
-                nav a {
-                    font-size: .9rem
-                }
-                .theme-selector {
-                    width: 100%;
-                    font-size: .9rem
-                }
-                .slideshow-container {
-                    max-width: 100%;
-                    aspect-ratio: 4 / 3
-                }
-                .slideshow-nav button {
-                    padding: .3rem;
-                    font-size: .8rem
-                }
-                section, .screen-content {
-                    padding: 1rem
-                }
-                .about-photo {
-                    max-width: 100px
-                }
-                .skills-grid, .photos-grid {
-                    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr))
-                }
-                .btn, .download-btn {
-                    font-size: .8rem;
-                    padding: .4rem .8rem
-                }
+                .btn, .download-btn { font-size: .8rem; padding: .4rem .8rem }
+                .movie-card, .video-card { max-width: 100% }
+                .modal-content { max-width: 95% }
             }
         </style>
     </head>
     <body data-theme="dark">
+        <!-- Header with animated text -->
         <header>
             <h1 class="text-animation">
                 <span>SAMRAT</span>
                 <span>CS Student</span>
                 <span>Don XII 'c'</span>
             </h1>
-            <p>Computer Science Student | Beginner ;)</p>
-            <div class="skill-item">MUNNA BHAI JEE</div>
+            <p>Computer Science | Begginer | Learner</p>
         </header>
+        <!-- Theme selector -->
         <div class="theme-container">
             <select class="theme-selector" onchange="changeTheme(this.value)" aria-label="Select theme">
                 <option value="light">Light Theme</option>
@@ -509,279 +561,617 @@
                 <option value="green">Green Theme</option>
             </select>
         </div>
+        <!-- Navigation bar -->
         <nav>
             <ul>
-                <li><a href="#about">About</a></li>
+                <li><a href="#about" aria-current="page">About</a></li>
+                <li><a href="#" data-screen="movies">Movies</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
                 <li><a href="#" data-screen="achievements">Achievements</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#" data-screen="photos">Photos</a></li>
+                <li><a href="#" data-screen="videos">Videos</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
+        <!-- Slideshow with dynamic photo integration -->
         <div class="slideshow-container">
-            <div class="slideshow-slide">
-                <img src="https://www.yayskool.com/images/school/st-josephs-school-bhagalpur-595113040.png" alt="St. Joseph's School Bhagalpur exterior" loading="lazy">
+            <div class="slideshow-slide active">
+                <img src="https://i.pinimg.com/736x/60/8a/65/608a656d1ebadad63f03287a3c33f70e.jpg" alt="St. Joseph's School Bhagalpur exterior view" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://stjosephntpckahalgaon.in/images/plus2%20building.jpg" alt="Plus 2 building at St. Joseph's" loading="lazy">
+                <img src="https://wallpaperaccess.com/full/11201454.jpg" alt="Plus 2 building at St. Joseph's School" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://stjosephntpckahalgaon.in/sports/images/a9.jpeg" alt="Sports event at school" loading="lazy">
+                <img src="https://i.cdn.newsbytesapp.com/images/l42220240415122808.jpeg" alt="Sports event at St. Joseph's School" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://lh3.googleusercontent.com/places/AAcXr8odfsb_A55jz9AoeCYKjfylSphg2s68oRYk41TO92k9K9CaeUL0wvRU3IxQjShrVhQKT3VhkHGNABq6XjehuBLcTsQTRsNLFcI=s1600-w4160" alt="Code on laptop screen" loading="lazy">
+                <img src="/assets/slide4.jpg" alt="Laptop screen displaying code" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://images.unsplash.com/photo-1517430816759-86fc4ddde011" alt="Circuit board close-up" loading="lazy">
+                <img src="/assets/slide5.jpg" alt="Close-up of a circuit board" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Beach sunset" loading="lazy">
+                <img src="/assets/slide6.jpg" alt="Beach sunset landscape" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://images.unsplash.com/photo-1521747116042-5a810f91f2f5" alt="Abstract digital art" loading="lazy">
+                <img src="/assets/slide7.jpg" alt="Abstract digital artwork" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" alt="Technology workspace" loading="lazy">
+                <img src="/assets/slide8.jpg" alt="Modern technology workspace with laptop" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://images.unsplash.com/photo-1516321497487-4e97084f9a27" alt="City skyline at dusk" loading="lazy">
+                <img src="/assets/slide9.jpg" alt="City skyline at dusk" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d" alt="Team collaboration" loading="lazy">
+                <img src="/assets/slide10.jpg" alt="Team collaborating in a meeting" loading="lazy">
             </div>
+            <!-- Photos from photos-grid will be dynamically added here -->
             <div class="slideshow-nav">
-                <button onclick="changeSlide(-1)" aria-label="Previous slide" tabindex="0">❮</button>
-                <button onclick="changeSlide(1)" aria-label="Next slide" tabindex="0">❯</button>
+                <button role="button" onclick="changeSlide(-1)" aria-label="Previous slide" tabindex="0">❮</button>
+                <button role="button" onclick="changeSlide(1)" aria-label="Next slide" tabindex="0">❯</button>
             </div>
         </div>
+        <!-- Main content sections -->
         <main>
             <section id="about">
                 <h2>About Me</h2>
                 <div class="about-container">
-                    <p>Hi, I'm Samrat Singh, a PCM (Computer Science) student learning to code and build projects.</p>
-                    <img src="https://images.unsplash.com/photo-1531297484009-4c31d4c4d8d3" alt="Samrat Singh portrait" class="about-photo" loading="lazy">
+                    <p>I'm Samrat Singh, an average class 12th std .</p>
+                    <img src="/assets/about-photo.jpg" alt="Samrat Singh smiling in a portrait" class="about-photo" loading="lazy">
                 </div>
             </section>
             <section id="education">
                 <h2>Education</h2>
                 <ul>
-                    <li><strong>Class 10th (ICSE)</strong> - Saint Joseph's, Pakartalla-Kahalgaon (2023-2024) <span class="percentage">80%</span></li>
-                    <div class="skill-item">Passed: 80%</div>
-                    <li><strong>Class 12th (CBSE)</strong> - Saint Joseph's, NTPC Kahalgaon (Ongoing, Expected Completion: 2026)</li>
-                    <div class="skill-item">In Progress</div>
+                    <li><strong>Class 10th (ICSE)</strong> - Saint Joseph's School, Pakartalla-Kahalgaon (2023-2024) <span class="percentage">==%</span><br>.</li>
+                    <li><strong>Class 12th (CBSE)</strong> - Saint Joseph's School, NTPC Kahalgaon (Ongoing, Expected Completion: 2026)<br></li>
                 </ul>
+            </section>
+            <section id="movies-preview">
+                <h2>Movies</h2>
+                <p>Explore my curated collection of favorite movies, featuring a mix of sci-fi, drama, and action genres with detailed descriptions and posters.</p>
+                <a href="#" class="btn" data-screen="movies">View Movies</a>
+            </section>
+            <section id="achievements-preview">
+                <h2>Achievements</h2>
+                <p>Discover my academic and coding milestones, showcasing my dedication to learning and innovation.</p>
+                <a href="#" class="btn" data-screen="achievements">View Achievements</a>
+            </section>
+            <section id="photos-preview">
+                <h2>Photos</h2>
+                <p>View my collection of personal, school, and tech-related photos, capturing moments of learning and creativity.</p>
+                <a href="#" class="btn" data-screen="photos">View Photos</a>
+            </section>
+            <section id="videos-preview">
+                <h2>Videos</h2>
+                <p>Watch a selection of videos, including animations and tech-related content I enjoy or have created.</p>
+                <a href="#" class="btn" data-screen="videos">View Videos</a>
             </section>
             <section id="skills">
                 <h2>Skills</h2>
                 <div class="skills-grid">
-                    <div class="skill-item">Python</div>
-                    <div class="skill-item">Java</div>
-                    <div class="skill-item">Unity Engine</div>
-                    <div class="skill-item">AI</div>
-                    <div class="skill-item">--</div>
+                    <div class="skill-item">Python <span class="percentage">60%</span></div>
+                    <div class="skill-item">Java <span class="percentage">40%</span></div>
+                    <div class="skill-item">Unity Engine <span class="percentage">30%</span></div>
+                    <div class="skill-item">AI <span class="percentage">30%</span></div>
+                    <div class="skill-item">JEE Preparation <span class="percentage">10%</span></div>
                 </div>
             </section>
             <section id="projects">
                 <h2>Projects</h2>
                 <div class="project">
                     <h3>Personal Portfolio Website</h3>
-                    <div class="skill-item">Note: Website link will be uploaded soon...</div>
-                    <p>A responsive website showcasing my skills and projects, built using HTML, CSS, and JavaScript.</p>
+                    <p>A fully responsive website built from scratch using HTML, CSS, and JavaScript. Features include theme switching, a dynamic slideshow, and interactive sections for skills, projects, and media. The site showcases my ability to create user-friendly interfaces with modern web technologies.</p>
                     <a href="https://github.com/samratsingh/portfolio" class="btn" target="_blank">View on GitHub</a>
                 </div>
                 <div class="project">
                     <h3>Simple Calculator</h3>
-                    <p>A web-based calculator application developed using JavaScript for basic arithmetic operations.</p>
+                    <p>A web-based calculator application developed with JavaScript, HTML, and CSS. Supports basic arithmetic operations (addition, subtraction, multiplication, division) with a clean, intuitive interface. Demonstrates my understanding of event handling and DOM manipulation.</p>
                     <a href="https://github.com/samratsingh/calculator" class="btn" target="_blank">View on GitHub</a>
                 </div>
             </section>
             <section id="contact">
                 <h2>Contact</h2>
+                <p>Connect with me on social platforms or download my resume to learn more about my work.</p>
                 <p>Instagram: <a href="https://www.instagram.com/samratsingh" target="_blank">insta/samratsingh</a></p>
                 <p>LinkedIn: <a href="https://www.linkedin.com/in/samratsingh" target="_blank">linkedin.com/in/samratsingh</a></p>
                 <p>GitHub: <a href="https://github.com/samratsingh" target="_blank">github.com/samratsingh</a></p>
-                <a href="resume.pdf" class="btn" download>Download Resume</a>
+                <a href="/assets/resume.pdf" class="btn" download>Download Resume</a>
             </section>
         </main>
+        <!-- Movies screen -->
+        <div id="movies-screen" class="screen">
+            <div class="screen-content">
+                <h2>Movies</h2>
+                <div class="movies-grid">
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://showbizcafe.com/wp-content/uploads/2014/11/interstellar_movie-wide.jpg" alt="Poster for Interstellar" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>Interstellar: A team of astronauts travels through a wormhole to find a new home for humanity, blending science and emotion in a cosmic journey. Directed by Christopher Nolan, this film explores themes of sacrifice and survival.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://i.ytimg.com/vi/P2yuYP3-Pz8/maxresdefault.jpg" alt="Poster for Game of Thrones" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>Game of Thrones: An epic fantasy series based on George R.R. Martin’s novels, featuring political intrigue, battles, and dragons. Known for its complex characters and unpredictable plot twists.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="data:image/jpeg;base64,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" alt="Poster for The Dark Knight" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>The Dark Knight: Batman faces the Joker in a gritty battle for Gotham’s soul, with intense action and moral dilemmas. Directed by Christopher Nolan, starring Christian Bale and Heath Ledger.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgw1PxgqpNphR0IPOeLyUZVxP5xTMOqDOw1w&s" alt="Poster for Inception" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>Inception: A thief enters dreams to steal secrets, navigating a mind-bending maze of reality and illusion. Directed by Christopher Nolan, this sci-fi thriller is a visual masterpiece.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://cdn-dkepej.nitrocdn.com/xHPizjaXJNONuYnLnfsGSUCsMnIlzOEq/assets/images/optimized/rev-ef469ea/blog.frame.io/wp-content/uploads/2020/01/parasite_header-768x384.jpg" alt="Poster for Parasite" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>Parasite: A poor family infiltrates a wealthy household, leading to a dark, satirical take on class struggle. Directed by Bong Joon-ho, this Oscar-winning film blends humor and suspense.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="data:image/jpeg;base64,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" alt="Poster for The Matrix" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>The Matrix: A hacker discovers reality is a simulation, sparking a rebellion against machine overlords. Directed by the Wachowskis, this sci-fi classic redefined action cinema.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm1S6Vw0GsbXumWCfkTF1Sb3OATXruC1gAkg&s" alt="Poster for Pulp Fiction" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>Pulp Fiction: Intertwined stories of crime and redemption unfold in a nonlinear, stylish narrative. Directed by Quentin Tarantino, known for its sharp dialogue and iconic scenes.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSyAu4oYlYBQVI1754FiuN3J53-_3HVd3ACg&s" alt="Poster for The Shawshank Redemption" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>The Shawshank Redemption: A banker, wrongfully imprisoned, finds hope and friendship in a brutal prison. Directed by Frank Darabont, a timeless tale of resilience.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrDIg5G1DKKCSBcyeOOA0DnSLpDPTTL07t6Q&s" alt="Poster for Gladiator" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>Gladiator: A betrayed Roman general seeks vengeance in the arena, driven by honor and fury. Directed by Ridley Scott, starring Russell Crowe in an epic historical drama.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVGQEQXGLTI6JF1Lg71CkHFxNX_qzF4wrzmg&s" alt="Poster for The Godfather" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>The Godfather: A mafia patriarch’s legacy unfolds through family loyalty and ruthless power struggles. Directed by Francis Ford Coppola, a cinematic masterpiece.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="/assets/movie11.jpg" alt="Poster for Avengers: Endgame" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>Avengers: Endgame: Heroes unite to reverse a cosmic catastrophe in an epic superhero showdown. Directed by the Russo Brothers, the culmination of the Marvel Cinematic Universe.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="/assets/movie12.jpg" alt="Poster for Star Wars: The Empire Strikes Back" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>Star Wars: The Empire Strikes Back: Rebels battle an evil empire as a young hero trains in the Force. Directed by Irvin Kershner, a sci-fi classic.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="/assets/movie13.jpg" alt="Poster for Titanic" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>Titanic: A tragic love story unfolds aboard the doomed ship, blending romance and disaster. Directed by James Cameron, starring Leonardo DiCaprio and Kate Winslet.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="/assets/movie14.jpg" alt="Poster for The Lord of the Rings: The Fellowship of the Ring" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>The Lord of the Rings: A hobbit embarks on a quest to destroy a powerful ring, facing epic battles. Directed by Peter Jackson, a fantasy epic.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="/assets/movie15.jpg" alt="Poster for Fight Club" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>Fight Club: An insomniac forms an underground club that spirals into chaos, questioning identity. Directed by David Fincher, a cult classic.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="/assets/movie16.jpg" alt="Poster for La La Land" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>La La Land: A musician and actress chase dreams in a vibrant, bittersweet Hollywood romance. Directed by Damien Chazelle, a modern musical masterpiece.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="/assets/movie17.jpg" alt="Poster for Schindler's List" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>Schindler’s List: A businessman saves Jewish lives during the Holocaust in a harrowing drama. Directed by Steven Spielberg, a powerful historical film.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="/assets/movie18.jpg" alt="Poster for Mad Max: Fury Road" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>Mad Max: Fury Road: A high-octane chase through a post-apocalyptic wasteland, fueled by rebellion. Directed by George Miller, an action spectacle.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="/assets/movie19.jpg" alt="Poster for The Grand Budapest Hotel" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>The Grand Budapest Hotel: A quirky tale of a concierge and a stolen painting, set in a colorful hotel. Directed by Wes Anderson, a visual delight.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="/assets/movie20.jpg" alt="Poster for Blade Runner 2049" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>Blade Runner 2049: A replicant hunter uncovers a secret that threatens society in a neon-drenched future. Directed by Denis Villeneuve, a sci-fi epic.</p>
+                        </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="/assets/movie21.jpg" alt="Poster for The Lion King" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p>The Lion King: A young lion prince reclaims his throne in a timeless animated tale of courage and family. Directed by Roger Allers and Rob Minkoff.</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="btn" onclick="showMainContent(event)">Back to Home</a>
+            </div>
+        </div>
+        <!-- Achievements screen -->
         <div id="achievements-screen" class="screen">
             <div class="screen-content">
                 <h2>Achievements</h2>
                 <div class="achievement">
                     <h3>Academic Excellence Award</h3>
-                    <p>Received for securing 80% in Class 10th ICSE Board Exams (2024).</p>
+                    <p>Received for securing 80% in Class 10th ICSE Board Exams (2024) at Saint Joseph's School, Pakartalla-Kahalgaon, demonstrating strong performance in Mathematics and Computer Science.</p>
                 </div>
                 <div class="achievement">
                     <h3>Coding Competition Participant</h3>
-                    <p>Participated in Masai coding by IIT Mandi.</p>
+                    <p>Participated in the Masai Coding Competition organized by IIT Mandi, gaining hands-on experience in problem-solving and algorithmic thinking.</p>
                 </div>
                 <div class="achievement-photo">
-                    <img src="https://images.unsplash.com/photo-1531297484009-4c31d4c4d8d3" alt="Achievement celebration" loading="lazy">
+                    <img src="https://media.istockphoto.com/id/921162964/photo/film-slate-isolated-on-white-background.webp?s=1024x1024&w=is&k=20&c=j0tI2V5g5-yBqyLprC83GGYcsmHWzE5XPh8Zi92zV90=" alt="Celebration of academic achievement" loading="lazy">
                 </div>
                 <a href="#" class="btn" onclick="showMainContent(event)">Back to Home</a>
             </div>
         </div>
+        <!-- Photos screen with enlarge-on-tap feature -->
         <div id="photos-screen" class="screen">
             <div class="screen-content">
                 <h2>Photos</h2>
                 <div class="photos-grid">
                     <div class="photo-item">
-                        <img src="https://www.yayskool.com/images/school/st-josephs-school-bhagalpur-595113040.png" alt="St. Joseph's School Bhagalpur exterior" loading="lazy">
-                        <a href="https://www.yayskool.com/images/school/st-josephs-school-bhagalpur-595113040.png" class="download-btn" download>Download</a>
+                        <img src="https://i.ytimg.com/vi/P2yuYP3-Pz8/maxresdefault.jpg" alt="St. Joseph's School Bhagalpur exterior view" loading="lazy" data-download="/assets/photo1.jpg">
+                        <a href="/assets/photo1.jpg" class="download-btn" download>Download</a>
                     </div>
                     <div class="photo-item">
-                        <img src="https://stjosephntpckahalgaon.in/images/plus2%20building.jpg" alt="Plus 2 building at St. Joseph's" loading="lazy">
-                        <a href="https://stjosephntpckahalgaon.in/images/plus2%20building.jpg" class="download-btn" download>Download</a>
+                        <img src="https://showbizcafe.com/wp-content/uploads/2014/11/interstellar_movie-wide.jpg" alt="Plus 2 building at St. Joseph's School" loading="lazy" data-download="/assets/photo2.jpg">
+                        <a href="/assets/photo2.jpg" class="download-btn" download>Download</a>
                     </div>
                     <div class="photo-item">
-                        <img src="https://stjosephntpckahalgaon.in/sports/images/a9.jpeg" alt="Sports event at school" loading="lazy">
-                        <a href="https://stjosephntpckahalgaon.in/sports/images/a9.jpeg" class="download-btn" download>Download</a>
+                        <img src="/assets/photo3.jpg" alt="Sports event at St. Joseph's School" loading="lazy" data-download="/assets/photo3.jpg">
+                        <a href="/assets/photo3.jpg" class="download-btn" download>Download</a>
                     </div>
                     <div class="photo-item">
-                        <img src="https://lh3.googleusercontent.com/places/AAcXr8odfsb_A55jz9AoeCYKjfylSphg2s68oRYk41TO92k9K9CaeUL0wvRU3IxQjShrVhQKT3VhkHGNABq6XjehuBLcTsQTRsNLFcI=s1600-w4160" alt="Code on laptop screen" loading="lazy">
-                        <a href="https://lh3.googleusercontent.com/places/AAcXr8odfsb_A55jz9AoeCYKjfylSphg2s68oRYk41TO92k9K9CaeUL0wvRU3IxQjShrVhQKT3VhkHGNABq6XjehuBLcTsQTRsNLFcI=s1600-w4160" class="download-btn" download>Download</a>
+                        <img src="https://m.media-amazon.com/images/S/pv-target-images/5b938836214a4ed1da025314ca322a2e6cd833c03dd59ddacce01a1929392e99.jpg" alt="Laptop screen displaying code" loading="lazy" data-download="/assets/photo4.jpg">
+                        <a href="/assets/photo4.jpg" class="download-btn" download>Download</a>
                     </div>
                     <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1517430816759-86fc4ddde011" alt="Circuit board close-up" loading="lazy">
-                        <a href="https://images.unsplash.com/photo-1517430816759-86fc4ddde011" class="download-btn" download>Download</a>
+                        <img src="/assets/photo5.jpg" alt="Close-up of a circuit board" loading="lazy" data-download="/assets/photo5.jpg">
+                        <a href="/assets/photo5.jpg" class="download-btn" download>Download</a>
                     </div>
                     <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Beach sunset" loading="lazy">
-                        <a href="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" class="download-btn" download>Download</a>
+                        <img src="/assets/photo6.jpg" alt="Beach sunset landscape" loading="lazy" data-download="/assets/photo6.jpg">
+                        <a href="/assets/photo6.jpg" class="download-btn" download>Download</a>
                     </div>
                     <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1521747116042-5a810f91f2f5" alt="Abstract digital art" loading="lazy">
-                        <a href="https://images.unsplash.com/photo-1521747116042-5a810f91f2f5" class="download-btn" download>Download</a>
+                        <img src="/assets/photo7.jpg" alt="Abstract digital artwork" loading="lazy" data-download="/assets/photo7.jpg">
+                        <a href="/assets/photo7.jpg" class="download-btn" download>Download</a>
                     </div>
                     <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" alt="Technology workspace" loading="lazy">
-                        <a href="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" class="download-btn" download>Download</a>
+                        <img src="/assets/photo8.jpg" alt="Modern technology workspace with laptop" loading="lazy" data-download="/assets/photo8.jpg">
+                        <a href="/assets/photo8.jpg" class="download-btn" download>Download</a>
                     </div>
                     <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1516321497487-4e97084f9a27" alt="City skyline at dusk" loading="lazy">
-                        <a href="https://images.unsplash.com/photo-1516321497487-4e97084f9a27" class="download-btn" download>Download</a>
+                        <img src="/assets/photo9.jpg" alt="City skyline at dusk" loading="lazy" data-download="/assets/photo9.jpg">
+                        <a href="/assets/photo9.jpg" class="download-btn" download>Download</a>
                     </div>
                     <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d" alt="Team collaboration" loading="lazy">
-                        <a href="https://images.unsplash.com/photo-1504384308090-c894fdcc538d" class="download-btn" download>Download</a>
+                        <img src="/assets/photo10.jpg" alt="Team collaborating in a meeting" loading="lazy" data-download="/assets/photo10.jpg">
+                        <a href="/assets/photo10.jpg" class="download-btn" download>Download</a>
                     </div>
                     <div class="photo-item">
-                        <img src="https://yt3.googleusercontent.com/b0bVzfq8mHWlBJJ0nsEVP-PfepRAvhTYxJb8EfU4i7gujOyjuHFxWEZbxPXqahOe9HZyHfaoRg=s900-c-k-c0x00ffffff-no-rj" alt="Profile photo" loading="lazy">
-                        <a href="https://yt3.googleusercontent.com/b0bVzfq8mHWlBJJ0nsEVP-PfepRAvhTYxJb8EfU4i7gujOyjuHFxWEZbxPXqahOe9HZyHfaoRg=s900-c-k-c0x00ffffff-no-rj" class="download-btn" download>Download</a>
+                        <img src="/assets/photo11.jpg" alt="Samrat Singh's profile photo" loading="lazy" data-download="/assets/photo11.jpg">
+                        <a href="/assets/photo11.jpg" class="download-btn" download>Download</a>
                     </div>
                     <div class="photo-item">
-                        <img src="https://stjosephntpckahalgaon.in/Gallery2018_19/swacch%20bharat/2.jpeg" alt="Swachh Bharat event" loading="lazy">
-                        <a href="https://stjosephntpckahalgaon.in/Gallery2018_19/swacch%20bharat/2.jpeg" class="download-btn" download>Download</a>
+                        <img src="/assets/photo12.jpg" alt="Swachh Bharat event at St. Joseph's School" loading="lazy" data-download="/assets/photo12.jpg">
+                        <a href="/assets/photo12.jpg" class="download-btn" download>Download</a>
                     </div>
                     <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1531297484009-4c31d4c4d8d3" alt="Personal moment" loading="lazy">
-                        <a href="https://images.unsplash.com/photo-1531297484009-4c31d4c4d8d3" class="download-btn" download>Download</a>
+                        <img src="/assets/photo13.jpg" alt="Samrat Singh in a personal moment" loading="lazy" data-download="/assets/photo13.jpg">
+                        <a href="/assets/photo13.jpg" class="download-btn" download>Download</a>
                     </div>
                     <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="Coding setup" loading="lazy">
-                        <a href="https://images.unsplash.com/photo-1498050108023-c5249f4df085" class="download-btn" download>Download</a>
+                        <img src="/assets/photo14.jpg" alt="Coding setup with laptop and monitor" loading="lazy" data-download="/assets/photo14.jpg">
+                        <a href="/assets/photo14.jpg" class="download-btn" download>Download</a>
                     </div>
                 </div>
                 <a href="#" class="btn" onclick="showMainContent(event)">Back to Home</a>
             </div>
         </div>
+        <!-- Videos screen -->
+        <div id="videos-screen" class="screen">
+            <div class="screen-content">
+                <h2>Videos</h2>
+                <div class="videos-grid">
+                    <div class="video-card">
+                        <div class="video-player">
+                            <video controls preload="none" poster="/assets/video-poster1.jpg">
+                                <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-description">
+                            <p>Big Buck Bunny: A short animated film about a friendly rabbit seeking revenge in a whimsical forest. A fun, open-source animation project.</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-player">
+                            <video controls preload="none" poster="/assets/video-poster2.jpg">
+                                <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-description">
+                            <p>Sample Video: A short clip showcasing dynamic visuals and animations, demonstrating creative storytelling through motion.</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="btn" onclick="showMainContent(event)">Back to Home</a>
+            </div>
+        </div>
+        <!-- Photo modal for enlarged view -->
+        <div class="photo-modal" id="photoModal">
+            <div class="modal-content">
+                <img src="" alt="Enlarged photo">
+                <a href="" class="download-btn" download>Download</a>
+                <button class="close-modal" aria-label="Close modal">✕</button>
+            </div>
+        </div>
+        <!-- Footer -->
         <footer>
             <p>© 2025 Samrat Singh. All rights reserved.</p>
         </footer>
         <script>
-            let s = 0;
-            const l = document.querySelectorAll('.slideshow-slide'),
-                        t = l.length;
+            // Slideshow functionality
+            let currentSlideIndex = 0;
+            let slides = document.querySelectorAll('.slideshow-slide');
+            const totalSlides = slides.length;
 
-            function h(e) {
-                e >= t && (s = 0);
-                e < 0 && (s = t - 1);
-                l.forEach((o, i) => o.classList.toggle('active', i === s));
+            function showSlide(index) {
+                if (index >= totalSlides) currentSlideIndex = 0;
+                if (index < 0) currentSlideIndex = totalSlides - 1;
+                slides.forEach((slide, i) => slide.classList.toggle('active', i === currentSlideIndex));
             }
 
-            function changeSlide(e) {
-                s += e;
-                h(s);
+            function changeSlide(direction) {
+                currentSlideIndex += direction;
+                showSlide(currentSlideIndex);
             }
 
+            // Auto-advance slideshow every 4 seconds
             setInterval(() => {
-                s++;
-                h(s);
-            }, 3e3);
+                currentSlideIndex++;
+                showSlide(currentSlideIndex);
+            }, 4000);
 
-            h(s);
+            showSlide(currentSlideIndex);
 
-            document.querySelectorAll('.slideshow-nav button').forEach(e => {
-                e.addEventListener('keydown', o => {
-                    if (o.key === 'Enter' || o.key === 'Space') {
-                        o.preventDefault();
-                        changeSlide(e.getAttribute('onclick').includes('-1') ? -1 : 1);
+            // Keyboard navigation for slideshow
+            document.querySelectorAll('.slideshow-nav button').forEach(button => {
+                button.addEventListener('keydown', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        changeSlide(button.getAttribute('onclick').includes('-1') ? -1 : 1);
                     }
                 });
             });
 
-            l.forEach(e => {
-                const o = e.querySelector('img');
-                o.addEventListener('error', () => {
-                    o.src = 'https://via.placeholder.com/600x300?text=Image+Failed';
-                    o.alt = 'Placeholder image';
+            // Image error handling
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('error', () => {
+                    img.src = 'https://via.placeholder.com/600x300?text=Image+Failed';
+                    img.alt = 'Placeholder image';
                 });
             });
 
-            document.querySelectorAll('nav a').forEach(e => {
-                e.addEventListener('click', o => {
-                    o.preventDefault();
-                    const i = e.getAttribute('data-screen'),
-                                r = e.getAttribute('href');
-                    if (i === 'achievements') {
-                        g();
-                    } else if (i === 'photos') {
-                        p();
-                    } else if (r && r !== '#') {
-                        showMainContent();
-                        document.getElementById(r.substring(1)).scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            });
+            // Screen navigation functions
+            function showMovies() {
+                document.querySelector('main').classList.add('hidden');
+                document.querySelector('#movies-screen').classList.add('active');
+                document.querySelector('#achievements-screen').classList.remove('active');
+                document.querySelector('#photos-screen').classList.remove('active');
+                document.querySelector('#videos-screen').classList.remove('active');
+            }
 
-            function g() {
+            function showAchievements() {
                 document.querySelector('main').classList.add('hidden');
                 document.querySelector('#achievements-screen').classList.add('active');
                 document.querySelector('#photos-screen').classList.remove('active');
+                document.querySelector('#movies-screen').classList.remove('active');
+                document.querySelector('#videos-screen').classList.remove('active');
             }
 
-            function p() {
+            function showPhotos() {
                 document.querySelector('main').classList.add('hidden');
                 document.querySelector('#photos-screen').classList.add('active');
                 document.querySelector('#achievements-screen').classList.remove('active');
+                document.querySelector('#movies-screen').classList.remove('active');
+                document.querySelector('#videos-screen').classList.remove('active');
             }
 
-            function showMainContent(e) {
-                e && e.preventDefault();
-                document.querySelector('main').classList.remove('hidden');
+            function showVideos() {
+                document.querySelector('main').classList.add('hidden');
+                document.querySelector('#videos-screen').classList.add('active');
+                document.querySelector('#movies-screen').classList.remove('active');
                 document.querySelector('#achievements-screen').classList.remove('active');
                 document.querySelector('#photos-screen').classList.remove('active');
             }
 
-            function changeTheme(e) {
-                document.body.setAttribute('data-theme', e);
-                localStorage.setItem('theme', e);
+            function showMainContent(event) {
+                if (event) event.preventDefault();
+                document.querySelector('main').classList.remove('hidden');
+                document.querySelector('#movies-screen').classList.remove('active');
+                document.querySelector('#achievements-screen').classList.remove('active');
+                document.querySelector('#photos-screen').classList.remove('active');
+                document.querySelector('#videos-screen').classList.remove('active');
+                document.querySelector('nav a[href="#about"]').setAttribute('aria-current', 'page');
             }
 
+            // Theme switching
+            function changeTheme(theme) {
+                document.body.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+            }
+
+            // Dynamic slideshow photo integration and modal functionality
             document.addEventListener('DOMContentLoaded', () => {
-                const e = localStorage.getItem('theme') || 'dark';
-                changeTheme(e);
-                document.querySelector('.theme-selector').value = e;
-                const o = document.querySelectorAll('section'),
-                            i = new IntersectionObserver(r => {
-                                r.forEach(n => {
-                                    if (n.isIntersecting) {
-                                        n.target.classList.add('fade-in');
-                                        i.unobserve(n.target);
-                                    }
-                                });
-                            }, { threshold: .1 });
-                o.forEach(r => i.observe(r));
+                // Apply saved theme
+                const savedTheme = localStorage.getItem('theme') || 'dark';
+                changeTheme(savedTheme);
+                document.querySelector('.theme-selector').value = savedTheme;
+
+                // Theme selector keyboard accessibility
+                document.querySelector('.theme-selector').addEventListener('keydown', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        changeTheme(event.target.value);
+                    }
+                });
+
+                // Section fade-in animation
+                const sections = document.querySelectorAll('section');
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('fade-in');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                sections.forEach(section => observer.observe(section));
+
+                // Navigation link handling
+                document.querySelectorAll('nav a, .btn[data-screen]').forEach(link => {
+                    link.addEventListener('click', event => {
+                        event.preventDefault();
+                        const screen = link.getAttribute('data-screen');
+                        const href = link.getAttribute('href');
+                        document.querySelectorAll('nav a').forEach(a => a.removeAttribute('aria-current'));
+                        if (screen) {
+                            if (screen === 'movies') showMovies();
+                            else if (screen === 'achievements') showAchievements();
+                            else if (screen === 'photos') showPhotos();
+                            else if (screen === 'videos') showVideos();
+                            link.setAttribute('aria-current', 'page');
+                        } else if (href && href !== '#') {
+                            showMainContent();
+                            const target = document.getElementById(href.substring(1));
+                            if (target) {
+                                target.scrollIntoView({ behavior: 'smooth' });
+                                link.setAttribute('aria-current', 'page');
+                            }
+                        }
+                    });
+                });
+
+                // Add photos to slideshow
+                const slideshowContainer = document.querySelector('.slideshow-container');
+                document.querySelectorAll('img:not(.slideshow-slide img):not(.movie-poster img):not(.video-player img):not(.about-photo):not(.achievement-photo)').forEach(img => {
+                    const slide = document.createElement('div');
+                    slide.classList.add('slideshow-slide');
+                    const imgClone = img.cloneNode(true);
+                    imgClone.removeAttribute('data-download');
+                    slide.appendChild(imgClone);
+                    slideshowContainer.insertBefore(slide, document.querySelector('.slideshow-nav'));
+                });
+                slides = document.querySelectorAll('.slideshow-slide'); // Update slides after adding new ones
+                totalSlides = slides.length;
+
+                // Photo enlarge modal
+                const modal = document.getElementById('photoModal');
+                const modalImg = modal.querySelector('img');
+                const modalDownload = modal.querySelector('.download-btn');
+                const closeModal = modal.querySelector('.close-modal');
+
+                document.querySelectorAll('.photos-grid img').forEach(img => {
+                    img.addEventListener('click', () => {
+                        modalImg.src = img.src;
+                        modalImg.alt = img.alt;
+                        modalDownload.href = img.getAttribute('data-download');
+                        modal.classList.add('active');
+                    });
+                });
+
+                closeModal.addEventListener('click', () => {
+                    modal.classList.remove('active');
+                });
+
+                modal.addEventListener('click', event => {
+                    if (event.target === modal) {
+                        modal.classList.remove('active');
+                    }
+                });
+
+                // Keyboard accessibility for modal
+                closeModal.addEventListener('keydown', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        modal.classList.remove('active');
+                    }
+                });
             });
         </script>
     </body>
