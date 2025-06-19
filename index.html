@@ -9,7 +9,7 @@
         <meta property="og:title" content="Samrat Singh - Portfolio">
         <meta property="og:description" content="Explore Samrat Singh's portfolio, featuring coding projects, skills, achievements, and a curated collection of favorite movies.">
         <meta property="og:image" content="/assets/og-image.jpg">
-        <meta property="og:url" content="https://yourwebsite.com">
+        <meta property="og:url" content="https://samrat07-git.github.io/portfolio/">
         <title>Samrat Singh - Personal Portfolio | Computer Science Student</title>
         <link rel="icon" type="image/png" href="/assets/favicon.png">
         <style>
@@ -94,7 +94,7 @@
                 font-family: Arial, sans-serif;
             }
             html {
-                scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+                scroll-behavior: smooth;
             }
             body {
                 line-height: 1.6;
@@ -184,10 +184,10 @@
             nav {
                 background: var(--nav-bg);
                 padding: 1rem;
-                position: fixed; /* Fixed at the top */
+                position: fixed;
                 top: 0;
                 width: 100%;
-                z-index: 1000; /* Stays above other content */
+                z-index: 1000;
                 text-align: center;
                 role: navigation;
             }
@@ -234,7 +234,7 @@
                 display: none;
                 text-align: center;
                 opacity: 0;
-                transition: opacity 0.5s ease-in-out; /* Smooth fade effect */
+                transition: opacity 0.5s ease-in-out;
             }
             .slideshow-slide.active {
                 display: block;
@@ -289,7 +289,7 @@
                 background: var(--section-bg);
                 padding: 2rem;
                 margin-bottom: 1.5rem;
-                border-radius: 8 Bibliographypx;
+                border-radius: 8px;
                 box-shadow: 0 4px 8px var(--section-shadow);
                 opacity: 0;
                 transform: translateY(20px);
@@ -403,7 +403,7 @@
                 padding: 1rem;
                 border-radius: 8px;
             }
-            .video-player video {
+            .video-player video, .video-player iframe {
                 max-width: 100%;
                 border-radius: 5px;
             }
@@ -418,7 +418,7 @@
             }
             .btn:hover, .btn:focus {
                 background: var(--btn-hover);
-                transform: scale(1.05); /* Added animation */
+                transform: scale(1.05);
             }
             /* Screen styles */
             .screen {
@@ -447,7 +447,7 @@
                 justify-content: center;
                 align-items: center;
                 role: dialog;
-                aria-labelledby: modal-title;
+                aria-labelledby: modal-heading;
             }
             .photo-modal.active {
                 display: flex;
@@ -522,6 +522,17 @@
                 0% { transform: rotate(0deg); }
                 100% { transform: rotate(360deg); }
             }
+            /* Screen reader only */
+            .sr-only {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                border: 0;
+            }
             /* Media queries for responsiveness */
             @media (max-width: 768px) {
                 header h1 {
@@ -582,37 +593,45 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
+        <!-- Header -->
+        <header id="header" aria-labelledby="header-title">
+            <h1 class="text-animation">
+                <span id="header-title">Samrat Singh</span>
+                <span>XII</span>
+            </h1>
+            <p>Computer Science Student | begginer | Tech Enthusiast</p>
+        </header>
         <!-- Slideshow with dynamic photo integration -->
         <div class="slideshow-container" aria-live="polite">
             <div class="slideshow-slide active">
-                <img src="https://www.theasburycollegian.com/wp-content/uploads/2023/02/via-Getty-Images-1024x576.jpeg" alt="St. Joseph's School Bhagalpur exterior view" loading="lazy">
+                <img src="https://www.theasburycollegian.com/wp-content/uploads/2023/02/via-Getty-Images-1024x576.jpeg" alt="Exterior view of St. Joseph's School Bhagalpur during the daytime" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://wallpaperaccess.com/full/11201454.jpg" alt="Plus 2 building at St. Joseph's School" loading="lazy">
+                <img src="https://wallpaperaccess.com/full/11201454.jpg" alt="Plus 2 building at St. Joseph's School with students gathered outside" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://i.cdn.newsbytesapp.com/images/l42220240415122808.jpeg" alt="Sports event at St. Joseph's School" loading="lazy">
+                <img src="https://i.cdn.newsbytesapp.com/images/l42220240415122808.jpeg" alt="Students participating in a sports event at St. Joseph's School" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://wallpaperaccess.com/full/36626.jpg" alt="Laptop screen displaying code" loading="lazy">
+                <img src="https://wallpaperaccess.com/full/36626.jpg" alt="Laptop screen displaying lines of programming code" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://specials-images.forbesimg.com/imageserve/6852bfba2460b6f79f6a9dd5/solo/960x0.jpg?fit=scale" alt="Close-up of a circuit board" loading="lazy">
+                <img src="https://specials-images.forbesimg.com/imageserve/6852bfba2460b6f79f6a9dd5/solo/960x0.jpg?fit=scale" alt="Close-up view of an electronic circuit board" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://wallpapers.com/images/featured/avatar-pictures-vohr0oeq1ld3lpbp.jpg" alt="Beach sunset landscape" loading="lazy">
+                <img src="https://wallpapers.com/images/featured/avatar-pictures-vohr0oeq1ld3lpbp.jpg" alt="Scenic beach sunset with vibrant colors" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://www.hollywoodreporter.com/wp-content/uploads/2022/02/From-Still-Epix-Publicity-H-2022.jpg?w=1296&h=730&crop=1&resize=681%2C383" alt="Abstract digital artwork" loading="lazy">
+                <img src="https://www.hollywoodreporter.com/wp-content/uploads/2022/02/From-Still-Epix-Publicity-H-2022.jpg?w=1296&h=730&crop=1&resize=681%2C383" alt="Abstract digital artwork with colorful patterns" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2023/09/sex-education-final-season-poster.jpg" alt="Modern technology workspace with laptop" loading="lazy">
+                <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2023/09/sex-education-final-season-poster.jpg" alt="Modern workspace with a laptop and tech gadgets" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://source.unsplash.com/random/800x600/?city" alt="City skyline at dusk" loading="lazy">
+                <img src="https://source.unsplash.com/random/800x600/?city" alt="City skyline illuminated at dusk" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZDHQy-T8TuP8Ur58Ya3y8yMnmTzLU9a4lupv0j9j7cZVPlQ5U33AZI0FnBuwlWGI812bYfwFR-w5pKO5F2XvzHkFyu6VOsGT894Dbz52D_DuJ3cwhRNNLiOWdKhFB_Wb36k3a7Bna1tuP/s1600/o-UNBROKEN-facebook.jpg" alt="Team collaborating in a meeting" loading="lazy">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZDHQy-T8TuP8Ur58Ya3y8yMnmTzLU9a4lupv0j9j7cZVPlQ5U33AZI0FnBuwlWGI812bYfwFR-w5pKO5F2XvzHkFyu6VOsGT894Dbz52D_DuJ3cwhRNNLiOWdKhFB_Wb36k3a7Bna1tuP/s1600/o-UNBROKEN-facebook.jpg" alt="Team collaborating during a project meeting" loading="lazy">
             </div>
             <!-- Photos from photos-grid will be dynamically added here -->
             <div class="slideshow-nav">
@@ -625,86 +644,87 @@
         </div>
         <!-- Main content sections -->
         <main>
-            <section id="about">
-                <h2>About Me</h2>
-                <div class="skill-item">Note: <span class="percentage">More things will be added day by day</span></div>
+            <section id="about" aria-labelledby="about-heading">
+                <h2 id="about-heading">About Me</h2>
+                <div class="skill-item">Note: <span class="percentage">More content will be added regularly</span></div>
                 <div class="about-container">
-                    <p>Hi,I'm Samrat Singh, An average class 12th student i created this website using github which gives free doamin name to push your own website for free.</p>
+                    <p>Hi, I'm Samrat Singh, a Class 12th student passionate about coding and technology. I built this website using GitHub Pages to showcase my skills, projects, and interests. Explore my journey in computer science and beyond!</p>
                     <img src="https://media.istockphoto.com/id/1361394182/photo/funny-british-shorthair-cat-portrait-looking-shocked-or-surprised.webp?b=1&s=612x612&w=0&k=20&c=-niqIUX8Kfiyn50xgUzxxUYX6H2q9BlGc3PX5PVM-iA=" alt="Samrat Singh smiling in a portrait" class="about-photo" loading="lazy">
                 </div>
             </section>
-            <section id="education">
-                <h2>Education</h2>
+            <section id="education" aria-labelledby="education-heading">
+                <h2 id="education-heading">Education</h2>
                 <ul>
-                    <li><strong>Class 10th (ICSE)</strong> - Saint Joseph's School, Pakartalla-Kahalgaon (2023-2024) <span class="percentage"></span><br>.</li>
-                    <li><strong>Class 12th (CBSE)</strong> - Saint Joseph's School, NTPC Kahalgaon (Ongoing, Expected Completion: 2026)<br></li>
-                </ul>
+                    <li><strong>Class 10th (ICSE)</strong> - Saint Joseph's School, Pakartalla-Kahalgaon (2023-2024)<br>Secured top ranks with excellent academic performance.</li>
+                <li><strong>Class 12th (CBSE)</strong> - Saint Joseph's School, NTPC Kahalgaon (Ongoing, Expected Completion: 2026)<br></li>
+            </ul>
             </section>
-            <section id="movies-preview">
-                <h2>Movies</h2>
+            <section id="movies-preview" aria-labelledby="movies-preview-heading">
+                <h2 id="movies-preview-heading">Movies</h2>
                 <p>Explore my curated collection of favorite movies, featuring a mix of sci-fi, drama, and action genres with detailed descriptions and posters.</p>
                 <a href="#" class="btn" data-screen="movies">View Movies</a>
             </section>
-            <section id="achievements-preview">
-                <h2>Achievements</h2>
+            <section id="achievements-preview" aria-labelledby="achievements-preview-heading">
+                <h2 id="achievements-preview-heading">Achievements</h2>
                 <p>Discover my academic and coding milestones, showcasing my dedication to learning and innovation.</p>
                 <a href="#" class="btn" data-screen="achievements">View Achievements</a>
             </section>
-            <section id="photos-preview">
-                <h2>Photos</h2>
+            <section id="photos-preview" aria-labelledby="photos-preview-heading">
+                <h2 id="photos-preview-heading">Photos</h2>
                 <p>View my collection of personal, school, and tech-related photos, capturing moments of learning and creativity.</p>
                 <a href="#" class="btn" data-screen="photos">View Photos</a>
             </section>
-            <section id="videos-preview">
-                <h2>Videos</h2>
+            <section id="videos-preview" aria-labelledby="videos-preview-heading">
+                <h2 id="videos-preview-heading">Videos</h2>
                 <p>Watch a selection of videos, including animations and tech-related content I enjoy or have created.</p>
                 <a href="#" class="btn" data-screen="videos">View Videos</a>
             </section>
-            <section id="skills">
-                <h2>Skills</h2>
+            <section id="skills" aria-labelledby="skills-heading">
+                <h2 id="skills-heading">Skills</h2>
                 <div class="skills-grid">
                     <div class="skill-item">Python <span class="percentage">!</span></div>
                     <div class="skill-item">Java <span class="percentage">!</span></div>
                     <div class="skill-item">Unity Engine <span class="percentage">!</span></div>
                     <div class="skill-item">AI <span class="percentage">!</span></div>
-                    <div class="skill-item">--<span class="percentage">!</span></div>
+                    <div class="skill-item">-- <span class="percentage">!</span></div>
                 </div>
             </section>
-            <section id="projects">
-                <h2>Projects</h2>
-                <div class="skill-item">Note: <span class="percentage">websites URL will be uploded soon!!</span></div>
+            <section id="projects" aria-labelledby="projects-heading">
+                <h2 id="projects-heading">Projects</h2>
+                <div class="skill-item">Note: <span class="percentage">Website URLs will be updated soon!</span></div>
                 <div class="project">
                     <h3>Personal Portfolio Website</h3>
-                    <p>A fully responsive website built from scratch using HTML, CSS, and JavaScript. Features include theme switching, a dynamic slideshow, and interactive sections for skills, projects, and media. The site showcases my ability to create user-friendly interfaces with modern web technologies.</p>
-                    <a href="#" class="btn" target="_blank">View on GitHub</a>
+                    <p.</p>
+                    <a href="https://samrat07-git.github.io/portfolio/" class="btn" target="_blank">View on GitHub</a>
                 </div>
                 <div class="project">
                     <h3>Simple Calculator</h3>
-                    <p>A web-based calculator application developed with JavaScript, HTML, and CSS. Supports basic arithmetic operations (addition, subtraction, multiplication, division) with a clean, intuitive interface. Demonstrates my understanding of event handling and DOM manipulation.</p>
+                    <p>A web-based calculator application developed with JavaScript, HTML, and CSS..</p>
                     <a href="https://samrat07-git.github.io/calculator/" class="btn" target="_blank">View on GitHub</a>
+                    <div class="skill-item">-- <span class="percentage">click to view !!!</span></div>
                 </div>
             </section>
-            <section id="contact">
-                <h2>Contact</h2>
-                <div class="skill-item">Note: <span class="percentage">only instagram url provided</span></div>
+            <section id="contact" aria-labelledby="contact-heading">
+                <h2 id="contact-heading">Contact</h2>
+                <div class="skill-item">Note: <span class="percentage">Only Instagram URL provided; others to be updated</span></div>
                 <p>Connect with me on social platforms or download my resume to learn more about my work.</p>
                 <p>Instagram: <a href="https://www.instagram.com/samratsingh" target="_blank">insta/samratsingh</a></p>
-                <p>LinkedIn: <a href="#" target="_blank">linkedin.com/in/samratsingh</a></p>
-                <p>GitHub: <a href="#" target="_blank">github.com/samratsingh</a></p>
+                <p>LinkedIn: <a href="https://www.linkedin.com/in/samrat-singh-profile" target="_blank">linkedin.com/in/samrat-singh-profile</a></p>
+                <p>GitHub: <a href="https://github.com/samrat07-git" target="_blank">github.com/samrat07-git</a></p>
                 <a href="/assets/resume.pdf" class="btn" download>Download Resume</a>
             </section>
         </main>
         <!-- Movies screen -->
         <div id="movies-screen" class="screen">
             <div class="screen-content">
-                <h2>Movies</h2>
+                <h2 id="movies-screen-heading">Movies</h2>
                 <div class="movies-grid">
                     <div class="movie-card">
                         <div class="movie-poster">
                             <img src="https://showbizcafe.com/wp-content/uploads/2014/11/interstellar_movie-wide.jpg" alt="Poster for Interstellar" loading="lazy">
                         </div>
                         <div class="movie-description">
-                            <p>Interstellar: A team of astronauts travels through a wormhole to find a new home for humanity, blending science and emotion in a cosmic journey. Directed by Christopher Nolan, this film explores themes of sacrifice and survival.</p>
+                            <p><strong>Interstellar (2014)</strong>: Directed by Christopher Nolan, this sci-fi epic follows astronauts traveling through a wormhole to find a new home for humanity. It masterfully blends scientific concepts with emotional storytelling, exploring themes of sacrifice and survival.</p>
                         </div>
                     </div>
                     <div class="movie-card">
@@ -712,7 +732,7 @@
                             <img src="https://i.ytimg.com/vi/P2yuYP3-Pz8/maxresdefault.jpg" alt="Poster for Game of Thrones" loading="lazy">
                         </div>
                         <div class="movie-description">
-                            <p>Game of Thrones: An epic fantasy series based on George R.R. Martin’s novels, featuring political intrigue, battles, and dragons. Known for its complex characters and unpredictable plot twists.</p>
+                            <p><strong>Game of Thrones (2011-2019)</strong>: Based on George R.R. Martin’s novels, this HBO series is a fantasy epic filled with political intrigue, epic battles, and dragons. Its complex characters and shocking plot twists make it a cultural phenomenon.</p>
                         </div>
                     </div>
                     <div class="movie-card">
@@ -720,7 +740,7 @@
                             <img src="https://source.unsplash.com/random/250x350/?movie" alt="Poster for The Dark Knight" loading="lazy">
                         </div>
                         <div class="movie-description">
-                            <p>The Dark Knight: Batman faces the Joker in a gritty battle for Gotham’s soul, with intense action and moral dilemmas. Directed by Christopher Nolan, starring Christian Bale and Heath Ledger.</p>
+                            <p><strong>The Dark Knight (2008)</strong>: Directed by Christopher Nolan, this superhero masterpiece pits Batman against the Joker in a gritty battle for Gotham’s soul. Heath Ledger’s iconic performance and intense action sequences redefine the genre.</p>
                         </div>
                     </div>
                     <div class="movie-card">
@@ -728,7 +748,7 @@
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgw1PxgqpNphR0IPOeLyUZVxP5xTMOqDOw1w&s" alt="Poster for Inception" loading="lazy">
                         </div>
                         <div class="movie-description">
-                            <p>Inception: A thief enters dreams to steal secrets, navigating a mind-bending maze of reality and illusion. Directed by Christopher Nolan, this sci-fi thriller is a visual masterpiece.</p>
+                            <p><strong>Inception (2010)</strong>: Christopher Nolan’s sci-fi thriller follows a thief who infiltrates dreams to steal secrets. Its mind-bending narrative and stunning visuals explore the boundaries between reality and illusion.</p>
                         </div>
                     </div>
                     <div class="movie-card">
@@ -736,7 +756,7 @@
                             <img src="https://cdn-dkepej.nitrocdn.com/xHPizjaXJNONuYnLnfsGSUCsMnIlzOEq/assets/images/optimized/rev-ef469ea/blog.frame.io/wp-content/uploads/2020/01/parasite_header-768x384.jpg" alt="Poster for Parasite" loading="lazy">
                         </div>
                         <div class="movie-description">
-                            <p>Parasite: A poor family infiltrates a wealthy household, leading to a dark, satirical take on class struggle. Directed by Bong Joon-ho, this Oscar-winning film blends humor and suspense.</p>
+                            <p><strong>Parasite (2019)</strong>: Directed by Bong Joon-ho, this Oscar-winning film is a dark satire on class disparity. A poor family’s infiltration of a wealthy household leads to unexpected twists, blending humor and suspense.</p>
                         </div>
                     </div>
                     <div class="movie-card">
@@ -744,7 +764,7 @@
                             <img src="https://source.unsplash.com/random/250x350/?sci-fi" alt="Poster for The Matrix" loading="lazy">
                         </div>
                         <div class="movie-description">
-                            <p>The Matrix: A hacker discovers reality is a simulation controlled by machines, leading to a rebellion. Directed by the Wachowskis, this sci-fi classic redefined action and philosophy in film.</p>
+                            <p><strong>The Matrix (1999)</strong>: Directed by the Wachowskis, this sci-fi classic follows a hacker discovering reality is a machine-controlled simulation. Its groundbreaking action and philosophical depth revolutionized filmmaking.</p>
                         </div>
                     </div>
                 </div>
@@ -753,40 +773,48 @@
         <!-- Achievements screen -->
         <div id="achievements-screen" class="screen">
             <div class="screen-content">
-                <h2>Achievements</h2>
+                <h2 id="achievements-screen-heading">Achievements</h2>
                 <div class="achievement">
                     <h3>Academic Excellence</h3>
-                    <p>Secured top ranks in Class 10th ICSE examinations at Saint Joseph's School, Pakartalla-Kahalgaon, demonstrating strong academic performance and dedication to studies (2023-2024).</p>
+                    <p> (2023-2024).</p>
                 </div>
                 <div class="achievement">
                     <h3>Coding Competition Participation</h3>
                     <p>Actively participated in school-level coding competitions, showcasing skills in Python and Java. Gained valuable experience in problem-solving and algorithmic thinking.</p>
+                </div>
+                <div class="achievement">
+                    <h3>Portfolio Website Development</h3>
+                    <p>Designed and deployed a personal portfolio website using HTML, CSS, and JavaScript, hosted on GitHub Pages. Demonstrated proficiency in web development and UI/UX design.</p>
+                </div>
+                <div class="achievement">
+                    <h3>Unity Game Prototype</h3>
+                    <p>.</p>
                 </div>
             </div>
         </div>
         <!-- Photos screen -->
         <div id="photos-screen" class="screen">
             <div class="screen-content">
-                <h2>Photos</h2>
+                <h2 id="photos-screen-heading">Photos</h2>
                 <div class="photos-grid">
                     <div class="photo-item">
-                        <img src="/assets/photo1.jpg" alt="Photo of a school event" data-download="/assets/photo1.jpg" loading="lazy">
+                        <img src="/assets/photo1.jpg" alt="Students at a school event at St. Joseph's School" data-download="/assets/photo1.jpg" loading="lazy">
                         <a href="/assets/photo1.jpg" class="download-btn" download>Download</a>
                     </div>
                     <div class="photo-item">
-                        <img src="/assets/photo2.jpg" alt="Photo of a coding setup" data-download="/assets/photo2.jpg" loading="lazy">
+                        <img src="/assets/photo2.jpg" alt="Coding setup with a laptop displaying code" data-download="/assets/photo2.jpg" loading="lazy">
                         <a href="/assets/photo2.jpg" class="download-btn" download>Download</a>
                     </div>
                     <div class="photo-item">
-                        <img src="/assets/photo3.jpg" alt="Photo of a group project" data-download="/assets/photo3.jpg" loading="lazy">
+                        <img src="/assets/photo3.jpg" alt="Group collaborating on a project at school" data-download="/assets/photo3.jpg" loading="lazy">
                         <a href="/assets/photo3.jpg" class="download-btn" download>Download</a>
                     </div>
                     <div class="photo-item">
-                        <img src="/assets/photo4.jpg" alt="Photo of a tech workshop" data-download="/assets/photo4.jpg" loading="lazy">
+                        <img src="/assets/photo4.jpg" alt="Participants at a tech workshop" data-download="/assets/photo4.jpg" loading="lazy">
                         <a href="/assets/photo4.jpg" class="download-btn" download>Download</a>
                     </div>
                     <div class="photo-item">
-                        <img src="/assets/photo5.jpg" alt="Photo of a personal moment" data-download="/assets/photo5.jpg" loading="lazy">
+                        <img src="/assets/photo5.jpg" alt="Personal moment captured during a school activity" data-download="/assets/photo5.jpg" loading="lazy">
                         <a href="/assets/photo5.jpg" class="download-btn" download>Download</a>
                     </div>
                 </div>
@@ -795,7 +823,7 @@
         <!-- Videos screen -->
         <div id="videos-screen" class="screen">
             <div class="screen-content">
-                <h2>Videos</h2>
+                <h2 id="videos-screen-heading">Videos</h2>
                 <p>A curated collection of videos showcasing animations, tech-related content, and creative projects I enjoy or have contributed to.</p>
                 <div class="videos-grid">
                     <div class="video-card">
@@ -806,24 +834,31 @@
                                 Your browser does not support the video tag.
                             </video>
                         </div>
-                        <p>A mesmerizing animation of a futuristic cityscape, highlighting advanced visual effects and creative storytelling.</p>
+                        <p>Animation Showcase</p>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-player">
+                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/iqlH4okiQqg" title="Unity Course Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <p>Unity Course Tutorial</p>
                     </div>
                     <div class="video-card">
                         <div class="video-player">
                             <video controls preload="none" poster="/assets/video-poster2.jpg">
-                                <source src="https://scontent.cdninstagram.com/v/t66.30100-16/319492159_1655865868211934_8968421681695840803_n.mp4?_nc_cat=100&ccb=1-7&_nc_sid=9a5d50&efg=eyJ2ZW5jb2RlX3RhZyI6ImlnLXhwdmRzLnN0b3J5LmM2LVRJRVJfMS1DVVJSRU5UX0FSX1BST0ZJTEUudm9kX2Jhc2VsaW5lIn0%3D&_nc_ohc=Z3rU9LEpOIIQ7kNvgE4d5g2&_nc_zt=24&_nc_ht=scontent.cdninstagram.com&edm=APs17CUBAAAA&oh=00_AYCxBZZiWCRaL5rKx4bwnR1zPoYQzWYZK1tJAvW4VvVq_A&oe=65DD1B4A" type="video/mp4">
+                                <source src="https://scontent-sjc3-1.cdninstagram.com/o1/v/t16/f2/m86/AQPcd-H90znNtocDP7GeG9slUJ_lFEoCszEQp_2Urt3FklXyFdbwJYyPSyV9Y1ANNxiu7XAKt_H9EWCYRt8jDLVtuWRYVyKjuLc9MGc.mp4?stp=dst-mp4&efg=eyJxZV9ncm91cHMiOiJbXCJpZ193ZWJfZGVsaXZlcnlfdnRzX290ZlwiXSIsInZlbmNvZGVfdGFnIjoidnRzX3ZvZF91cmxnZW4uY2xpcHMuYzIuNzIwLmJhc2VsaW5lIn0&_nc_cat=104&vs=1734737040759611_539552067&_nc_vs=HBksFQIYUmlnX3hwdl9yZWVsc19wZXJtYW5lbnRfc3JfcHJvZC9DMjQ3REE3N0I4NjdBQUNDN0FGMEExNjNCNkI4MDk5OV92aWRlb19kYXNoaW5pdC5tcDQVAALIARIAFQIYOnBhc3N0aHJvdWdoX2V2ZXJzdG9yZS9HRWdFR3g0UW51cTBqMTRFQUZ6ZVVNWWtJdUlJYnFfRUFBQUYVAgLIARIAKAAYABsAFQAAJs6NqML9hc8%2FFQIoAkMzLBdAN8zMzMzMzRgSZGFzaF9iYXNlbGluZV8xX3YxEQB1%2Fgdl5p0BAA%3D%3D&ccb=9-4&oh=00_AfOCnbPY9uO693Qk6LOSK7OBqM2eg0KdJsQj0bpLbzwXLA&oe=6855C3AA&_nc_sid=10d13b" type="video/mp4">
                                 <track src="/assets/captions2.vtt" kind="captions" srclang="en" label="English">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
-                        <p>A short clip demonstrating a Unity Engine project, showcasing interactive 3D graphics and game development skills.</p>
+                        <p>Tech Demo</p>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Photo modal -->
-        <div class="photo-modal" id="photoModal">
+        <div class="photo-modal" id="photoModal" aria-labelledby="modal-heading">
             <div class="modal-content">
+                <h2 id="modal-heading" class="sr-only">Enlarged Photo View</h2>
                 <button type="button" class="close-modal" aria-label="Close modal">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="18" y1="6" x2="6" y2="18" />
@@ -885,17 +920,22 @@
 
             // Initialize slideshow with photos from photos-grid
             const slideshowContainer = document.querySelector('.slideshow-container');
-            document.querySelectorAll('.photos-grid img[data-download]').forEach(img => {
-                const slide = document.createElement('div');
-                slide.classList.add('slideshow-slide');
-                const imgClone = img.cloneNode(true);
-                imgClone.removeAttribute('data-download');
-                slide.appendChild(imgClone);
-                slideshowContainer.insertBefore(slide, document.querySelector('.slideshow-nav'));
-            });
+            const photos = document.querySelectorAll('.photos-grid img[data-download]');
+            if (photos.length) {
+                photos.forEach(img => {
+                    const slide = document.createElement('div');
+                    slide.classList.add('slideshow-slide');
+                    const imgClone = img.cloneNode(true);
+                    imgClone.removeAttribute('data-download');
+                    slide.appendChild(imgClone);
+                    slideshowContainer.insertBefore(slide, document.querySelector('.slideshow-nav'));
+                });
+            }
 
-            showSlide(slideIndex);
-            startSlideshow();
+            if (slides.length) {
+                showSlide(slideIndex);
+                startSlideshow();
+            }
 
             // Navigation and screens
             const navLinks = document.querySelectorAll('nav a');
@@ -927,7 +967,7 @@
                         const sectionId = link.getAttribute('href').slice(1);
                         const section = document.getElementById(sectionId);
                         if (section) {
-                            section.scrollIntoView({ behavior: 'smooth' }); // Smooth scrolling
+                            section.scrollIntoView({ behavior: 'smooth' });
                             window.location.hash = sectionId;
                         }
                     }
@@ -961,13 +1001,15 @@
             const modalImg = modal.querySelector('img');
             const closeModalBtn = modal.querySelector('.close-modal');
 
-            document.querySelectorAll('.photos-grid img').forEach(img => {
-                img.addEventListener('click', () => {
-                    modal.classList.add('active');
-                    modalImg.src = img.src;
-                    modalImg.alt = img.alt;
+            if (photos.length) {
+                photos.forEach(img => {
+                    img.addEventListener('click', () => {
+                        modal.classList.add('active');
+                        modalImg.src = img.src;
+                        modalImg.alt = img.alt;
+                    });
                 });
-            });
+            }
 
             closeModalBtn.addEventListener('click', () => modal.classList.remove('active'));
             modal.addEventListener('click', e => {
@@ -1016,11 +1058,11 @@
                 "@type": "Person",
                 "name": "Samrat Singh",
                 "jobTitle": "Computer Science Student",
-                "url": "https://yourwebsite.com",
+                "url": "https://samrat07-git.github.io/portfolio/",
                 "sameAs": [
                     "https://www.instagram.com/samratsingh",
-                    "https://github.com/samratsingh",
-                    "https://linkedin.com/in/samratsingh"
+                    "https://github.com/samrat07-git",
+                    "https://www.linkedin.com/in/samrat-singh-profile"
                 ]
             };
             const script = document.createElement('script');
