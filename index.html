@@ -93,6 +93,9 @@
                 box-sizing: border-box;
                 font-family: Arial, sans-serif;
             }
+            html {
+                scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+            }
             body {
                 line-height: 1.6;
                 color: var(--text-color);
@@ -181,9 +184,10 @@
             nav {
                 background: var(--nav-bg);
                 padding: 1rem;
-                position: sticky;
+                position: fixed; /* Fixed at the top */
                 top: 0;
-                z-index: 100;
+                width: 100%;
+                z-index: 1000; /* Stays above other content */
                 text-align: center;
                 role: navigation;
             }
@@ -229,9 +233,12 @@
             .slideshow-slide {
                 display: none;
                 text-align: center;
+                opacity: 0;
+                transition: opacity 0.5s ease-in-out; /* Smooth fade effect */
             }
             .slideshow-slide.active {
                 display: block;
+                opacity: 1;
             }
             .slideshow-slide img {
                 max-width: 100%;
@@ -282,7 +289,7 @@
                 background: var(--section-bg);
                 padding: 2rem;
                 margin-bottom: 1.5rem;
-                border-radius: 8px;
+                border-radius: 8 Bibliographypx;
                 box-shadow: 0 4px 8px var(--section-shadow);
                 opacity: 0;
                 transform: translateY(20px);
@@ -296,6 +303,13 @@
                 color: var(--heading-color);
                 font-size: 2rem;
                 margin-bottom: 1rem;
+                opacity: 0;
+                transform: translateX(-20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+            section.fade-in h2 {
+                opacity: 1;
+                transform: translateX(0);
             }
             .about-container {
                 display: flex;
@@ -373,10 +387,11 @@
                 border-radius: 5px;
                 text-decoration: none;
                 margin-top: 0.5rem;
-                transition: background 0.3s;
+                transition: background 0.3s, transform 0.3s;
             }
             .download-btn:hover, .download-btn:focus {
                 background: var(--btn-hover);
+                transform: scale(1.05);
             }
             .videos-grid {
                 display: grid;
@@ -399,10 +414,11 @@
                 padding: 0.5rem 1rem;
                 border-radius: 5px;
                 text-decoration: none;
-                transition: background 0.3s;
+                transition: background 0.3s, transform 0.3s;
             }
             .btn:hover, .btn:focus {
                 background: var(--btn-hover);
+                transform: scale(1.05); /* Added animation */
             }
             /* Screen styles */
             .screen {
@@ -614,7 +630,7 @@
                 <div class="skill-item">Note: <span class="percentage">More things will be added day by day</span></div>
                 <div class="about-container">
                     <p>Hi,I'm Samrat Singh, An average class 12th student i created this website using github which gives free doamin name to push your own website for free.</p>
-                    <img src="https://source.unsplash.com/random/200x200/?portrait" alt="Samrat Singh smiling in a portrait" class="about-photo" loading="lazy">
+                    <img src="https://media.istockphoto.com/id/1361394182/photo/funny-british-shorthair-cat-portrait-looking-shocked-or-surprised.webp?b=1&s=612x612&w=0&k=20&c=-niqIUX8Kfiyn50xgUzxxUYX6H2q9BlGc3PX5PVM-iA=" alt="Samrat Singh smiling in a portrait" class="about-photo" loading="lazy">
                 </div>
             </section>
             <section id="education">
@@ -819,7 +835,7 @@
         </div>
         <!-- Footer -->
         <footer>
-            <p>&copy; 2025 Samrat Singh. All rights reserved.</p>
+            <p>© 2025 Samrat Singh. All rights reserved.</p>
         </footer>
         <!-- Back to top button -->
         <a href="#" class="back-to-top" aria-label="Back to top">↑</a>
@@ -841,14 +857,13 @@
             const pauseResumeBtn = document.getElementById('pauseResumeBtn');
 
             function showSlide(index) {
-                slides.forEach((slide, i) => {
-                    slide.classList.toggle('active', i === index);
-                });
+                slides.forEach(slide => slide.classList.remove('active'));
+                slides[index].classList.add('active');
                 slideIndex = (index + slides.length) % slides.length;
             }
 
             function changeSlide(n) {
-                showSlide(slideIndex + n);
+                showSlide((slideIndex + n + slides.length) % slides.length);
             }
 
             function startSlideshow() {
@@ -910,8 +925,11 @@
                     } else {
                         showMainContent();
                         const sectionId = link.getAttribute('href').slice(1);
-                        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-                        window.location.hash = sectionId;
+                        const section = document.getElementById(sectionId);
+                        if (section) {
+                            section.scrollIntoView({ behavior: 'smooth' }); // Smooth scrolling
+                            window.location.hash = sectionId;
+                        }
                     }
                 });
             });
