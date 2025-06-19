@@ -118,6 +118,7 @@
                 color: var(--nav-text);
                 text-align: center;
                 padding: 3rem 1rem;
+                margin-top: 50px; /* Adjust for fixed theme-container */
             }
             header h1 {
                 font-size: 2.5rem;
@@ -160,7 +161,13 @@
             .theme-container {
                 background: var(--nav-bg);
                 padding: 0.5rem;
-                text-align: center;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 1100;
             }
             .theme-selector {
                 padding: 0.5rem;
@@ -180,16 +187,31 @@
             .theme-selector:hover, .theme-selector:focus {
                 background: var(--btn-hover);
             }
-            /* Navigation bar styles (horizontal) */
+            /* Hamburger menu styles */
+            .hamburger {
+                display: none;
+                background: var(--btn-bg);
+                color: var(--nav-text);
+                border: none;
+                font-size: 1.5rem;
+                padding: 0.5rem 1rem;
+                cursor: pointer;
+                border-radius: 5px;
+                transition: background 0.3s;
+            }
+            .hamburger:hover, .hamburger:focus {
+                background: var(--btn-hover);
+            }
+            /* Navigation bar styles */
             nav {
                 background: var(--nav-bg);
                 padding: 1rem;
                 position: fixed;
-                top: 0;
+                top: 50px; /* Below theme-container */
                 width: 100%;
                 z-index: 1000;
                 text-align: center;
-                role: navigation;
+                transition: transform 0.3s ease;
             }
             nav ul {
                 list-style: none;
@@ -198,6 +220,19 @@
                 gap: 1.5rem;
                 align-items: center;
                 flex-wrap: wrap;
+                margin: 0;
+                padding: 0;
+            }
+            nav li {
+                animation: verticalLoop 20s linear infinite;
+                display: inline-block; /* Ensure proper rendering */
+            }
+            @keyframes verticalLoop {
+                0% { transform: translateY(0); }
+                100% { transform: translateY(-100%); }
+            }
+            nav ul:hover li, nav ul:focus-within li {
+                animation-play-state: paused;
             }
             nav a {
                 color: var(--nav-text);
@@ -205,6 +240,7 @@
                 font-size: 1.1rem;
                 position: relative;
                 transition: color 0.3s;
+                display: block; /* Ensure full clickable area */
             }
             nav a:hover, nav a:focus, nav a.active {
                 color: var(--nav-hover);
@@ -262,7 +298,6 @@
                 cursor: pointer;
                 font-size: 1.5rem;
                 transition: background 0.3s;
-                type: button;
             }
             .slideshow-nav button:hover, .slideshow-nav button:focus {
                 background: var(--btn-hover);
@@ -279,7 +314,6 @@
                 cursor: pointer;
                 border-radius: 5px;
                 transition: background 0.3s;
-                type: button;
             }
             .slideshow-controls button:hover, .slideshow-controls button:focus {
                 background: var(--btn-hover);
@@ -434,6 +468,32 @@
             .screen-content {
                 max-width: 100%;
             }
+            /* Photo URLs list */
+            .photo-urls {
+                margin-top: 2rem;
+                padding: 1rem;
+                background: var(--skill-bg);
+                border-radius: 8px;
+            }
+            .photo-urls h3 {
+                color: var(--heading-color);
+                margin-bottom: 1rem;
+            }
+            .photo-urls ul {
+                list-style: none;
+                padding: 0;
+            }
+            .photo-urls li {
+                margin-bottom: 0.5rem;
+                word-break: break-all;
+            }
+            .photo-urls a {
+                color: var(--btn-bg);
+                text-decoration: none;
+            }
+            .photo-urls a:hover, .photo-urls a:focus {
+                text-decoration: underline;
+            }
             /* Photo modal styles */
             .photo-modal {
                 display: none;
@@ -474,7 +534,6 @@
                 cursor: pointer;
                 border-radius: 50%;
                 transition: background 0.3s;
-                type: button;
             }
             .close-modal:hover, .close-modal:focus {
                 background: var(--btn-hover);
@@ -538,9 +597,41 @@
                 header h1 {
                     font-size: 2rem;
                 }
+                .theme-container {
+                    padding: 0.5rem 1rem;
+                }
+                .hamburger {
+                    display: block;
+                }
+                nav {
+                    transform: translateY(-100%);
+                    top: 50px;
+                    max-height: calc(100vh - 60px);
+                    overflow-y: auto;
+                    transition: transform 0.3s ease;
+                }
+                nav.active {
+                    transform: translateY(0);
+                }
                 nav ul {
                     flex-direction: column;
                     gap: 0.5rem;
+                    padding: 1rem;
+                }
+                nav li {
+                    animation: verticalLoopMobile 15s linear infinite;
+                }
+                @keyframes verticalLoopMobile {
+                    0% { transform: translateY(0); }
+                    100% { transform: translateY(-200%); }
+                }
+                nav ul:hover li, nav ul:focus-within li {
+                    animation-play-state: paused;
+                }
+                nav a {
+                    display: block;
+                    padding: 0.5rem;
+                    font-size: 1rem;
                 }
                 .slideshow-slide img {
                     height: 200px;
@@ -562,6 +653,14 @@
                 section {
                     padding: 1rem;
                 }
+                .theme-selector {
+                    font-size: 0.9rem;
+                    padding: 0.3rem;
+                }
+                .hamburger {
+                    padding: 0.3rem 0.6rem;
+                    font-size: 1.2rem;
+                }
                 .slideshow-nav button {
                     padding: 0.3rem 0.6rem;
                     font-size: 1.2rem;
@@ -570,8 +669,9 @@
         </style>
     </head>
     <body>
-        <!-- Theme selector -->
+        <!-- Theme selector and hamburger toggle -->
         <div class="theme-container">
+            <button class="hamburger" aria-label="Toggle navigation menu" onclick="toggleMenu()">☰</button>
             <select class="theme-selector" onchange="changeTheme(this.value)" aria-label="Select theme">
                 <option value="light">Light Theme</option>
                 <option value="dark" selected>Dark Theme</option>
@@ -580,16 +680,16 @@
             </select>
         </div>
         <!-- Navigation bar -->
-        <nav role="navigation">
+        <nav role="navigation" id="nav-menu">
             <ul>
                 <li><a href="#about" aria-current="page">About</a></li>
-                <li><a href="#" data-screen="movies">Movies</a></li>
+                <li><a href="javascript:void(0)" data-screen="movies">Movies</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#" data-screen="achievements">Achievements</a></li>
+                <li><a href="javascript:void(0)" data-screen="achievements">Achievements</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#" data-screen="photos">Photos</a></li>
-                <li><a href="#" data-screen="videos">Videos</a></li>
+                <li><a href="javascript:void(0)" data-screen="photos">Photos</a></li>
+                <li><a href="javascript:void(0)" data-screen="videos">Videos</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -599,7 +699,8 @@
                 <span id="header-title">Samrat Singh</span>
                 <span>XII</span>
             </h1>
-            <p>Computer Science Student | begginer | Tech Enthusiast</p>
+            <p>Computer Science Student | Beginner | Tech Enthusiast</p>
+            <div class="skill-item"><span class="percentage">wibsite will expand day by day</span></div>
         </header>
         <!-- Slideshow with dynamic photo integration -->
         <div class="slideshow-container" aria-live="polite">
@@ -628,7 +729,7 @@
                 <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2023/09/sex-education-final-season-poster.jpg" alt="Modern workspace with a laptop and tech gadgets" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="https://source.unsplash.com/random/800x600/?city" alt="City skyline illuminated at dusk" loading="lazy">
+                <img src="https://www.easterneye.biz/media-library/avengers-doomsday-faces-ps800m-budget-can-it-break-even.jpg?id=60446564&width=1245&height=700&quality=90&coordinates=8%2C37%2C30%2C728" alt="City skyline illuminated at dusk" loading="lazy">
             </div>
             <div class="slideshow-slide">
                 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZDHQy-T8TuP8Ur58Ya3y8yMnmTzLU9a4lupv0j9j7cZVPlQ5U33AZI0FnBuwlWGI812bYfwFR-w5pKO5F2XvzHkFyu6VOsGT894Dbz52D_DuJ3cwhRNNLiOWdKhFB_Wb36k3a7Bna1tuP/s1600/o-UNBROKEN-facebook.jpg" alt="Team collaborating during a project meeting" loading="lazy">
@@ -644,43 +745,43 @@
         </div>
         <!-- Main content sections -->
         <main>
-            <section id="about" aria-labelledby="about-heading">
-                <h2 id="about-heading">About Me</h2>
+            <section id="about" aria-labelledby="about">
+                <h2>About Me</h2>
                 <div class="skill-item">Note: <span class="percentage">More content will be added regularly</span></div>
                 <div class="about-container">
-                    <p>Hi, I'm Samrat Singh, a Class 12th student passionate about coding and technology. I built this website using GitHub Pages to showcase my skills, projects, and interests. Explore my journey in computer science and beyond!</p>
-                    <img src="https://media.istockphoto.com/id/1361394182/photo/funny-british-shorthair-cat-portrait-looking-shocked-or-surprised.webp?b=1&s=612x612&w=0&k=20&c=-niqIUX8Kfiyn50xgUzxxUYX6H2q9BlGc3PX5PVM-iA=" alt="Samrat Singh smiling in a portrait" class="about-photo" loading="lazy">
+                    <p>Hi, I'm Samrat Singh Copy, an averAGE  Class 12 STUDENT. I built this website using GitHub Pages because github provide free website deployment!</p>
+                    <img src="https://instagram.fpat2-5.fna.fbcdn.net/v/t1.15752-9/494690861_1024675113183117_5109013198095492651_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=108&ccb=1-7&_nc_sid=0024fc&_nc_ohc=DzqVPT75mYcQ7kNvwFiIYUG&_nc_oc=Adk_Azxpc8A--tycEcFDudMW6x3-xsYmAeQ1UftFmEzE3YIPShxEPxKxhIp2A0O63LBfwp0RoGU7yXvpid0iaFba&_nc_zt=23&_nc_ht=instagram.fpat2-5.fna&oh=03_Q7cD2gHHJcGr_7KOo9qRVZjcYgSdMmrJCF9iMGMjwsmKNGJztA&oe=687B8F12" loading="lazy">
                 </div>
             </section>
             <section id="education" aria-labelledby="education-heading">
-                <h2 id="education-heading">Education</h2>
+                <h2 id="education">Education</h2>
                 <ul>
                     <li><strong>Class 10th (ICSE)</strong> - Saint Joseph's School, Pakartalla-Kahalgaon (2023-2024)<br>Secured top ranks with excellent academic performance.</li>
-                <li><strong>Class 12th (CBSE)</strong> - Saint Joseph's School, NTPC Kahalgaon (Ongoing, Expected Completion: 2026)<br></li>
-            </ul>
+                    <li><strong>Class 12th (CBSE)</strong> - Saint Joseph's School, NTPC Kahalgaon (Ongoing, Expected Completion: 2026)</li>
+                </ul>
             </section>
             <section id="movies-preview" aria-labelledby="movies-preview-heading">
-                <h2 id="movies-preview-heading">Movies</h2>
+                <h2 id="movies-preview">Movies</h2>
                 <p>Explore my curated collection of favorite movies, featuring a mix of sci-fi, drama, and action genres with detailed descriptions and posters.</p>
-                <a href="#" class="btn" data-screen="movies">View Movies</a>
+                <a href="javascript:void(0)" class="btn" data-screen="movies">View Movies</a>
             </section>
             <section id="achievements-preview" aria-labelledby="achievements-preview-heading">
-                <h2 id="achievements-preview-heading">Achievements</h2>
+                <h2 id="achievements-preview">Achievements</h2>
                 <p>Discover my academic and coding milestones, showcasing my dedication to learning and innovation.</p>
-                <a href="#" class="btn" data-screen="achievements">View Achievements</a>
+                <a href="javascript:void(0)" class="btn" data-screen="achievements">View Achievements</a>
             </section>
             <section id="photos-preview" aria-labelledby="photos-preview-heading">
-                <h2 id="photos-preview-heading">Photos</h2>
+                <h2 id="photos-preview">Photos</h2>
                 <p>View my collection of personal, school, and tech-related photos, capturing moments of learning and creativity.</p>
-                <a href="#" class="btn" data-screen="photos">View Photos</a>
+                <a href="javascript:void(0)" class="btn" data-screen="photos">View Photos</a>
             </section>
             <section id="videos-preview" aria-labelledby="videos-preview-heading">
-                <h2 id="videos-preview-heading">Videos</h2>
+                <h2 id="videos-preview">Videos</h2>
                 <p>Watch a selection of videos, including animations and tech-related content I enjoy or have created.</p>
-                <a href="#" class="btn" data-screen="videos">View Videos</a>
+                <a href="javascript:void(0)" class="btn" data-screen="videos">View Videos</a>
             </section>
             <section id="skills" aria-labelledby="skills-heading">
-                <h2 id="skills-heading">Skills</h2>
+                <h2 id="skills">Skills</h2>
                 <div class="skills-grid">
                     <div class="skill-item">Python <span class="percentage">!</span></div>
                     <div class="skill-item">Java <span class="percentage">!</span></div>
@@ -690,38 +791,38 @@
                 </div>
             </section>
             <section id="projects" aria-labelledby="projects-heading">
-                <h2 id="projects-heading">Projects</h2>
+                <h2 id="projects">Projects</h2>
                 <div class="skill-item">Note: <span class="percentage">Website URLs will be updated soon!</span></div>
                 <div class="project">
                     <h3>Personal Portfolio Website</h3>
-                    <p.</p>
+                    <p>A personal portfolio website showcasing my skills and projects, built with HTML, CSS, and JavaScript.</p>
                     <a href="https://samrat07-git.github.io/portfolio/" class="btn" target="_blank">View on GitHub</a>
                 </div>
                 <div class="project">
                     <h3>Simple Calculator</h3>
-                    <p>A web-based calculator application developed with JavaScript, HTML, and CSS..</p>
+                    <p>A web-based calculator application developed with JavaScript, HTML, and CSS.</p>
                     <a href="https://samrat07-git.github.io/calculator/" class="btn" target="_blank">View on GitHub</a>
-                    <div class="skill-item">-- <span class="percentage">click to view !!!</span></div>
+                    <div class="skill-item">-- <span class="percentage">click to view!</span></div>
                 </div>
             </section>
             <section id="contact" aria-labelledby="contact-heading">
-                <h2 id="contact-heading">Contact</h2>
+                <h2 id="contact">Contact</h2>
                 <div class="skill-item">Note: <span class="percentage">Only Instagram URL provided; others to be updated</span></div>
                 <p>Connect with me on social platforms or download my resume to learn more about my work.</p>
-                <p>Instagram: <a href="https://www.instagram.com/samratsingh" target="_blank">insta/samratsingh</a></p>
-                <p>LinkedIn: <a href="https://www.linkedin.com/in/samrat-singh-profile" target="_blank">linkedin.com/in/samrat-singh-profile</a></p>
-                <p>GitHub: <a href="https://github.com/samrat07-git" target="_blank">github.com/samrat07-git</a></p>
+                <p>Instagram: <a href="https://www.instagram.com/samrat._.s?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">insta/@samratsingh</a></p>
+                <p>LinkedIn: <a href="" target="_blank">linkedin.com/in/samrat-singh-profile</a></p>
+                <p>GitHub: <a href="https://github.com/samrat07-git" target="_blank">github.com/samrat07</a></p>
                 <a href="/assets/resume.pdf" class="btn" download>Download Resume</a>
             </section>
         </main>
         <!-- Movies screen -->
         <div id="movies-screen" class="screen">
             <div class="screen-content">
-                <h2 id="movies-screen-heading">Movies</h2>
+                <h2 id="movies-screen">Movies</h2>
                 <div class="movies-grid">
                     <div class="movie-card">
                         <div class="movie-poster">
-                            <img src="https://showbizcafe.com/wp-content/uploads/2014/11/interstellar_movie-wide.jpg" alt="Poster for Interstellar" loading="lazy">
+                            <img src="https://showbizcafe.com/wp-content/uploads/2014/11/interstellar_movie-wide.jpg" alt="Interstellar movie poster" loading="lazy">
                         </div>
                         <div class="movie-description">
                             <p><strong>Interstellar (2014)</strong>: Directed by Christopher Nolan, this sci-fi epic follows astronauts traveling through a wormhole to find a new home for humanity. It masterfully blends scientific concepts with emotional storytelling, exploring themes of sacrifice and survival.</p>
@@ -729,7 +830,7 @@
                     </div>
                     <div class="movie-card">
                         <div class="movie-poster">
-                            <img src="https://i.ytimg.com/vi/P2yuYP3-Pz8/maxresdefault.jpg" alt="Poster for Game of Thrones" loading="lazy">
+                            <img src="https://i.ytimg.com/vi/P2YuYP3gZnE/maxresdefault.jpg" alt="Game of Thrones series poster" loading="lazy">
                         </div>
                         <div class="movie-description">
                             <p><strong>Game of Thrones (2011-2019)</strong>: Based on George R.R. Martin’s novels, this HBO series is a fantasy epic filled with political intrigue, epic battles, and dragons. Its complex characters and shocking plot twists make it a cultural phenomenon.</p>
@@ -737,7 +838,7 @@
                     </div>
                     <div class="movie-card">
                         <div class="movie-poster">
-                            <img src="https://source.unsplash.com/random/250x350/?movie" alt="Poster for The Dark Knight" loading="lazy">
+                            <img src="https://source.unsplash.com/random/250x350/?movie" alt="The Dark Knight movie poster" loading="lazy">
                         </div>
                         <div class="movie-description">
                             <p><strong>The Dark Knight (2008)</strong>: Directed by Christopher Nolan, this superhero masterpiece pits Batman against the Joker in a gritty battle for Gotham’s soul. Heath Ledger’s iconic performance and intense action sequences redefine the genre.</p>
@@ -745,7 +846,7 @@
                     </div>
                     <div class="movie-card">
                         <div class="movie-poster">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgw1PxgqpNphR0IPOeLyUZVxP5xTMOqDOw1w&s" alt="Poster for Inception" loading="lazy">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=TgNphR0IPOeLyUZVxXxUyx6H2q9BlGc3.jpg" alt="Inception movie poster" loading="lazy">
                         </div>
                         <div class="movie-description">
                             <p><strong>Inception (2010)</strong>: Christopher Nolan’s sci-fi thriller follows a thief who infiltrates dreams to steal secrets. Its mind-bending narrative and stunning visuals explore the boundaries between reality and illusion.</p>
@@ -753,7 +854,7 @@
                     </div>
                     <div class="movie-card">
                         <div class="movie-poster">
-                            <img src="https://cdn-dkepej.nitrocdn.com/xHPizjaXJNONuYnLnfsGSUCsMnIlzOEq/assets/images/optimized/rev-ef469ea/blog.frame.io/wp-content/uploads/2020/01/parasite_header-768x384.jpg" alt="Poster for Parasite" loading="lazy">
+                            <img src="https://cdn-dkepej.nitrocdn.com/xHPizjaXJNONuYnLnfsGSUcMnMIlzOEq/assets/images/optimized/rev-ef469ea/blog.frame.io/wp-content/uploads/2020/01/parasite_header-768x384.jpg" alt="Parasite movie poster" loading="lazy">
                         </div>
                         <div class="movie-description">
                             <p><strong>Parasite (2019)</strong>: Directed by Bong Joon-ho, this Oscar-winning film is a dark satire on class disparity. A poor family’s infiltration of a wealthy household leads to unexpected twists, blending humor and suspense.</p>
@@ -761,7 +862,7 @@
                     </div>
                     <div class="movie-card">
                         <div class="movie-poster">
-                            <img src="https://source.unsplash.com/random/250x350/?sci-fi" alt="Poster for The Matrix" loading="lazy">
+                            <img src="https://source.unsplash.com/random/250x350/?sci-fi" alt="The Matrix movie poster" loading="lazy">
                         </div>
                         <div class="movie-description">
                             <p><strong>The Matrix (1999)</strong>: Directed by the Wachowskis, this sci-fi classic follows a hacker discovering reality is a machine-controlled simulation. Its groundbreaking action and philosophical depth revolutionized filmmaking.</p>
@@ -773,57 +874,43 @@
         <!-- Achievements screen -->
         <div id="achievements-screen" class="screen">
             <div class="screen-content">
-                <h2 id="achievements-screen-heading">Achievements</h2>
+                <h2 id="achievements-screen">Achievements</h2>
                 <div class="achievement">
                     <h3>Academic Excellence</h3>
-                    <p> (2023-2024).</p>
+                    <p>hamesha se average :(.</p>
                 </div>
                 <div class="achievement">
-                    <h3>Coding Competition Participation</h3>
-                    <p>Actively participated in school-level coding competitions, showcasing skills in Python and Java. Gained valuable experience in problem-solving and algorithmic thinking.</p>
+                    <h3>national kho-kho</h3>
+                    <p>silver.</p>
                 </div>
                 <div class="achievement">
-                    <h3>Portfolio Website Development</h3>
-                    <p>Designed and deployed a personal portfolio website using HTML, CSS, and JavaScript, hosted on GitHub Pages. Demonstrated proficiency in web development and UI/UX design.</p>
+                    <h3>---------</h3>
+                    <p>.</p>
                 </div>
                 <div class="achievement">
                     <h3>Unity Game Prototype</h3>
-                    <p>.</p>
+                    <p>completed online course .</p>
                 </div>
             </div>
         </div>
         <!-- Photos screen -->
         <div id="photos-screen" class="screen">
             <div class="screen-content">
-                <h2 id="photos-screen-heading">Photos</h2>
+                <h2 id="photos">Photos</h2>
                 <div class="photos-grid">
-                    <div class="photo-item">
-                        <img src="/assets/photo1.jpg" alt="Students at a school event at St. Joseph's School" data-download="/assets/photo1.jpg" loading="lazy">
-                        <a href="/assets/photo1.jpg" class="download-btn" download>Download</a>
-                    </div>
-                    <div class="photo-item">
-                        <img src="/assets/photo2.jpg" alt="Coding setup with a laptop displaying code" data-download="/assets/photo2.jpg" loading="lazy">
-                        <a href="/assets/photo2.jpg" class="download-btn" download>Download</a>
-                    </div>
-                    <div class="photo-item">
-                        <img src="/assets/photo3.jpg" alt="Group collaborating on a project at school" data-download="/assets/photo3.jpg" loading="lazy">
-                        <a href="/assets/photo3.jpg" class="download-btn" download>Download</a>
-                    </div>
-                    <div class="photo-item">
-                        <img src="/assets/photo4.jpg" alt="Participants at a tech workshop" data-download="/assets/photo4.jpg" loading="lazy">
-                        <a href="/assets/photo4.jpg" class="download-btn" download>Download</a>
-                    </div>
-                    <div class="photo-item">
-                        <img src="/assets/photo5.jpg" alt="Personal moment captured during a school activity" data-download="/assets/photo5.jpg" loading="lazy">
-                        <a href="/assets/photo5.jpg" class="download-btn" download>Download</a>
-                    </div>
+                    <!-- 50 random nature images will be dynamically added here -->
+                </div>
+                <!-- Photo URLs list -->
+                <div class="photo-urls">
+                    <h3>Saved Photo URLs</h3>
+                    <ul id="photoUrlsList"></ul>
                 </div>
             </div>
         </div>
         <!-- Videos screen -->
         <div id="videos-screen" class="screen">
             <div class="screen-content">
-                <h2 id="videos-screen-heading">Videos</h2>
+                <h2 id="videos-screen">Videos</h2>
                 <p>A curated collection of videos showcasing animations, tech-related content, and creative projects I enjoy or have contributed to.</p>
                 <div class="videos-grid">
                     <div class="video-card">
@@ -838,14 +925,14 @@
                     </div>
                     <div class="video-card">
                         <div class="video-player">
-                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/iqlH4okiQqg" title="Unity Course Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/iqlH4okiQqg" title="Unity Course Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <p>Unity Course Tutorial</p>
                     </div>
                     <div class="video-card">
                         <div class="video-player">
                             <video controls preload="none" poster="/assets/video-poster2.jpg">
-                                <source src="https://scontent-sjc3-1.cdninstagram.com/o1/v/t16/f2/m86/AQPcd-H90znNtocDP7GeG9slUJ_lFEoCszEQp_2Urt3FklXyFdbwJYyPSyV9Y1ANNxiu7XAKt_H9EWCYRt8jDLVtuWRYVyKjuLc9MGc.mp4?stp=dst-mp4&efg=eyJxZV9ncm91cHMiOiJbXCJpZ193ZWJfZGVsaXZlcnlfdnRzX290ZlwiXSIsInZlbmNvZGVfdGFnIjoidnRzX3ZvZF91cmxnZW4uY2xpcHMuYzIuNzIwLmJhc2VsaW5lIn0&_nc_cat=104&vs=1734737040759611_539552067&_nc_vs=HBksFQIYUmlnX3hwdl9yZWVsc19wZXJtYW5lbnRfc3JfcHJvZC9DMjQ3REE3N0I4NjdBQUNDN0FGMEExNjNCNkI4MDk5OV92aWRlb19kYXNoaW5pdC5tcDQVAALIARIAFQIYOnBhc3N0aHJvdWdoX2V2ZXJzdG9yZS9HRWdFR3g0UW51cTBqMTRFQUZ6ZVVNWWtJdUlJYnFfRUFBQUYVAgLIARIAKAAYABsAFQAAJs6NqML9hc8%2FFQIoAkMzLBdAN8zMzMzMzRgSZGFzaF9iYXNlbGluZV8xX3YxEQB1%2Fgdl5p0BAA%3D%3D&ccb=9-4&oh=00_AfOCnbPY9uO693Qk6LOSK7OBqM2eg0KdJsQj0bpLbzwXLA&oe=6855C3AA&_nc_sid=10d13b" type="video/mp4">
+                                <source src="https://scontent-sjc3-1.cdninstagram.com/o1/v/t16/f2/AQPcd-H90znNtocDP7GcG9slUJ_lFEoCszEQp_2Urt3FklXyFdbwJYyPSyV9Y1ANNxiu7XAKt_H9EWCYRt8jDLVtuWRYVyKjuLc9MGc.mp4?stp=dst-mp4&efg=eyJxZV9ncm91cHMiOiJbXCJpZ193ZWJfZGVsaXZlcnlfdnRzX290ZlwiXSIsInZlbmNvZGVfdGFnIjoidnRzX3ZvZF91cmxnZW4uY2xpcHMuYzIuNzIwLmJhc2VsaW5lIn0&_nc_cat=104&vs=1734737040759611_539552067&_nc_vs=HBksFQIYUmlnX3hwdl9yZWVsc19wZXJtYW5lbnRfc3JfcHJvZC9DMjQ3REE3N0I4NjdBQUNDN0FGMEExNjNCNkI4MDk5OV92aWRlb19kYXNoaW5pdC5tcDQVAALIARIAFQIYOnBhc3N0aHJvdWdoX2V2ZXJzdG9yZS9HRWdFR3g0UWl5cTBwMTRFQUZ6ZVVNWWtJdUlJYnFfRUFBQUYVAgLIARIAKAAYABsAFQAAJs6NqML9hc8%2FFQIoAkMzLBdAN8zMzMzMzRgSZGFzaF9iYXNlbGluZV8xX3YxEQB1%2Fgdl5p0BAA%3D%3D&ccb=9-4&oh=00_AfOCnbPY9uO693Qk6LOSK7OBqM2eg0KdJsQj0bpLbzwXLA&oe=6855C3AA&_nc_sid=10d13b" type="video/mp4">
                                 <track src="/assets/captions2.vtt" kind="captions" srclang="en" label="English">
                                 Your browser does not support the video tag.
                             </video>
@@ -865,16 +952,36 @@
                         <line x1="6" y1="6" x2="18" y2="18" />
                     </svg>
                 </button>
-                <img src="" alt="Enlarged photo">
+                <img src="" alt="">
             </div>
         </div>
         <!-- Footer -->
         <footer>
-            <p>© 2025 Samrat Singh. All rights reserved.</p>
+            <p>©2025 Samrat Singh. All rights reserved.</p>
         </footer>
         <!-- Back to top button -->
         <a href="#" class="back-to-top" aria-label="Back to top">↑</a>
-        <!-- JavaScript -->
+        <!-- JavaScript for adding 50 random nature images -->
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const photosGrid = document.querySelector('.photos-grid');
+                for (let i = 0; i < 50; i++) {
+                    const img = document.createElement('img');
+                    img.src = `https://source.unsplash.com/random/200x200?nature,${i}`;
+                    img.alt = `Random nature image ${i+1}`;
+                    img.loading = 'lazy';
+                    img.addEventListener('error', () => {
+                        img.src = 'https://via.placeholder.com/200x200?text=Image+Not+Found';
+                        img.alt = 'Placeholder image';
+                    });
+                    const photoItem = document.createElement('div');
+                    photoItem.classList.add('photo-item');
+                    photoItem.appendChild(img);
+                    photosGrid.appendChild(photoItem);
+                }
+            });
+        </script>
+        <!-- Existing JavaScript -->
         <script defer>
             // Theme switching
             function changeTheme(theme) {
@@ -885,6 +992,12 @@
             changeTheme(savedTheme);
             document.querySelector('.theme-selector').value = savedTheme;
 
+            // Hamburger menu toggle
+            function toggleMenu() {
+                const nav = document.getElementById('nav-menu');
+                nav.classList.toggle('active');
+            }
+
             // Slideshow
             let slideIndex = 0;
             let slideshowInterval;
@@ -892,6 +1005,10 @@
             const pauseResumeBtn = document.getElementById('pauseResumeBtn');
 
             function showSlide(index) {
+                if (slides.length === 0) {
+                    console.warn('No slides available');
+                    return;
+                }
                 slides.forEach(slide => slide.classList.remove('active'));
                 slides[index].classList.add('active');
                 slideIndex = (index + slides.length) % slides.length;
@@ -937,6 +1054,27 @@
                 startSlideshow();
             }
 
+            // Save and display photo URLs
+            function saveAndDisplayPhotoUrls() {
+                const photoUrls = Array.from(photos).map(img => img.src);
+                localStorage.setItem('photoUrls', JSON.stringify(photoUrls));
+                const photoUrlsList = document.getElementById('photoUrlsList');
+                photoUrlsList.innerHTML = '';
+                photoUrls.forEach(url => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.textContent = url;
+                    a.target = '_blank';
+                    li.appendChild(a);
+                    photoUrlsList.appendChild(li);
+                });
+            }
+
+            if (photos.length) {
+                saveAndDisplayPhotoUrls();
+            }
+
             // Navigation and screens
             const navLinks = document.querySelectorAll('nav a');
             const screens = document.querySelectorAll('.screen');
@@ -954,6 +1092,7 @@
                 mainContent.style.display = 'none';
                 screens.forEach(screen => screen.classList.toggle('active', screen.id === screenId));
                 navLinks.forEach(link => link.classList.toggle('active', link.dataset.screen === screenId.replace('-screen', '')));
+                document.getElementById('nav-menu').classList.remove('active');
             }
 
             navLinks.forEach(link => {
@@ -981,6 +1120,8 @@
                 if (section) {
                     showMainContent();
                     section.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    showMainContent();
                 }
             }
 
@@ -1007,6 +1148,7 @@
                         modal.classList.add('active');
                         modalImg.src = img.src;
                         modalImg.alt = img.alt;
+                        modalImg.setAttribute('aria-label', img.alt);
                     });
                 });
             }
@@ -1019,7 +1161,7 @@
             // Image error handling
             document.querySelectorAll('img').forEach(img => {
                 img.addEventListener('error', () => {
-                    img.src = 'https://via.placeholder.com/800x600?text=Image+Not+Found';
+                    img.src = 'https://via.placeholder.com/200x200?text=Image+Not+Found';
                     img.alt = 'Placeholder image';
                 });
                 img.addEventListener('load', () => img.classList.remove('loading'));
@@ -1052,7 +1194,33 @@
                 if (e.key === 'Escape' && modal.classList.contains('active')) modal.classList.remove('active');
             });
 
-            // Structured data for SEO
+            // Loop scroll for menu (keyboard navigation)
+            let currentNavIndex = 0;
+            navLinks.forEach((link, index) => {
+                link.setAttribute('tabindex', '0');
+                link.addEventListener('keydown', e => {
+                    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        currentNavIndex = (index + 1) % navLinks.length;
+                        navLinks[currentNavIndex].focus();
+                    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        currentNavIndex = index;
+                        navLinks[currentNavIndex].focus();
+                    }
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', e => {
+                const nav = document.getElementById('nav-menu');
+                const hamburger = document.querySelector('.hamburger');
+                if (!nav.contains(e.target) && !hamburger.contains(e.target) && nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                }
+            });
+
+            // Structured data for JSON SEO
             const structuredData = {
                 "@context": "https://schema.org",
                 "@type": "Person",
@@ -1060,9 +1228,9 @@
                 "jobTitle": "Computer Science Student",
                 "url": "https://samrat07-git.github.io/portfolio/",
                 "sameAs": [
-                    "https://www.instagram.com/samratsingh",
-                    "https://github.com/samrat07-git",
-                    "https://www.linkedin.com/in/samrat-singh-profile"
+                    "https://www.instagram.com/@samratsingh",
+                    "https://github.com/@samrat07-git",
+                    "https://www.linkedin.com/in/@samrat-singh-profile"
                 ]
             };
             const script = document.createElement('script');
@@ -1072,3 +1240,4 @@
         </script>
     </body>
 </html>
+
