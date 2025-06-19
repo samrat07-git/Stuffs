@@ -200,358 +200,7 @@
                 left: 0;
                 background: var(--nav-hover);
                 transition: width .3s
-            }
-            nav a:hover::after, nav a:focus::after, nav a.active::after {
-                width: 100%
-            }
-            nav a[aria-current="page"] {
-                color: var(--nav-hover);
-                font-weight: bold
-            }
-            /* Slideshow styles */
-            .slideshow-container {
-                max-width: 100%;
-                aspect-ratio: 2 / 1;
-                margin: 1rem auto;
-                position: relative;
-                overflow: hidden;
-                border-radius: 8px;
-                box-shadow: 0 2px 5px var(--section-shadow)
-            }
-            .slideshow-slide {
-                display: none;
-                width: 100%;
-                height: 100%;
-                opacity: 0;
-                transition: opacity .5s ease-in-out
-            }
-            .slideshow-slide.active {
-                display: block;
-                opacity: 1
-            }
-            .slideshow-slide img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 8px
-            }
-            .slideshow-nav {
-                position: absolute;
-                top: 50%;
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                transform: translateY(-50%)
-            }
-            .slideshow-nav button {
-                background: var(--btn-bg);
-                color: var(--nav-text);
-                border: none;
-                padding: .5rem;
-                cursor: pointer;
-                font-size: 1rem;
-                transition: background .3s
-            }
-            .slideshow-nav button:hover, .slideshow-nav button:focus {
-                background: var(--btn-hover);
-                outline: 2px solid var(--nav-hover);
-                outline-offset: 2px
-            }
-            /* Main content styles */
-            main {
-                transition: opacity .3s
-            }
-            main.hidden {
-                display: none;
-                opacity: 0
-            }
-            section {
-                padding: 2rem;
-                max-width: 900px;
-                margin: 0 auto 1rem;
-                background: var(--section-bg);
-                border-radius: 8px;
-                box-shadow: 0 2px 5px var(--section-shadow);
-                opacity: 0;
-                transition: opacity .5s ease
-            }
-            section.fade-in {
-                opacity: 1
-            }
-            section h2 {
-                color: var(--heading-color);
-                margin-bottom: 1rem;
-                border-bottom: 2px solid var(--heading-color);
-                padding-bottom: .5rem;
-                font-weight: 700
-            }
-            section h3 {
-                font-weight: 700
-            }
-            ul {
-                list-style: square;
-                margin-left: 1.5rem
-            }
-            .percentage {
-                font-size: .9rem;
-                color: var(--heading-color);
-                margin-left: 1rem;
-                display: inline-block
-            }
-            /* Skills grid styles */
-            .skills-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 1rem;
-                margin-top: 1rem
-            }
-            .skill-item {
-                background: var(--skill-bg);
-                padding: .5rem;
-                text-align: center;
-                border-radius: 5px;
-                transition: background-color .3s
-            }
-            .skill-item:hover {
-                background-color: var(--btn-bg);
-                color: var(--nav-text)
-            }
-            .project {
-                margin-bottom: 1.5rem
-            }
-            /* Button styles */
-            .btn {
-                display: inline-block;
-                padding: .5rem 1rem;
-                background: var(--btn-bg);
-                color: var(--nav-text);
-                text-decoration: none;
-                border-radius: 5px;
-                margin-top: 1rem;
-                transition: background .3s
-            }
-            .btn:hover, .btn:focus {
-                background: var(--btn-hover);
-                outline: 2px solid var(--nav-hover)
-            }
-            /* About section styles */
-            .about-container {
-                display: flex;
-                align-items: center;
-                gap: 2rem
-            }
-            .about-photo {
-                max-width: 150px;
-                border-radius: 8px;
-                box-shadow: 0 2px 5px var(--section-shadow)
-            }
-            /* Photos, movies, videos grid styles */
-            .photos-grid, .movies-grid, .videos-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                grid-template-rows: repeat(2, auto);
-                gap: 1.5rem;
-                margin-top: 1rem
-            }
-            .photos-grid img {
-                width: 100%;
-                border-radius: 8px;
-                box-shadow: 0 2px 5px var(--section-shadow);
-                cursor: pointer
-            }
-            .photos-grid img:hover {
-                filter: brightness(1.1)
-            }
-            .photo-item {
-                position: relative
-            }
-            .download-btn {
-                display: none;
-                position: absolute;
-                bottom: 10px;
-                right: 10px;
-                background: var(--btn-bg);
-                color: var(--nav-text);
-                padding: .3rem .6rem;
-                border-radius: 5px;
-                text-decoration: none;
-                font-size: .9rem;
-                border: none;
-                cursor: pointer;
-                transition: background .3s
-            }
-            .download-btn:hover, .download-btn:focus {
-                background: var(--btn-hover);
-                outline: 2px solid var(--nav-hover)
-            }
-            /* Modal for enlarged photos */
-            .photo-modal {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: var(--modal-bg);
-                z-index: 1000;
-                justify-content: center;
-                align-items: center;
-                padding: 1rem
-            }
-            .photo-modal.active {
-                display: flex
-            }
-            .modal-content {
-                position: relative;
-                max-width: 80%;
-                max-height: 80%;
-            }
-            .modal-content img {
-                width: 100%;
-                height: auto;
-                border-radius: 8px;
-                box-shadow: 0 5px 15px var(--section-shadow)
-            }
-            .modal-content .download-btn {
-                display: block
-            }
-            .close-modal {
-                position: absolute;
-                top: -20px;
-                right: -20px;
-                background: var(--btn-bg);
-                color: var(--nav-text);
-                border: none;
-                padding: .5rem;
-                border-radius: 50%;
-                cursor: pointer;
-                font-size: 1rem;
-                transition: background .3s
-            }
-            .close-modal:hover, .close-modal:focus {
-                background: var(--btn-hover)
-            }
-            /* Screen styles for movies, achievements, etc. */
-            .screen {
-                display: none;
-                min-height: 100vh;
-                background: var(--bg-color);
-                color: var(--text-color);
-                padding: 2rem
-            }
-            .screen.active {
-                display: block;
-                opacity: 1
-            }
-            .screen-content {
-                max-width: 900px;
-                margin: 0 auto;
-                background: var(--section-bg);
-                padding: 2rem;
-                border-radius: 8px;
-                box-shadow: 0 2px 5px var(--section-shadow)
-            }
-            .screen-content h2 {
-                color: var(--heading-color);
-                margin-bottom: 1rem;
-                border-bottom: 2px solid var(--heading-color);
-                padding-bottom: .5rem
-            }
-            .achievement {
-                margin-bottom: 1.5rem
-            }
-            /* Movie and video card styles */
-            .movie-card, .video-card {
-                background: var(--section-bg);
-                padding: 1rem;
-                border-radius: 12px;
-                box-shadow: 0 5px 10px var(--section-shadow);
-                transition: box-shadow .3s
-            }
-            .movie-card:hover, .video-card:hover {
-                box-shadow: 0 10px 20px var(--section-shadow)
-            }
-            .movie-poster, .video-player {
-                width: 100%;
-                aspect-ratio: 16 / 9;
-                overflow: hidden;
-                border-radius: 8px;
-                box-shadow: 0 5px 10px var(--section-shadow)
-            }
-            .movie-poster img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover
-            }
-            .movie-poster img:hover {
-                filter: brightness(1.1)
-            }
-            .video-player video {
-                width: 100%;
-                height: 100%;
-                object-fit: cover
-            }
-            .movie-description, .video-description {
-                margin-top: 1rem;
-                padding: 1rem;
-                background: var(--skill-bg);
-                border-radius: 8px
-            }
-            /* Footer styles */
-            footer {
-                text-align: center;
-                padding: 1rem;
-                background: var(--footer-bg);
-                color: var(--footer-text);
-                position: relative;
-                bottom: 0;
-                width: 100%
-            }
-            /* Responsive styles */
-            @media (max-width: 768px) {
-                header h1 { font-size: 2rem }
-                header p { font-size: 1rem }
-                nav ul { gap: 1rem }
-                nav a { font-size: 1rem }
-                .slideshow-container { max-width: 90%; aspect-ratio: 3 / 2 }
-                section, .screen-content { padding: 1.5rem; max-width: 95% }
-                .about-container { flex-direction: column; align-items: center }
-                .about-photo { max-width: 120px }
-                .skills-grid, .photos-grid, .movies-grid, .videos-grid {
-                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
-                }
-                .movie-card, .video-card { max-width: 100% }
-                .modal-content { max-width: 90% }
-            }
-            @media (max-width: 480px) {
-                header h1 { font-size: 1.6rem }
-                header p { font-size: .9rem }
-                nav ul { gap: 0.8rem }
-                nav a { font-size: .9rem }
-                .theme-selector { width: 100%; font-size: .9rem }
-                .slideshow-container { max-width: 100%; aspect-ratio: 4 / 3 }
-                .slideshow-nav button { padding: .3rem; font-size: .8rem }
-                section, .screen-content { padding: 1rem }
-                .about-photo { max-width: 100px }
-                .skills-grid, .photos-grid, .movies-grid, .videos-grid {
-                    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr))
-                }
-                .btn, .download-btn { font-size: .8rem; padding: .4rem .8rem }
-                .movie-card, .video-card { max-width: 100% }
-                .modal-content { max-width: 95% }
-            }
-        </style>
-    </head>
-    <body data-theme="dark">
-        <!-- Header with animated text -->
-        <header>
-            <h1 class="text-animation">
-                <span>SAMRAT</span>
-                <span>CS Student</span>
-                <span>Don XII 'c'</span>
-            </h1>
-            <p>Computer Science | Begginer | Learner</p>
-        </header>
+            }<
         <!-- Theme selector -->
         <div class="theme-container">
             <select class="theme-selector" onchange="changeTheme(this.value)" aria-label="Select theme">
@@ -602,10 +251,10 @@
                 <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2023/09/sex-education-final-season-poster.jpg" alt="Modern technology workspace with laptop" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="/assets/slide9.jpg" alt="City skyline at dusk" loading="lazy">
+                <img src="https://scontent.fpat2-5.fna.fbcdn.net/v/t1.15752-9/494690861_1024675113183117_5109013198095492651_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=108&ccb=1-7&_nc_sid=0024fc&_nc_ohc=DzqVPT75mYcQ7kNvwFSD0X7&_nc_oc=AdlI2DRfdSZU2m9Gu3CwDLOuP0oZRdLVV3EiesGTqexr06vDsnQV1lfGGk_ed5rNOM20hHKtwEiZvsWeTuw4eL8E&_nc_ad=z-m&_nc_cid=1174&_nc_zt=23&_nc_ht=scontent.fpat2-5.fna&oh=03_Q7cD2gHrTKnQHiQl0shWQIfOIwasUMo_t4bGuXRBAA3T7gWWQQ&oe=687B1E92" alt="City skyline at dusk" loading="lazy">
             </div>
             <div class="slideshow-slide">
-                <img src="/assets/slide10.jpg" alt="Team collaborating in a meeting" loading="lazy">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZDHQy-T8TuP8Ur58Ya3y8yMnmTzLU9a4lupv0j9j7cZVPlQ5U33AZI0FnBuwlWGI812bYfwFR-w5pKO5F2XvzHkFyu6VOsGT894Dbz52D_DuJ3cwhRNNLiOWdKhFB_Wb36k3a7Bna1tuP/s1600/o-UNBROKEN-facebook.jpg" alt="Team collaborating in a meeting" loading="lazy">
             </div>
             <!-- Photos from photos-grid will be dynamically added here -->
             <div class="slideshow-nav">
@@ -676,10 +325,11 @@
             </section>
             <section id="contact">
                 <h2>Contact</h2>
+                  <div class="skill-item"><span class="percentage">only instagram url provided</span></div>
                 <p>Connect with me on social platforms or download my resume to learn more about my work.</p>
                 <p>Instagram: <a href="https://www.instagram.com/samratsingh" target="_blank">insta/samratsingh</a></p>
-                <p>LinkedIn: <a href="https://www.linkedin.com/in/samratsing" target="_blank">linkedin.com/in/samratsingh</a></p>
-                <p>GitHub: <a href="https://github.com/samratsing" target="_blank">github.com/samratsingh</a></p>
+                <p>LinkedIn: <a href="" target="_blank">linkedin.com/in/samratsingh</a></p>
+                <p>GitHub: <a href="" target="_blank">github.com/samratsingh</a></p>
                 <a href="/assets/resume.pdf" class="btn" download>Download Resume</a>
             </section>
         </main>
@@ -875,7 +525,7 @@
                 </div>
                 <div class="achievement-photo">
                     <img src="https://www.threads.com/@t_stands_for_trouble_/post/DFSpY_gz-QB/media" alt="Celebration of academic achievement" loading="lazy">
-                </div>
+                </div> 
                 <a href="#" class="btn" onclick="showMainContent(event)">Back to Home</a>
             </div>
         </div>
@@ -964,7 +614,7 @@
                     <div class="video-card">
                         <div class="video-player">
                             <video controls preload="none" poster="/assets/video-poster1.jpg">
-                                <source src="https://www.instagram.com/reel/DKyobCdzWhK/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" type="video/mp4">
+                                <source src="https://scontent-fra3-1.cdninstagram.com/o1/v/t16/f2/m86/AQOClUx3bkb_rxhjvmuJc5a_ePgLOl2c077aa5Kfwst01hbUQp7NUYRg6fsu7EYHqsfcCOQE1_580uad6p6l8dy0DwqAHnZ6mmvtZyI.mp4?stp=dst-mp4&efg=eyJxZV9ncm91cHMiOiJbXCJpZ193ZWJfZGVsaXZlcnlfdnRzX290ZlwiXSIsInZlbmNvZGVfdGFnIjoidnRzX3ZvZF91cmxnZW4uY2xpcHMuYzIuNzIwLmJhc2VsaW5lIn0&_nc_cat=103&vs=1536485717122635_3273673567&_nc_vs=HBksFQIYUmlnX3hwdl9yZWVsc19wZXJtYW5lbnRfc3JfcHJvZC9BMDRERTQ4OENBNzk0NTYxQ0REN0ZGM0U4NDcwNzg5MF92aWRlb19kYXNoaW5pdC5tcDQVAALIARIAFQIYOnBhc3N0aHJvdWdoX2V2ZXJzdG9yZS9HSWtlS2g1X01qUUoyNjBDQU1MVUI2cEgyUHd5YnFfRUFBQUYVAgLIARIAKAAYABsAFQAAJrqSiIyLxIhAFQIoAkMzLBdASdAAAAAAABgSZGFzaF9iYXNlbGluZV8xX3YxEQB1%2Fgdl5p0BAA%3D%3D&_nc_rid=8177029cb7&ccb=9-4&oh=00_AfOPsz2U1_uxXrAW90DRfJOX2RlTamepFIqddL09WtbC2A&oe=68558F62&_nc_sid=10d13b" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -978,12 +628,12 @@
                     <div class="video-card">
                         <div class="video-player">
                             <video controls preload="none" poster="/assets/video-poster2.jpg">
-                                <source src="https://www.instagram.com/reel/DKopRPHpkO4/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" type="video/mp4">
+                                <source src="https://scontent-lax3-1.cdninstagram.com/o1/v/t16/f2/m86/AQPcd-H90znNtocDP7GeG9slUJ_lFEoCszEQp_2Urt3FklXyFdbwJYyPSyV9Y1ANNxiu7XAKt_H9EWCYRt8jDLVtuWRYVyKjuLc9MGc.mp4?stp=dst-mp4&efg=eyJxZV9ncm91cHMiOiJbXCJpZ193ZWJfZGVsaXZlcnlfdnRzX290ZlwiXSIsInZlbmNvZGVfdGFnIjoidnRzX3ZvZF91cmxnZW4uY2xpcHMuYzIuNzIwLmJhc2VsaW5lIn0&_nc_cat=104&vs=1734737040759611_539552067&_nc_vs=HBksFQIYUmlnX3hwdl9yZWVsc19wZXJtYW5lbnRfc3JfcHJvZC9DMjQ3REE3N0I4NjdBQUNDN0FGMEExNjNCNkI4MDk5OV92aWRlb19kYXNoaW5pdC5tcDQVAALIARIAFQIYOnBhc3N0aHJvdWdoX2V2ZXJzdG9yZS9HRWdFR3g0UW51cTBqMTRFQUZ6ZVVNWWtJdUlJYnFfRUFBQUYVAgLIARIAKAAYABsAFQAAJs6NqML9hc8%2FFQIoAkMzLBdAN8zMzMzMzRgSZGFzaF9iYXNlbGluZV8xX3YxEQB1%2Fgdl5p0BAA%3D%3D&ccb=9-4&oh=00_AfMrKJ9u1Sfb552ULJDE0p2L6-gGx5hqcaCityBzyW1NHQ&oe=68558B6A&_nc_sid=10d13b" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
                         <div class="video-description">
-                            <p>no caption.</p>
+                            <p>no caption for pj.</p>
                         </div>
                     </div>
                 </div>
