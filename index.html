@@ -8,10 +8,10 @@
         <meta name="keywords" content="Samrat Singh, portfolio, computer science, student, projects, coding, movies">
         <meta property="og:title" content="Samrat Singh - Portfolio">
         <meta property="og:description" content="Explore Samrat Singh's portfolio, featuring coding projects, skills, achievements, and a curated collection of favorite movies.">
-        <meta property="og:image" content="/assets/og-image.jpg">
+        <meta property="og:image" content="./assets/og-image.jpg">
         <meta property="og:url" content="https://samrat07-git.github.io/portfolio/">
         <title>Samrat Singh - Personal Portfolio | Computer Science Student</title>
-        <link rel="icon" type="image/png" href="/assets/favicon.png">
+        <link rel="icon" type="image/png" href="./assets/favicon.png">
         <style>
             /* CSS Variables for theming */
             :root {
@@ -207,7 +207,7 @@
                 background: var(--nav-bg);
                 padding: 1rem;
                 position: fixed;
-                top: 50px; /* Below theme-container */
+                top: calc(50px + 0.5rem); /* Account for theme-container height */
                 width: 100%;
                 z-index: 1000;
                 text-align: center;
@@ -224,15 +224,7 @@
                 padding: 0;
             }
             nav li {
-                animation: verticalLoop 20s linear infinite;
-                display: inline-block; /* Ensure proper rendering */
-            }
-            @keyframes verticalLoop {
-                0% { transform: translateY(0); }
-                100% { transform: translateY(-100%); }
-            }
-            nav ul:hover li, nav ul:focus-within li {
-                animation-play-state: paused;
+                display: inline-block;
             }
             nav a {
                 color: var(--nav-text);
@@ -240,7 +232,7 @@
                 font-size: 1.1rem;
                 position: relative;
                 transition: color 0.3s;
-                display: block; /* Ensure full clickable area */
+                display: block;
             }
             nav a:hover, nav a:focus, nav a.active {
                 color: var(--nav-hover);
@@ -278,7 +270,8 @@
             }
             .slideshow-slide img {
                 max-width: 100%;
-                height: 300px;
+                height: auto;
+                max-height: 300px;
                 object-fit: cover;
                 border-radius: 8px;
             }
@@ -367,7 +360,7 @@
                 text-align: center;
             }
             .skill-item .percentage {
-                color: var(--heading-color);
+                color: var(--contrast-text);
                 font-weight: bold;
             }
             .project, .achievement {
@@ -449,6 +442,7 @@
                 border-radius: 5px;
                 text-decoration: none;
                 transition: background 0.3s, transform 0.3s;
+                cursor: pointer;
             }
             .btn:hover, .btn:focus {
                 background: var(--btn-hover);
@@ -592,6 +586,12 @@
                 clip: rect(0, 0, 0, 0);
                 border: 0;
             }
+            /* Load more button */
+            .load-more-btn {
+                display: block;
+                margin: 1rem auto;
+                text-align: center;
+            }
             /* Media queries for responsiveness */
             @media (max-width: 768px) {
                 header h1 {
@@ -605,7 +605,7 @@
                 }
                 nav {
                     transform: translateY(-100%);
-                    top: 50px;
+                    top: calc(50px + 0.5rem);
                     max-height: calc(100vh - 60px);
                     overflow-y: auto;
                     transition: transform 0.3s ease;
@@ -618,23 +618,12 @@
                     gap: 0.5rem;
                     padding: 1rem;
                 }
-                nav li {
-                    animation: verticalLoopMobile 15s linear infinite;
-                }
-                @keyframes verticalLoopMobile {
-                    0% { transform: translateY(0); }
-                    100% { transform: translateY(-200%); }
-                }
-                nav ul:hover li, nav ul:focus-within li {
-                    animation-play-state: paused;
-                }
                 nav a {
-                    display: block;
                     padding: 0.5rem;
                     font-size: 1rem;
                 }
                 .slideshow-slide img {
-                    height: 200px;
+                    max-height: 200px;
                 }
                 .movies-grid, .photos-grid, .videos-grid {
                     grid-template-columns: 1fr;
@@ -671,7 +660,7 @@
     <body>
         <!-- Theme selector and hamburger toggle -->
         <div class="theme-container">
-            <button class="hamburger" aria-label="Toggle navigation menu" onclick="toggleMenu()">☰</button>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMenu()">☰</button>
             <select class="theme-selector" onchange="changeTheme(this.value)" aria-label="Select theme">
                 <option value="light">Light Theme</option>
                 <option value="dark" selected>Dark Theme</option>
@@ -705,36 +694,26 @@
         </header>
         <!-- Slideshow with dynamic photo integration -->
         <div class="slideshow-container" aria-live="polite">
-            <div class="slideshow-slide active">
-                <img src="https://bpb-us-w2.wpmucdn.com/u.osu.edu/dist/5/40003/files/2016/11/3051694-game-of-thrones-characters_091710-169q4hp.jpg" alt="Exterior view of St. Joseph's School Bhagalpur during the daytime" loading="lazy">
+            <div class="slideshow-slide">
+                <img src="https://bpb-us-w2.wpmucdn.com/u.osu.edu/dist/5/40003/files/2016/11/3051694-game-of-thrones-characters_091710-169q4hp.jpg" alt="Game of Thrones characters" loading="lazy">
             </div>
-            <div class="slideshow-slide active">
-                <img src="https://ntvb.tmsimg.com/assets/p18828973_b_h10_aa.jpg?w=960&h=540" alt="Exterior view of St. Joseph's School Bhagalpur during the daytime" loading="lazy">
+            <div class="slideshow-slide">
+                <img src="https://ntvb.tmsimg.com/assets/p18828973_b_h10_aa.jpg?w=960&h=540" alt="Movie poster" loading="lazy">
             </div>
-
-            <div class="slideshow-slide active">
-                <img src="https://www.billboard.com/wp-content/uploads/media/Descendants-of-the-Sun-2016-billboard-650.jpg?w=650&h=430&crop=1" alt="Exterior view of St. Joseph's School Bhagalpur during the daytime" loading="lazy">
+            <div class="slideshow-slide">
+                <img src="https://www.billboard.com/wp-content/uploads/media/Descendants-of-the-Sun-2016-billboard-650.jpg?w=650&h=430&crop=1" alt="Descendants of the Sun poster" loading="lazy">
             </div>
-
-            <div class="slideshow-slide active">
-                <img src="https://www.billboard.com/wp-content/uploads/media/Descendants-of-the-Sun-2016-billboard-650.jpg?w=650&h=430&crop=1" alt="Exterior view of St. Joseph's School Bhagalpur during the daytime" loading="lazy">
+            <div class="slideshow-slide">
+                <img src="https://blogassets.airtel.in/wp-content/uploads/2024/10/wallpapersden.com_poster-of-house-of-the-dragon_1920x1080.jpg" alt="House of the Dragon poster" loading="lazy">
             </div>
-
-            <div class="slideshow-slide active">
-                <img src="https://blogassets.airtel.in/wp-content/uploads/2024/10/wallpapersden.com_poster-of-house-of-the-dragon_1920x1080.jpg" alt="Exterior view of St. Joseph's School Bhagalpur during the daytime" loading="lazy">
+            <div class="slideshow-slide">
+                <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/lord-of-the-rings-upcoming-movies-third-age-focus-tolkien.jpg?q=70&fit=crop&w=1140&h=&dpr=1" alt="Lord of the Rings poster" loading="lazy">
             </div>
-            <div class="slideshow-slide active">
-                <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/lord-of-the-rings-upcoming-movies-third-age-focus-tolkien.jpg?q=70&fit=crop&w=1140&h=&dpr=1" alt="Exterior view of St. Joseph's School Bhagalpur during the daytime" loading="lazy">
+            <div class="slideshow-slide">
+                <img src="https://m.economictimes.com/thumb/msid-118899715,width-1600,height-900,resizemode-4,imgsize-91184/mufasa-the-lion-king.jpg" alt="Mufasa: The Lion King poster" loading="lazy">
             </div>
-
-            <div class="slideshow-slide active">
-                <img src="https://m.economictimes.com/thumb/msid-118899715,width-1600,height-900,resizemode-4,imgsize-91184/mufasa-the-lion-king.jpg" alt="Exterior view of St. Joseph's School Bhagalpur during the daytime" loading="lazy">
-            </div>
-            <div class="slideshow-slide active">
-                <img src="https://blogassets.airtel.in/wp-content/uploads/2024/10/wallpapersden.com_poster-of-house-of-the-dragon_1920x1080.jpg" alt="Exterior view of St. Joseph's School Bhagalpur during the daytime" loading="lazy">
-            </div>
-            <div class="slideshow-slide active">
-                <img src="https://www.theasburycollegian.com/wp-content/uploads/2023/02/via-Getty-Images-1024x576.jpeg" alt="Exterior view of St. Joseph's School Bhagalpur during the daytime" loading="lazy">
+            <div class="slideshow-slide">
+                <img src="https://www.theasburycollegian.com/wp-content/uploads/2023/02/via-Getty-Images-1024x576.jpeg" alt="Movie scene" loading="lazy">
             </div>
             <div class="slideshow-slide">
                 <img src="https://wallpaperaccess.com/full/11201454.jpg" alt="Plus 2 building at St. Joseph's School with students gathered outside" loading="lazy">
@@ -745,25 +724,6 @@
             <div class="slideshow-slide">
                 <img src="https://wallpaperaccess.com/full/36626.jpg" alt="Laptop screen displaying lines of programming code" loading="lazy">
             </div>
-            <div class="slideshow-slide">
-                <img src="https://specials-images.forbesimg.com/imageserve/6852bfba2460b6f79f6a9dd5/solo/960x0.jpg?fit=scale" alt="Close-up view of an electronic circuit board" loading="lazy">
-            </div>
-            <div class="slideshow-slide">
-                <img src="https://wallpapers.com/images/featured/avatar-pictures-vohr0oeq1ld3lpbp.jpg" alt="Scenic beach sunset with vibrant colors" loading="lazy">
-            </div>
-            <div class="slideshow-slide">
-                <img src="https://www.hollywoodreporter.com/wp-content/uploads/2022/02/From-Still-Epix-Publicity-H-2022.jpg?w=1296&h=730&crop=1&resize=681%2C383" alt="Abstract digital artwork with colorful patterns" loading="lazy">
-            </div>
-            <div class="slideshow-slide">
-                <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2023/09/sex-education-final-season-poster.jpg" alt="Modern workspace with a laptop and tech gadgets" loading="lazy">
-            </div>
-            <div class="slideshow-slide">
-                <img src="https://www.easterneye.biz/media-library/avengers-doomsday-faces-ps800m-budget-can-it-break-even.jpg?id=60446564&width=1245&height=700&quality=90&coordinates=8%2C37%2C30%2C728" alt="City skyline illuminated at dusk" loading="lazy">
-            </div>
-            <div class="slideshow-slide">
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZDHQy-T8TuP8Ur58Ya3y8yMnmTzLU9a4lupv0j9j7cZVPlQ5U33AZI0FnBuwlWGI812bYfwFR-w5pKO5F2XvzHkFyu6VOsGT894Dbz52D_DuJ3cwhRNNLiOWdKhFB_Wb36k3a7Bna1tuP/s1600/o-UNBROKEN-facebook.jpg" alt="Team collaborating during a project meeting" loading="lazy">
-            </div>
-            <!-- Photos from photos-grid will be dynamically added here -->
             <div class="slideshow-nav">
                 <button type="button" onclick="changeSlide(-1)" aria-label="Previous slide" tabindex="0">❮</button>
                 <button type="button" onclick="changeSlide(1)" aria-label="Next slide" tabindex="0">❯</button>
@@ -774,8 +734,8 @@
         </div>
         <!-- Main content sections -->
         <main>
-            <section id="about" aria-labelledby="about">
-                <h2>About Me</h2>
+            <section id="about" aria-labelledby="about-heading">
+                <h2 id="about-heading">About Me</h2>
                 <div class="skill-item">Note: <span class="percentage">More content will be added regularly</span></div>
                 <div class="about-container">
                     <p>Hi, I'm Samrat Singh , an averAGE  Class 12 STUDENT. I built this website using GitHub as because github provide free website deployment!</p>
@@ -783,36 +743,36 @@
                 </div>
             </section>
             <section id="education" aria-labelledby="education-heading">
-                <h2 id="education">Education</h2>
+                <h2 id="education-heading">Education</h2>
                 <ul>
                     <li><strong>Class 10th (ICSE)</strong> - Saint Joseph's School, Pakartalla-Kahalgaon (2023-2024)<br>.</li>
                     <li><strong>Class 12th (CBSE)</strong> - Saint Joseph's School, NTPC Kahalgaon (Ongoing, Expected Completion: 2026)</li>
                 </ul>
             </section>
             <section id="movies-preview" aria-labelledby="movies-preview-heading">
-                <h2 id="movies-preview">Movies</h2>
+                <h2 id="movies-preview-heading">Movies</h2>
                 <p>Explore my curated collection of favorite movies, featuring a mix of sci-fi, drama, and action genres with detailed descriptions and posters.</p>
                 <a href="javascript:void(0)" class="btn" data-screen="movies">View Movies</a>
             </section>
             <section id="achievements-preview" aria-labelledby="achievements-preview-heading">
-                <h2 id="achievements-preview">Achievements</h2>
+                <h2 id="achievements-preview-heading">Achievements</h2>
                 <p>No achivement but -----.</p>
                 <a href="javascript:void(0)" class="btn" data-screen="achievements">View Achievements</a>
             </section>
             <section id="photos-preview" aria-labelledby="photos-preview-heading">
-                <h2 id="photos-preview">Photos</h2>
+                <h2 id="photos-preview-heading">Photos</h2>
                 <p>View my collection of personal, school, and tech-related photos, capturing moments of learning and creativity.</p>
                 <a href="javascript:void(0)" class="btn" data-screen="photos">View Photos</a>
             </section>
             <section id="videos-preview" aria-labelledby="videos-preview-heading">
-                <h2 id="videos-preview">Videos</h2>
+                <h2 id="videos-preview-heading">Videos</h2>
                 <p>Watch a selection of videos, including animations and tech-related content I enjoy or have created.</p>
                 <a href="javascript:void(0)" class="btn" data-screen="videos">View Videos</a>
             </section>
             <section id="skills" aria-labelledby="skills-heading">
-                <h2 id="skills">Skills</h2>
+                <h2 id="skills-heading">Skills</h2>
                 <div class="skills-grid">
-                    <div class="skill-item">Python <span class="percentage">!.</span></div>
+                    <div class="skill-item">Python <span class="percentage">!</span></div>
                     <div class="skill-item">Java <span class="percentage">!</span></div>
                     <div class="skill-item">Unity Engine <span class="percentage">!</span></div>
                     <div class="skill-item">AI <span class="percentage">!</span></div>
@@ -820,7 +780,7 @@
                 </div>
             </section>
             <section id="projects" aria-labelledby="projects-heading">
-                <h2 id="projects">Projects</h2>
+                <h2 id="projects-heading">Projects</h2>
                 <div class="skill-item">Note: <span class="percentage">Website URLs will be updated soon!</span></div>
                 <div class="project">
                     <h3>Personal Portfolio Website</h3>
@@ -835,20 +795,20 @@
                 </div>
             </section>
             <section id="contact" aria-labelledby="contact-heading">
-                <h2 id="contact">Contact</h2>
+                <h2 id="contact-heading">Contact</h2>
                 <div class="skill-item">Note: <span class="percentage">Only Instagram URL provided; others to be updated</span></div>
                 <p>Connect with me on social platforms or download my resume to learn more about my work.</p>
                 <p>Instagram: <a href="https://www.instagram.com/samrat._.s?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">insta/@samratsingh</a></p>
                 <p>LinkedIn: <a href="" target="_blank">linkedin.com/in/samrat-singh-profile</a></p>
                 <p>GitHub: <a href="https://github.com/samrat07-git" target="_blank">github.com/samrat07</a></p>
-                <a href="/assets/resume.pdf" class="btn" download>Download Resume</a>
+                <a href="./assets/resume.pdf" class="btn" download>Download Resume</a>
             </section>
         </main>
         <!-- Movies screen -->
         <div id="movies-screen" class="screen">
             <div class="screen-content">
                 <div class="skill-item">{*-*}<span class="percentage">download links are not provided !!!!</span></div>
-                <h2 id="movies-screen">Movies</h2>
+                <h2 id="movies-screen-heading">Movies</h2>
                 <div class="skill-item">{*-*}<span class="percentage">Here are some best movie and series</span></div>
                 <div class="movies-grid">
                     <div class="movie-card">
@@ -861,11 +821,10 @@
                     </div>
                     <div class="movie-card">
                         <div class="movie-poster">
-                            <img src="https://wallpapercat.com/w/full/d/c/9/126712-1080x1920-iphone-1080p-game-of-thrones-background.jpg" loading="lazy">
+                            <img src="https://wallpapercat.com/w/full/d/c/9/126712-1080x1920-iphone-1080p-game-of-thrones-background.jpg" alt="Game of Thrones poster" loading="lazy">
                         </div>
                         <div class="movie-description">
                             <p><strong>Game of Thrones (2011-2019)</strong></p>
-
                         </div>
                     </div>
                     <div class="movie-card">
@@ -894,7 +853,7 @@
                     </div>
                     <div class="movie-card">
                         <div class="movie-poster">
-                            <img src="https://images.justwatch.com/poster/202546506/s718/descendants-of-the-sun.jpg" alt="The Matrix movie poster" loading="lazy">
+                            <img src="https://images.justwatch.com/poster/202546506/s718/descendants-of-the-sun.jpg" alt="Descendants of the Sun poster" loading="lazy">
                         </div>
                         <div class="movie-description">
                             <p><strong>Descendants of the Sun</strong></p>
@@ -902,15 +861,15 @@
                     </div>
                     <div class="movie-card">
                         <div class="movie-poster">
-                            <img src="https://musicart.xboxlive.com/7/8a8d5100-0000-0000-0000-000000000002/504/image.jpg" alt="The Matrix movie poster" loading="lazy">
+                            <img src="https://musicart.xboxlive.com/7/8a8d5100-0000-0000-0000-000000000002/504/image.jpg" alt="The Lord of the Rings poster" loading="lazy">
                         </div>
                         <div class="movie-description">
                             <p><strong>the lord of rings</strong></p>
                         </div>
                     </div>
-                       <div class="movie-card">
+                    <div class="movie-card">
                         <div class="movie-poster">
-                            <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT10vQadN8CSV_KWHTxayXLRwHbJhAXhaPBT8gt2RxdJxuDnh_PVsqAii_fL8xQSlmLstkV" alt="The Matrix movie poster" loading="lazy">
+                            <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT10vQadN8CSV_KWHTxayXLRwHbJhAXhaPBT8gt2RxdJxuDnh_PVsqAii_fL8xQSlmLstkV" alt="Reacher poster" loading="lazy">
                         </div>
                         <div class="movie-description">
                             <p><strong>Reacher</strong></p>
@@ -918,7 +877,7 @@
                     </div>
                     <div class="movie-card">
                         <div class="movie-poster">
-                            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTcKyecbZQZUZ8n5PdW0hcGs95PAe0KSraG4bt0UTlrVe7h0e94tgt99efVFsLj5_fglCUrrA" alt="The Matrix movie poster" loading="lazy">
+                            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTcKyecbZQZUZ8n5PdW0hcGs95PAe0KSraG4bt0UTlrVe7h0e94tgt99efVFsLj5_fglCUrrA" alt="Unbroken poster" loading="lazy">
                         </div>
                         <div class="movie-description">
                             <p><strong>Unbroken 2014</strong></p>
@@ -926,19 +885,20 @@
                     </div>
                     <div class="movie-card">
                         <div class="movie-poster">
-                            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSM1RfnNxjkJjv6su_9EVi-AqVTvMyaiWergB9Vh_utvs1n6ZYTWygADBA1Xzwx0kxDfH5S" alt="The Matrix movie poster" loading="lazy">
+                            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSM1RfnNxjkJjv6su_9EVi-AqVTvMyaiWergB9Vh_utvs1n6ZYTWygADBA1Xzwx0kxDfH5S" alt="Peaky Blinders poster" loading="lazy">
                         </div>
                         <div class="movie-description">
                             <p><strong>Peaky blinders 2016</strong></p>
                         </div>
                     </div>
-                    <div class="skill-item">-- <span class="percentage">!</span>gallary expanding...............</div>
+                    <div class="skill-item">-- <span class="percentage">! gallary expanding...............</span></div>
+                </div>
             </div>
         </div>
         <!-- Achievements screen -->
         <div id="achievements-screen" class="screen">
             <div class="screen-content">
-                <h2 id="achievements-screen">Achievements</h2>
+                <h2 id="achievements-screen-heading">Achievements</h2>
                 <div class="skill-item">-- <span class="percentage">No Achivements...:(</span></div>
                 <div class="achievement">
                     <h3>Academic Excellence</h3>
@@ -961,12 +921,12 @@
         <!-- Photos screen -->
         <div id="photos-screen" class="screen">
             <div class="screen-content">
-                <h2 id="photos">Photos</h2>
+                <h2 id="photos-heading">Photos</h2>
                 <div class="skill-item"><span class="percentage">No photos uploded yet</span></div>
                 <div class="photos-grid">
-                    <!-- 50 random nature images will be dynamically added here -->
+                    <!-- Photos added dynamically -->
                 </div>
-                <!-- Photo URLs list -->
+                <button class="btn load-more-btn">Load More</button>
                 <div class="photo-urls">
                     <h3>Saved Photo URLs</h3>
                     <ul id="photoUrlsList"></ul>
@@ -976,15 +936,15 @@
         <!-- Videos screen -->
         <div id="videos-screen" class="screen">
             <div class="screen-content">
-                <h2 id="videos-screen">Videos</h2>
+                <h2 id="videos-screen-heading">Videos</h2>
                 <p>A curated collection of videos showcasing animations, tech-related content, and creative projects I enjoy or have contributed to.</p>
                 <div class="videos-grid">
                     <div class="video-card">
                         <div class="video-player">
-                            <video controls preload="none" poster="/assets/video-poster1.jpg">
+                            <video controls preload="none" poster="./assets/video-poster1.jpg">
                                 <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4" type="video/mp4">
-                                <track src="/assets/captions1.vtt" kind="captions" srclang="en" label="English">
-                                Your browser does not support the video tag.
+                                <track src="./assets/captions1.vtt" kind="captions" srclang="en" label="English">
+                                <p>Video failed to load.</p>
                             </video>
                         </div>
                         <p>Animation Showcase</p>
@@ -997,10 +957,10 @@
                     </div>
                     <div class="video-card">
                         <div class="video-player">
-                            <video controls preload="none" poster="/assets/video-poster2.jpg">
+                            <video controls preload="none" poster="./assets/video-poster2.jpg">
                                 <source src="https://scontent-sjc3-1.cdninstagram.com/o1/v/t16/f2/AQPcd-H90znNtocDP7GcG9slUJ_lFEoCszEQp_2Urt3FklXyFdbwJYyPSyV9Y1ANNxiu7XAKt_H9EWCYRt8jDLVtuWRYVyKjuLc9MGc.mp4?stp=dst-mp4&efg=eyJxZV9ncm91cHMiOiJbXCJpZ193ZWJfZGVsaXZlcnlfdnRzX290ZlwiXSIsInZlbmNvZGVfdGFnIjoidnRzX3ZvZF91cmxnZW4uY2xpcHMuYzIuNzIwLmJhc2VsaW5lIn0&_nc_cat=104&vs=1734737040759611_539552067&_nc_vs=HBksFQIYUmlnX3hwdl9yZWVsc19wZXJtYW5lbnRfc3JfcHJvZC9DMjQ3REE3N0I4NjdBQUNDN0FGMEExNjNCNkI4MDk5OV92aWRlb19kYXNoaW5pdC5tcDQVAALIARIAFQIYOnBhc3N0aHJvdWdoX2V2ZXJzdG9yZS9HRWdFR3g0UWl5cTBwMTRFQUZ6ZVVNWWtJdUlJYnFfRUFBQUYVAgLIARIAKAAYABsAFQAAJs6NqML9hc8%2FFQIoAkMzLBdAN8zMzMzMzRgSZGFzaF9iYXNlbGluZV8xX3YxEQB1%2Fgdl5p0BAA%3D%3D&ccb=9-4&oh=00_AfOCnbPY9uO693Qk6LOSK7OBqM2eg0KdJsQj0bpLbzwXLA&oe=6855C3AA&_nc_sid=10d13b" type="video/mp4">
-                                <track src="/assets/captions2.vtt" kind="captions" srclang="en" label="English">
-                                Your browser does not support the video tag.
+                                <track src="./assets/captions2.vtt" kind="captions" srclang="en" label="English">
+                                <p>Video failed to load.</p>
                             </video>
                         </div>
                         <p>Tech Demo</p>
@@ -1027,27 +987,7 @@
         </footer>
         <!-- Back to top button -->
         <a href="#" class="back-to-top" aria-label="Back to top">↑</a>
-        <!-- JavaScript for adding 50 random nature images -->
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const photosGrid = document.querySelector('.photos-grid');
-                for (let i = 0; i < 50; i++) {
-                    const img = document.createElement('img');
-                    img.src = `https://source.unsplash.com/random/200x200?nature,${i}`;
-                    img.alt = `Random nature image ${i+1}`;
-                    img.loading = 'lazy';
-                    img.addEventListener('error', () => {
-                        img.src = 'https://via.placeholder.com/200x200?text=Image+Not+Found';
-                        img.alt = 'Placeholder image';
-                    });
-                    const photoItem = document.createElement('div');
-                    photoItem.classList.add('photo-item');
-                    photoItem.appendChild(img);
-                    photosGrid.appendChild(photoItem);
-                }
-            });
-        </script>
-        <!-- Existing JavaScript -->
+        <!-- JavaScript -->
         <script defer>
             // Theme switching
             function changeTheme(theme) {
@@ -1061,7 +1001,9 @@
             // Hamburger menu toggle
             function toggleMenu() {
                 const nav = document.getElementById('nav-menu');
-                nav.classList.toggle('active');
+                const hamburger = document.querySelector('.hamburger');
+                const isExpanded = nav.classList.toggle('active');
+                hamburger.setAttribute('aria-expanded', isExpanded);
             }
 
             // Slideshow
@@ -1076,12 +1018,12 @@
                     return;
                 }
                 slides.forEach(slide => slide.classList.remove('active'));
-                slides[index].classList.add('active');
                 slideIndex = (index + slides.length) % slides.length;
+                slides[slideIndex].classList.add('active');
             }
 
             function changeSlide(n) {
-                showSlide((slideIndex + n + slides.length) % slides.length);
+                showSlide(slideIndex + n);
             }
 
             function startSlideshow() {
@@ -1101,27 +1043,62 @@
                 }
             }
 
-            // Initialize slideshow with photos from photos-grid
+            if (slides.length) {
+                showSlide(0);
+                startSlideshow();
+            }
+
+            // Load photos with pagination
+            let photoCount = 10;
+            const photosGrid = document.querySelector('.photos-grid');
             const slideshowContainer = document.querySelector('.slideshow-container');
-            const photos = document.querySelectorAll('.photos-grid img[data-download]');
-            if (photos.length) {
-                photos.forEach(img => {
+
+            function loadPhotos() {
+                for (let i = photosGrid.children.length; i < photoCount; i++) {
+                    const img = document.createElement('img');
+                    img.src = `https://source.unsplash.com/random/200x200?nature,${i}`;
+                    img.alt = `Random nature image ${i+1}`;
+                    img.loading = 'lazy';
+                    img.dataset.download = img.src;
+                    img.addEventListener('error', () => {
+                        img.src = 'https://via.placeholder.com/200x200?text=Image+Not+Found';
+                        img.alt = 'Placeholder image';
+                    });
+                    const photoItem = document.createElement('div');
+                    photoItem.classList.add('photo-item');
+                    photoItem.appendChild(img);
+                    photosGrid.appendChild(photoItem);
+
+                    // Add to slideshow
                     const slide = document.createElement('div');
                     slide.classList.add('slideshow-slide');
                     const imgClone = img.cloneNode(true);
                     imgClone.removeAttribute('data-download');
                     slide.appendChild(imgClone);
                     slideshowContainer.insertBefore(slide, document.querySelector('.slideshow-nav'));
-                });
+                }
+                updateSlides();
             }
 
-            if (slides.length) {
-                showSlide(slideIndex);
-                startSlideshow();
+            function updateSlides() {
+                const newSlides = document.querySelectorAll('.slideshow-slide');
+                if (newSlides.length) {
+                    slides.forEach(slide => slide.classList.remove('active'));
+                    slideIndex = 0;
+                    newSlides[0].classList.add('active');
+                }
             }
+
+            document.addEventListener('DOMContentLoaded', loadPhotos);
+            document.querySelector('.load-more-btn').addEventListener('click', () => {
+                photoCount += 10;
+                loadPhotos();
+                saveAndDisplayPhotoUrls();
+            });
 
             // Save and display photo URLs
             function saveAndDisplayPhotoUrls() {
+                const photos = document.querySelectorAll('.photos-grid img');
                 const photoUrls = Array.from(photos).map(img => img.src);
                 localStorage.setItem('photoUrls', JSON.stringify(photoUrls));
                 const photoUrlsList = document.getElementById('photoUrlsList');
@@ -1137,14 +1114,11 @@
                 });
             }
 
-            if (photos.length) {
-                saveAndDisplayPhotoUrls();
-            }
-
             // Navigation and screens
             const navLinks = document.querySelectorAll('nav a');
             const screens = document.querySelectorAll('.screen');
             const mainContent = document.querySelector('main');
+            const viewButtons = document.querySelectorAll('.btn[data-screen]');
 
             function showMainContent() {
                 screens.forEach(screen => screen.classList.remove('active'));
@@ -1179,6 +1153,13 @@
                 });
             });
 
+            viewButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const screenId = button.dataset.screen;
+                    showScreen(`${screenId}-screen`);
+                });
+            });
+
             // Handle deep linking
             if (window.location.hash) {
                 const sectionId = window.location.hash.slice(1);
@@ -1208,23 +1189,21 @@
             const modalImg = modal.querySelector('img');
             const closeModalBtn = modal.querySelector('.close-modal');
 
-            if (photos.length) {
-                photos.forEach(img => {
-                    img.addEventListener('click', () => {
-                        modal.classList.add('active');
-                        modalImg.src = img.src;
-                        modalImg.alt = img.alt;
-                        modalImg.setAttribute('aria-label', img.alt);
-                    });
-                });
-            }
+            document.addEventListener('click', e => {
+                if (e.target.tagName === 'IMG' && e.target.closest('.photo-item')) {
+                    modal.classList.add('active');
+                    modalImg.src = e.target.src;
+                    modalImg.alt = e.target.alt;
+                    modalImg.setAttribute('aria-label', e.target.alt);
+                }
+            });
 
             closeModalBtn.addEventListener('click', () => modal.classList.remove('active'));
             modal.addEventListener('click', e => {
                 if (e.target === modal) modal.classList.remove('active');
             });
 
-            // Image error handling
+            // Image and video error handling
             document.querySelectorAll('img').forEach(img => {
                 img.addEventListener('error', () => {
                     img.src = 'https://via.placeholder.com/200x200?text=Image+Not+Found';
@@ -1234,8 +1213,15 @@
                 img.classList.add('loading');
             });
 
-            // Video lazy loading
             const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                video.addEventListener('error', () => {
+                    video.poster = './assets/video-error.jpg';
+                    video.innerHTML = '<p>Video failed to load.</p>';
+                });
+            });
+
+            // Video lazy loading
             const videoObserver = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1260,29 +1246,13 @@
                 if (e.key === 'Escape' && modal.classList.contains('active')) modal.classList.remove('active');
             });
 
-            // Loop scroll for menu (keyboard navigation)
-            let currentNavIndex = 0;
-            navLinks.forEach((link, index) => {
-                link.setAttribute('tabindex', '0');
-                link.addEventListener('keydown', e => {
-                    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-                        e.preventDefault();
-                        currentNavIndex = (index + 1) % navLinks.length;
-                        navLinks[currentNavIndex].focus();
-                    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-                        e.preventDefault();
-                        currentNavIndex = index;
-                        navLinks[currentNavIndex].focus();
-                    }
-                });
-            });
-
             // Close mobile menu when clicking outside
             document.addEventListener('click', e => {
                 const nav = document.getElementById('nav-menu');
                 const hamburger = document.querySelector('.hamburger');
                 if (!nav.contains(e.target) && !hamburger.contains(e.target) && nav.classList.contains('active')) {
                     nav.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
                 }
             });
 
@@ -1294,9 +1264,8 @@
                 "jobTitle": "Computer Science Student",
                 "url": "https://samrat07-git.github.io/portfolio/",
                 "sameAs": [
-                    "https://www.instagram.com/@samratsingh",
-                    "https://github.com/@samrat07-git",
-                    "https://www.linkedin.com/in/@samrat-singh-profile"
+                    "https://www.instagram.com/samrat._.s",
+                    "https://github.com/samrat07-git"
                 ]
             };
             const script = document.createElement('script');
