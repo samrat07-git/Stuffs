@@ -420,6 +420,22 @@
                 background: var(--btn-hover);
                 transform: scale(1.05);
             }
+            .movie-download-btn {
+                display: inline-block;
+                background: var(--btn-bg);
+                color: var(--nav-text);
+                padding: 0.3rem 0.6rem;
+                border-radius: 5px;
+                text-decoration: none;
+                font-size: 0.9rem;
+                margin-left: 0.5rem;
+                cursor: pointer;
+                transition: background 0.3s, transform 0.3s;
+            }
+            .movie-download-btn:hover, .movie-download-btn:focus {
+                background: var(--btn-hover);
+                transform: scale(1.05);
+            }
             .videos-grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -448,6 +464,40 @@
                 background: var(--btn-hover);
                 transform: scale(1.05);
             }
+            /* Search bar styles */
+            .search-container {
+                margin-bottom: 1.5rem;
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+            }
+            .search-input {
+                padding: 0.5rem;
+                font-size: 1rem;
+                border-radius: 5px;
+                border: 1px solid var(--text-color);
+                background: var(--section-bg);
+                color: var(--text-color);
+                width: 100%;
+                max-width: 300px;
+                transition: border-color 0.3s;
+            }
+            .search-input:focus {
+                border-color: var(--btn-bg);
+                outline: none;
+            }
+            .search-btn {
+                background: var(--btn-bg);
+                color: var(--nav-text);
+                border: none;
+                padding: 0.5rem 1rem;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background 0.3s;
+            }
+            .search-btn:hover, .search-btn:focus {
+                background: var(--btn-hover);
+            }
             /* Screen styles */
             .screen {
                 display: none;
@@ -461,6 +511,31 @@
             }
             .screen-content {
                 max-width: 100%;
+                text-align: center;
+            }
+            .screen-content .movie-poster img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+                margin-bottom: 1rem;
+            }
+            .screen-content .description {
+                margin-bottom: 1.5rem;
+                font-size: 1.2rem;
+            }
+            .screen-content .download-link {
+                display: inline-block;
+                background: var(--btn-bg);
+                color: var(--nav-text);
+                padding: 0.75rem 1.5rem;
+                border-radius: 5px;
+                text-decoration: none;
+                font-size: 1rem;
+                transition: background 0.3s, transform 0.3s;
+            }
+            .screen-content .download-link:hover, .screen-content .download-link:focus {
+                background: var(--btn-hover);
+                transform: scale(1.05);
             }
             /* Photo URLs list */
             .photo-urls {
@@ -634,12 +709,15 @@
                 .about-photo {
                     max-width: 100%;
                 }
+                .screen-content .movie-poster img {
+                    max-width: 80%;
+                }
             }
             @media (max-width: 480px) {
                 header {
                     padding: 2rem 0.5rem;
                 }
-                section {
+                section, .screen {
                     padding: 1rem;
                 }
                 .theme-selector {
@@ -654,13 +732,17 @@
                     padding: 0.3rem 0.6rem;
                     font-size: 1.2rem;
                 }
+                .screen-content .download-link {
+                    padding: 0.5rem 1rem;
+                    font-size: 0.9rem;
+                }
             }
         </style>
     </head>
     <body>
         <!-- Theme selector and hamburger toggle -->
         <div class="theme-container">
-            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMenu()">☰</button>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMenu()">?</button>
             <select class="theme-selector" onchange="changeTheme(this.value)" aria-label="Select theme">
                 <option value="light">Light Theme</option>
                 <option value="dark" selected>Dark Theme</option>
@@ -687,10 +769,12 @@
             <h1 class="text-animation">
                 <span id="header-title">Samrat.sr</span>
                 <span>men are brave</span>
+
             </h1>
             <p>Computer Science Student | Beginner | Tech Enthusiast</p>
-            <div class="skill-item"><span class="percentage">wibsite will expand day by day</span></div>
-            <div class="skill-item"><span class="percentage">click menu bar at corner for all content</span></div>
+            <div class="skill-item"><span class="percentage"> <marquee behaviour="scroll" direction="left">website expanding everyday.Tap left corner menu bar for all tabs,Android is not optimised some elements may overlaps eachother</marquee></span></div>
+             <marquee behaviour="scroll" direction="left">00101010101001100101101110101001010110101010100101010101001010111001010101010010101010101010101010101011101000101011110101001011</marquee></span></div>
+            <div class="skill-item"><span class="percentage"> Movies download links,same like simdif i made earlier,is in development phase</marquee> </span></div>
         </header>
         <!-- Slideshow with dynamic photo integration -->
         <div class="slideshow-container" aria-live="polite">
@@ -722,11 +806,32 @@
                 <img src="https://i.cdn.newsbytesapp.com/images/l42220240415122808.jpeg" alt="Students participating in a sports event at St. Joseph's School" loading="lazy">
             </div>
             <div class="slideshow-slide">
+                <img src="https://www.filmmakersacademy.com/wp-content/uploads/2022/06/The-Look-of-Top-Gun-2-1280x720.jpg" alt="Laptop screen displaying lines of programming code" loading="lazy">
+            </div>
+
+             <div class="slideshow-slide">
                 <img src="https://wallpaperaccess.com/full/36626.jpg" alt="Laptop screen displaying lines of programming code" loading="lazy">
             </div>
+
+             <div class="slideshow-slide">
+                <img src="https://wallpaperaccess.com/full/36626.jpg" alt="Laptop screen displaying lines of programming code" loading="lazy">
+            </div>
+
+             <div class="slideshow-slide">
+                <img src="https://www.filmmakersacademy.com/wp-content/uploads/2022/06/The-Look-of-Top-Gun-2-1280x720.jpg" alt="Laptop screen displaying lines of programming code" loading="lazy">
+            </div>
+
+             <div class="slideshow-slide">
+                <img src="https://www.filmmakersacademy.com/wp-content/uploads/2022/06/The-Look-of-Top-Gun-2-1280x720.jpg" alt="Laptop screen displaying lines of programming code" loading="lazy">
+            </div>
+
+             <div class="slideshow-slide">
+                <img src="https://www.filmmakersacademy.com/wp-content/uploads/2022/06/The-Look-of-Top-Gun-2-1280x720.jpg" alt="Laptop screen displaying lines of programming code" loading="lazy">
+            </div>
+
             <div class="slideshow-nav">
-                <button type="button" onclick="changeSlide(-1)" aria-label="Previous slide" tabindex="0">❮</button>
-                <button type="button" onclick="changeSlide(1)" aria-label="Next slide" tabindex="0">❯</button>
+                <button type="button" onclick="changeSlide(-1)" aria-label="Previous slide" tabindex="0">?</button>
+                <button type="button" onclick="changeSlide(1)" aria-label="Next slide" tabindex="0">?</button>
             </div>
             <div class="slideshow-controls">
                 <button type="button" id="pauseResumeBtn" onclick="toggleSlideshow()" aria-label="Pause slideshow">Pause</button>
@@ -739,7 +844,7 @@
                 <div class="skill-item">Note: <span class="percentage">More content will be added regularly</span></div>
                 <div class="about-container">
                     <p>Hi, I'm Samrat Singh , an averAGE  Class 12 STUDENT. I built this website using GitHub as because github provide free website deployment!</p>
-                    <img src="https://instagram.fpat2-5.fna.fbcdn.net/v/t1.15752-9/494690861_1024675113183117_5109013198095492651_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=108&ccb=1-7&_nc_sid=0024fc&_nc_ohc=DzqVPT75mYcQ7kNvwFiIYUG&_nc_oc=Adk_Azxpc8A--tycEcFDudMW6x3-xsYmAeQ1UftFmEzE3YIPShxEPxKxhIp2A0O63LBfwp0RoGU7yXvpid0iaFba&_nc_zt=23&_nc_ht=instagram.fpat2-5.fna&oh=03_Q7cD2gHHJcGr_7KOo9qRVZjcYgSdMmrJCF9iMGMjwsmKNGJztA&oe=687B8F12" loading="lazy">
+                    <img src="data:image/jpeg;base64,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" loading="lazy">
                 </div>
             </section>
             <section id="education" aria-labelledby="education-heading">
@@ -761,7 +866,7 @@
             </section>
             <section id="photos-preview" aria-labelledby="photos-preview-heading">
                 <h2 id="photos-preview-heading">Photos</h2>
-                <p>View my collection of personal, school, and tech-related photos, capturing moments of learning and creativity.</p>
+                <p>View my collection.</p>
                 <a href="javascript:void(0)" class="btn" data-screen="photos">View Photos</a>
             </section>
             <section id="videos-preview" aria-labelledby="videos-preview-heading">
@@ -773,7 +878,7 @@
                 <h2 id="skills-heading">Skills</h2>
                 <div class="skills-grid">
                     <div class="skill-item">Python <span class="percentage">!</span></div>
-                    <div class="skill-item">Java <span class="percentage">!</span></div>
+                    <div class="skill-item">-- <span class="percentage">!</span></div>
                     <div class="skill-item">Unity Engine <span class="percentage">!</span></div>
                     <div class="skill-item">AI <span class="percentage">!</span></div>
                     <div class="skill-item">-- <span class="percentage">!</span></div>
@@ -783,13 +888,13 @@
                 <h2 id="projects-heading">Projects</h2>
                 <div class="skill-item">Note: <span class="percentage">Website URLs will be updated soon!</span></div>
                 <div class="project">
-                    <h3>Personal Portfolio Website</h3>
+                    <h3>Movies Downloading website</h3>
                     <p></p>
                     <a href="https://samrat07-git.github.io/portfolio/" class="btn" target="_blank">not ready yet!</a>
                 </div>
                 <div class="project">
                     <h3>Simple Calculator</h3>
-                    <p>A web-based calculator application developed with JavaScript, HTML, and CSS.</p>
+                    <p>A web-based calculator application.</p>
                     <a href="https://samrat07-git.github.io/calculator/" class="btn" target="_blank">View Calculator</a>
                     <div class="skill-item">-- <span class="percentage">click to view!</span></div>
                 </div>
@@ -798,8 +903,8 @@
                 <h2 id="contact-heading">Contact</h2>
                 <div class="skill-item">Note: <span class="percentage">Only Instagram URL provided; others to be updated</span></div>
                 <p>Connect with me on social platforms or download my resume to learn more about my work.</p>
-                <p>Instagram: <a href="https://www.instagram.com/samrat._.s?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">insta/@samratsingh</a></p>
-                <p>LinkedIn: <a href="" target="_blank">linkedin.com/in/samrat-singh-profile</a></p>
+                <p>Instagram: <a href="" target="_blank">insta/@samratsingh</a></p>
+                <p>--a href="" target="_blank">linkedin.com/in/samrat-singh-profile</a></p>
                 <p>GitHub: <a href="https://github.com/samrat07-git" target="_blank">github.com/samrat07</a></p>
                 <a href="./assets/resume.pdf" class="btn" download>Download Resume</a>
             </section>
@@ -807,16 +912,21 @@
         <!-- Movies screen -->
         <div id="movies-screen" class="screen">
             <div class="screen-content">
-                <div class="skill-item">{*-*}<span class="percentage">download links are not provided !!!!</span></div>
+                <div class="skill-item">{*-*}<span class="percentage">download !</span></div>
                 <h2 id="movies-screen-heading">Movies</h2>
                 <div class="skill-item">{*-*}<span class="percentage">Here are some best movie and series</span></div>
+                <div class="search-container">
+                    <input type="text" class="search-input" id="movieSearch" placeholder="Search movies..." aria-label="Search movies by title">
+                    <button class="search-btn" onclick="searchMovies()">Search</button>
+                </div>
                 <div class="movies-grid">
                     <div class="movie-card">
                         <div class="movie-poster">
                             <img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/8d8f28105415493.619ded067937d.jpg" alt="Interstellar movie poster" loading="lazy">
                         </div>
                         <div class="movie-description">
-                            <p><strong>Interstellar (2014)</strong></p>
+
+                             <a href="https://mvlink.site/19104">720p ^click</a>
                         </div>
                     </div>
                     <div class="movie-card">
@@ -824,15 +934,16 @@
                             <img src="https://wallpapercat.com/w/full/d/c/9/126712-1080x1920-iphone-1080p-game-of-thrones-background.jpg" alt="Game of Thrones poster" loading="lazy">
                         </div>
                         <div class="movie-description">
-                            <p><strong>Game of Thrones (2011-2019)</strong></p>
+                             <a href="https://mvlink.site/19104">720p ^click</a>
                         </div>
                     </div>
                     <div class="movie-card">
                         <div class="movie-poster">
-                            <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTfE_qrYMBZ_JB8om-34WGaZARhpX26yWRttqIDvn4_7l--UzX8mxKcPrc59IcvTpEA_G8gPA" alt="The Dark Knight movie poster" loading="lazy">
+                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/the-expendables-3-2014-dual-audio-hindi-english-480p-720p-1080p-740x1110.jpg" alt="The Dark Knight movie poster" loading="lazy">
                         </div>
                         <div class="movie-description">
-                            <p><strong>The Dark Knight (2008)</strong></p>
+                            <p><strong>The Expendables 3</strong>
+                            <a href="https://mvlink.site/13818">720p ^click</a>
                         </div>
                     </div>
                     <div class="movie-card">
@@ -840,7 +951,7 @@
                             <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1582238792i/8565270.jpg" alt="Inception movie poster" loading="lazy">
                         </div>
                         <div class="movie-description">
-                            <p><strong>Inception (2010)</strong></p>
+                            <p><strong>Inception (2010)</strong> <a href="javascript:void(0)" class="movie-download-btn" data-image="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1582238792i/8565270.jpg" data-title="Inception (2010)" aria-label="View download page for Inception">Download</a></p>
                         </div>
                     </div>
                     <div class="movie-card">
@@ -848,7 +959,7 @@
                             <img src="https://static0.colliderimages.com/wordpress/wp-content/uploads/sharedimages/2025/06/01295258_poster_w780.jpg" alt="Parasite movie poster" loading="lazy">
                         </div>
                         <div class="movie-description">
-                            <p><strong>Parasite (2019)</strong></p>
+                            <p><strong>Parasite (2019)</strong> <a href="javascript:void(0)" class="movie-download-btn" data-image="https://static0.colliderimages.com/wordpress/wp-content/uploads/sharedimages/2025/06/01295258_poster_w780.jpg" data-title="Parasite (2019)" aria-label="View download page for Parasite">Download</a></p>
                         </div>
                     </div>
                     <div class="movie-card">
@@ -856,7 +967,7 @@
                             <img src="https://images.justwatch.com/poster/202546506/s718/descendants-of-the-sun.jpg" alt="Descendants of the Sun poster" loading="lazy">
                         </div>
                         <div class="movie-description">
-                            <p><strong>Descendants of the Sun</strong></p>
+                            <p><strong>Descendants of the Sun</strong> <a href="javascript:void(0)" class="movie-download-btn" data-image="https://images.justwatch.com/poster/202546506/s718/descendants-of-the-sun.jpg" data-title="Descendants of the Sun" aria-label="View download page for Descendants of the Sun">Download</a></p>
                         </div>
                     </div>
                     <div class="movie-card">
@@ -864,32 +975,95 @@
                             <img src="https://musicart.xboxlive.com/7/8a8d5100-0000-0000-0000-000000000002/504/image.jpg" alt="The Lord of the Rings poster" loading="lazy">
                         </div>
                         <div class="movie-description">
-                            <p><strong>the lord of rings</strong></p>
+                            <p><strong>the lord of rings</strong> <a href="javascript:void(0)" class="movie-download-btn" data-image="https://musicart.xboxlive.com/7/8a8d5100-0000-0000-0000-000000000002/504/image.jpg" data-title="the lord of rings" aria-label="View download page for The Lord of the Rings">Download</a></p>
                         </div>
                     </div>
                     <div class="movie-card">
                         <div class="movie-poster">
-                            <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT10vQadN8CSV_KWHTxayXLRwHbJhAXhaPBT8gt2RxdJxuDnh_PVsqAii_fL8xQSlmLstkV" alt="Reacher poster" loading="lazy">
+                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/oIAMQ42lzSd6ksvGe4WFMKqT0ja-740x1110.jpg" alt="Reacher poster" loading="lazy">
                         </div>
                         <div class="movie-description">
-                            <p><strong>Reacher</strong></p>
+                            <p><strong>Reacher</strong> <a href="https://mvlink.site/web/8013" >">SEASON 1</a></p>
+                            <p><strong>Reacher</strong> <a href="https://mvlink.site/web/8159" >">SEASON 2</a></p>
+                            <p><strong>Reacher</strong> <a href="https://mvlink.site/web/11973" >">SEASON 3</a></p>
                         </div>
                     </div>
                     <div class="movie-card">
                         <div class="movie-poster">
-                            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTcKyecbZQZUZ8n5PdW0hcGs95PAe0KSraG4bt0UTlrVe7h0e94tgt99efVFsLj5_fglCUrrA" alt="Unbroken poster" loading="lazy">
+                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/hqRb1wyIVsaMukZElPBUXoJPqrR-740x1110.jpg" alt="Reacher poster" loading="lazy">
                         </div>
                         <div class="movie-description">
-                            <p><strong>Unbroken 2014</strong></p>
+                            <p><strong>Attack on titan </strong>
+                            <p><strong></strong> <a href="https://mvlink.site/web/10420" >season 1</a></p
+                            <p><strong></strong> <a href="https://mvlink.site/web/10690." >season 2</a></p
+                            <p><strong></strong> <a href="https://mvlink.site/web/10792" >season 3</a></p
+                            <p><strong></strong> <a href="https://mvlink.site/11687" >season 4</a></p
                         </div>
+                    </div>
                     </div>
                     <div class="movie-card">
                         <div class="movie-poster">
-                            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSM1RfnNxjkJjv6su_9EVi-AqVTvMyaiWergB9Vh_utvs1n6ZYTWygADBA1Xzwx0kxDfH5S" alt="Peaky Blinders poster" loading="lazy">
+                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/avatar-the-way-of-water-2022-dual-audio-hindi-english-480p-720p-1080p-1-740x1110.jpg" alt="Unbroken poster" loading="lazy">
                         </div>
                         <div class="movie-description">
-                            <p><strong>Peaky blinders 2016</strong></p>
+                            <p><strong>Avatar way of water</strong> <a href="https://mvlink.site/13635" >720p click</a></p
                         </div>
+                    </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://joshmovies.com/wp-content/uploads/2025/05/z53D72EAOxGRqdr7KXXWp9dJiDe-740x1110.jpg" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            mission impossible
+                            <a href="https://mvlink.site/26632">720p ^click</a>
+                        </div>
+                    </div>
+
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/area-51-2015-dual-audio-hindi-english-480p-720p-1080p-740x1110.jpg" alt="Peaky Blinders poster" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                             <p><strong>Area 51</strong> <a href="https://mvlink.site/11687" >720p click</a></p
+                        </div>
+                    </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/fight-club-1999-dual-audio-hindi-english-480p-720p-1080p-740x1110.jpg" alt="Peaky Blinders poster" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                             <p><strong>Fight club</strong> <a href="https://mvlink.site/11266" >720p click</a></p
+                        </div>
+                    </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/doraemon-nobita-s-chronicle-of-the-moon-exploration-2019-dual-audio-hindi-japanese-480p-720p-1080p-740x1047.jpg" alt="Peaky Blinders poster" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p><strong>Doremon nobita</strong> <a href="https://mvlink.site/11525" >720p click</a></p
+                        </div>
+                    </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/in-my-dreams-2014-dual-audio-hindi-english-480p-720p-1080p-740x1110.jpg" alt="Peaky Blinders poster" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                            <p><strong>In my dreams</strong> <a href="https://mvlink.site/11443" >720p click</a></p
+                        </div>
+                    </div>
+                    </div>
+                    <div class="movie-card">
+                        <div class="movie-poster">
+                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/the-contractor-2022-dual-audio-hindi-english-480p-720p-1080p-740x1110.jpg" alt="Peaky Blinders poster" loading="lazy">
+                        </div>
+                        <div class="movie-description">
+                             <p><strong>the contractor</strong> <a href="https://mvlink.site/11166" >720p click</a></p
+                        </div>
+                    </div>
                     </div>
                     <div class="skill-item">-- <span class="percentage">! gallary expanding...............</span></div>
                 </div>
@@ -968,6 +1142,17 @@
                 </div>
             </div>
         </div>
+        <!-- Download screen -->
+        <div id="download-screen" class="screen">
+            <div class="screen-content">
+                <h2 id="download-screen-heading">Movie Poster Download</h2>
+                <div class="movie-poster">
+                    <img id="downloadMovieImage" src="" alt="Movie poster" loading="lazy">
+                </div>
+                <p class="description" id="downloadMovieDescription"></p>
+                <a id="downloadMovieLink" href="" class="download-link" download>Download Poster</a>
+            </div>
+        </div>
         <!-- Photo modal -->
         <div class="photo-modal" id="photoModal" aria-labelledby="modal-heading">
             <div class="modal-content">
@@ -986,7 +1171,7 @@
             <p>©2025 Samrat Singh. All rights reserved.</p>
         </footer>
         <!-- Back to top button -->
-        <a href="#" class="back-to-top" aria-label="Back to top">↑</a>
+        <a href="#" class="back-to-top" aria-label="Back to top">?</a>
         <!-- JavaScript -->
         <script defer>
             // Theme switching
@@ -1114,6 +1299,16 @@
                 });
             }
 
+            // Movie search functionality
+            function searchMovies() {
+                const input = document.getElementById('movieSearch').value.toLowerCase();
+                const movieCards = document.querySelectorAll('.movie-card');
+                movieCards.forEach(card => {
+                    const title = card.querySelector('.movie-description p').textContent.toLowerCase();
+                    card.style.display = title.includes(input) ? 'block' : 'none';
+                });
+            }
+
             // Navigation and screens
             const navLinks = document.querySelectorAll('nav a');
             const screens = document.querySelectorAll('.screen');
@@ -1133,7 +1328,56 @@
                 screens.forEach(screen => screen.classList.toggle('active', screen.id === screenId));
                 navLinks.forEach(link => link.classList.toggle('active', link.dataset.screen === screenId.replace('-screen', '')));
                 document.getElementById('nav-menu').classList.remove('active');
+                if (screenId === 'movies-screen') {
+                    document.getElementById('movieSearch').value = '';
+                    searchMovies(); // Reset search when opening movies tab
+                }
             }
+
+            // Download screen functionality
+            function showDownloadScreen(imageUrl, title) {
+                const downloadScreen = document.getElementById('download-screen');
+                const imageElement = document.getElementById('downloadMovieImage');
+                const descriptionElement = document.getElementById('downloadMovieDescription');
+                const downloadLinkElement = document.getElementById('downloadMovieLink');
+
+                if (imageUrl && title) {
+                    imageElement.src = imageUrl;
+                    imageElement.alt = `${title} movie poster`;
+                    descriptionElement.textContent = title;
+                    downloadLinkElement.href = imageUrl;
+                    downloadLinkElement.download = `${title.replace(/ /g, '_').toLowerCase()}_poster.jpg`;
+                    downloadLinkElement.style.display = 'inline-block';
+                } else {
+                    imageElement.src = 'https://via.placeholder.com/400x600?text=Image+Not+Found';
+                    imageElement.alt = 'Placeholder image';
+                    descriptionElement.textContent = 'Movie information not available.';
+                    downloadLinkElement.style.display = 'none';
+                }
+
+                mainContent.style.display = 'none';
+                screens.forEach(screen => screen.classList.toggle('active', screen.id === 'download-screen'));
+                navLinks.forEach(link => link.classList.remove('active')); // No nav link is active for download screen
+                document.getElementById('nav-menu').classList.remove('active');
+            }
+
+            // Download button event listener
+            document.addEventListener('click', e => {
+                if (e.target.classList.contains('movie-download-btn')) {
+                    e.preventDefault();
+                    const imageUrl = e.target.dataset.image;
+                    const title = e.target.dataset.title;
+                    showDownloadScreen(imageUrl, title);
+                }
+            });
+
+            // Image error handling for download screen
+            const downloadImage = document.getElementById('downloadMovieImage');
+            downloadImage.addEventListener('error', () => {
+                downloadImage.src = 'https://via.placeholder.com/400x600?text=Image+Not+Found';
+                downloadImage.alt = 'Placeholder image';
+                document.getElementById('downloadMovieLink').style.display = 'none';
+            });
 
             navLinks.forEach(link => {
                 link.addEventListener('click', e => {
@@ -1239,12 +1483,15 @@
                 backToTop.classList.toggle('show', window.scrollY > 500);
             });
 
-            // Keyboard navigation for slideshow
+            // Keyboard navigation for slideshow and search
             document.addEventListener('keydown', e => {
                 if (e.key === 'ArrowLeft') changeSlide(-1);
                 if (e.key === 'ArrowRight') changeSlide(1);
                 if (e.key === 'Escape' && modal.classList.contains('active')) modal.classList.remove('active');
             });
+
+            // Search bar event listener
+            document.getElementById('movieSearch').addEventListener('input', searchMovies);
 
             // Close mobile menu when clicking outside
             document.addEventListener('click', e => {
