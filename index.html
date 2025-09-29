@@ -1,1889 +1,1325 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Meta tags for SEO and social sharing -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Samrat Singh's personal portfolio showcasing skills, projects, achievements, and favorite movies as a Computer Science student.">
-        <meta name="keywords" content="Samrat Singh, portfolio, computer science, student, projects, coding, movies">
-        <meta property="og:title" content="Samrat Singh - Portfolio">
-        <meta property="og:description" content="Explore Samrat Singh's portfolio, featuring coding projects, skills, achievements, and a curated collection of favorite movies.">
-        <meta property="og:image" content="./assets/og-image.jpg">
-        <meta property="og:url" content="https://samrat07-git.github.io/portfolio/">
-        <title>Samrat Singh - Personal Portfolio | Computer Science Student</title>
-        <link rel="icon" type="image/png" href="./assets/favicon.png">
-        <style>
-            /* CSS Variables for theming */
-            :root {
-                --bg-color: #f4f4f4;
-                --text-color: #333;
-                --header-bg: linear-gradient(90deg, #007bff, #00c4b4);
-                --nav-bg: #333;
-                --nav-text: #fff;
-                --nav-hover: #00c4b4;
-                --section-bg: #fff;
-                --section-shadow: rgba(0,0,0,.1);
-                --heading-color: #007bff;
-                --btn-bg: #007bff;
-                --btn-hover: #0056b3;
-                --skill-bg: #e9ecef;
-                --footer-bg: #333;
-                --footer-text: #fff;
-                --modal-bg: rgba(0,0,0,0.8);
-                --text-anim-bg: linear-gradient(45deg, rgba(0,123,255,0.2), rgba(0,196,180,0.2));
-                --contrast-text: #000;
+<head>
+    <!-- Meta tags for SEO and social sharing -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Samrat Singh's personal portfolio showcasing skills, projects, achievements, and favorite movies as a Computer Science student.">
+    <meta name="keywords" content="Samrat Singh, portfolio, computer science, student, projects, coding, movies">
+    <meta property="og:title" content="Samrat Singh - Portfolio">
+    <meta property="og:description" content="Explore Samrat Singh's portfolio, featuring coding projects, skills, achievements, and a curated collection of favorite movies.">
+    <meta property="og:image" content="./assets/og-image.jpg">
+    <meta property="og:url" content="https://samrat07-git.github.io/portfolio/">
+    <title>Samrat Singh - Personal Portfolio | Computer Science Student</title>
+
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Primitive Color Tokens */
+            --color-white: rgba(255, 255, 255, 1);
+            --color-black: rgba(0, 0, 0, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-gray-400: rgba(119, 124, 124, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-brown-600: rgba(94, 82, 64, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-400: rgba(45, 166, 178, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-teal-800: rgba(41, 150, 161, 1);
+            --color-red-400: rgba(255, 84, 89, 1);
+            --color-red-500: rgba(192, 21, 47, 1);
+            --color-orange-400: rgba(230, 129, 97, 1);
+            --color-orange-500: rgba(168, 75, 47, 1);
+
+            /* RGB versions for opacity control */
+            --color-brown-600-rgb: 94, 82, 64;
+            --color-teal-500-rgb: 33, 128, 141;
+            --color-slate-900-rgb: 19, 52, 59;
+            --color-slate-500-rgb: 98, 108, 113;
+            --color-red-500-rgb: 192, 21, 47;
+            --color-red-400-rgb: 255, 84, 89;
+            --color-orange-500-rgb: 168, 75, 47;
+            --color-orange-400-rgb: 230, 129, 97;
+
+            /* Background color tokens (Light Mode) */
+            --color-bg-1: rgba(59, 130, 246, 0.08);
+            --color-bg-2: rgba(245, 158, 11, 0.08);
+            --color-bg-3: rgba(34, 197, 94, 0.08);
+            --color-bg-4: rgba(239, 68, 68, 0.08);
+            --color-bg-5: rgba(147, 51, 234, 0.08);
+            --color-bg-6: rgba(249, 115, 22, 0.08);
+            --color-bg-7: rgba(236, 72, 153, 0.08);
+            --color-bg-8: rgba(6, 182, 212, 0.08);
+
+            /* Semantic Color Tokens (Light Mode) */
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-charcoal-800);
+            --color-text-light: var(--color-slate-500);
+            --color-primary: var(--color-teal-600);
+            --color-primary-hover: var(--color-teal-700);
+            --color-secondary: var(--color-brown-600);
+            --color-accent: var(--color-teal-400);
+            --color-border: var(--color-gray-200);
+            --color-shadow: rgba(var(--color-brown-600-rgb), 0.1);
+        }
+
+        /* Dark theme */
+        [data-theme="dark"] {
+            --color-background: var(--color-charcoal-700);
+            --color-surface: var(--color-charcoal-800);
+            --color-text: var(--color-cream-100);
+            --color-text-light: var(--color-gray-300);
+            --color-primary: var(--color-teal-400);
+            --color-primary-hover: var(--color-teal-300);
+            --color-secondary: var(--color-orange-400);
+            --color-accent: var(--color-teal-300);
+            --color-border: var(--color-slate-500);
+            --color-shadow: rgba(var(--color-black), 0.3);
+        }
+
+        /* Blue theme */
+        [data-theme="blue"] {
+            --color-background: var(--color-slate-900);
+            --color-surface: var(--color-teal-800);
+            --color-text: var(--color-white);
+            --color-text-light: var(--color-teal-300);
+            --color-primary: var(--color-teal-300);
+            --color-primary-hover: var(--color-teal-400);
+            --color-secondary: var(--color-orange-400);
+            --color-accent: var(--color-teal-400);
+            --color-border: var(--color-teal-600);
+            --color-shadow: rgba(var(--color-teal-500-rgb), 0.2);
+        }
+
+        /* Green theme */
+        [data-theme="green"] {
+            --color-background: #0d1b2a;
+            --color-surface: #1b263b;
+            --color-text: #e0e1dd;
+            --color-text-light: #778da9;
+            --color-primary: #415a77;
+            --color-primary-hover: #778da9;
+            --color-secondary: #0d1b2a;
+            --color-accent: #415a77;
+            --color-border: #415a77;
+            --color-shadow: rgba(65, 90, 119, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            text-align: center;
+            color: white;
+        }
+
+        .loader-text {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        .loader-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loader-progress {
+            height: 100%;
+            background: white;
+            border-radius: 2px;
+            animation: loading 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes loading {
+            0% { width: 0; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        /* Particles */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            animation: float 6s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
             }
-            [data-theme="dark"] {
-                --bg-color: #1a1a1a;
-                --text-color: #e0e0e0;
-                --header-bg: linear-gradient(90deg, #2c3e50, #34495e);
-                --nav-bg: #222;
-                --nav-text: #e0e0e0;
-                --nav-hover: #3498db;
-                --section-bg: #2c2c2c;
-                --section-shadow: rgba(255,255,255,.1);
-                --heading-color: #3498db;
-                --btn-bg: #3498db;
-                --btn-hover: #2980b9;
-                --skill-bg: #3a3a3a;
-                --footer-bg: #222;
-                --footer-text: #e0e0e0;
-                --modal-bg: rgba(255,255,255,0.2);
-                --text-anim-bg: linear-gradient(45deg, rgba(44,62,80,0.2), rgba(52,73,94,0.2));
-                --contrast-text: #fff;
+            100% {
+                transform: translateY(-100px) rotate(360deg);
             }
-            [data-theme="blue"] {
-                --bg-color: #e6f0fa;
-                --text-color: #1a2a44;
-                --header-bg: linear-gradient(90deg, #1e90ff, #4682b4);
-                --nav-bg: #1a2a44;
-                --nav-text: #fff;
-                --nav-hover: #87ceeb;
-                --section-bg: #f0f8ff;
-                --section-shadow: rgba(0,0,0,.1);
-                --heading-color: #1e90ff;
-                --btn-bg: #1e90ff;
-                --btn-hover: #104e8b;
-                --skill-bg: #d1e4f3;
-                --footer-bg: #1a2a44;
-                --text-anim-bg: linear-gradient(45deg, rgba(30,144,255,0.2), rgba(70,130,180,0.2));
-                --contrast-text: #000;
-            }
-            [data-theme="green"] {
-                --bg-color: #e8f5e9;
-                --text-color: #1b3e1f;
-                --header-bg: linear-gradient(90deg, #4caf50, #66bb6a);
-                --nav-bg: #2e7d32;
-                --nav-text: #fff;
-                --nav-hover: #a5d6a7;
-                --section-bg: #f1f1e8;
-                --section-shadow: rgba(0,0,0,.1);
-                --heading-color: #4caf50;
-                --btn-bg: #4caf50;
-                --btn-hover: #388e3c;
-                --skill-bg: #c8e6c9;
-                --footer-bg: #2e7d32;
-                --text-anim-bg: linear-gradient(45deg, rgba(76,175,80,0.2), rgba(102,187,106,0.2));
-                --contrast-text: #000;
-            }
-            /* Base styles */
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-family: Arial, sans-serif;
-            }
-            html {
-                scroll-behavior: smooth;
-            }
-            body {
-                line-height: 1.6;
-                color: var(--text-color);
-                background-color: var(--bg-color);
-                transition: background-color 0.3s ease, color 0.3s ease;
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-            }
-            main {
-                flex: 1;
-                padding: 2rem 1rem;
-                max-width: 1200px;
-                margin: 0 auto;
-                width: 100%;
-            }
-            /* Header styles with animated text background */
-            header {
-                background: var(--header-bg);
-                color: var(--nav-text);
-                text-align: center;
-                padding: 3rem 1rem;
-                margin-top: 50px; /* Adjust for fixed theme-container */
-            }
-            header h1 {
-                font-size: 2.5rem;
-                margin-bottom: 0.5rem;
-                display: inline-block;
-                position: relative;
-                background: var(--text-anim-bg);
-                padding: 0.5rem 1rem;
-                border-radius: 8px;
-            }
-            .text-animation::after {
-                content: '';
-                position: absolute;
-                width: 2px;
-                height: 2.5rem;
-                background: var(--nav-text);
-                right: -10px;
-                animation: blink 0.7s step-end infinite;
-            }
-            @keyframes blink {
-                50% { opacity: 0; }
-            }
-            .text-animation span {
-                display: inline-block;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(var(--color-teal-500-rgb), 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar.hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo-text {
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-selector {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-selector:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-background) 0%, var(--color-surface) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, var(--color-bg-1) 0%, transparent 40%),
+                        radial-gradient(circle at 70% 80%, var(--color-bg-2) 0%, transparent 40%),
+                        radial-gradient(circle at 20% 80%, var(--color-bg-3) 0%, transparent 40%);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInLeft 1s ease-out 0.3s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+            animation: slideInRight 1s ease-out 0.6s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 1s ease-out 0.9s both;
+            box-shadow: 0 10px 30px rgba(var(--color-teal-500-rgb), 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(var(--color-teal-500-rgb), 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from {
                 opacity: 0;
-                animation: textFade 3s ease-in-out infinite alternate;
+                transform: translateY(30px);
             }
-            .text-animation span:nth-child(2) {
-                animation-delay: 1.5s;
-            }
-            @keyframes textFade {
-                0% { opacity: 0; }
-                50% { opacity: 1; }
-                100% { opacity: 0; }
-            }
-            header p {
-                font-size: 1.2rem;
-            }
-            /* Theme selector styles */
-            .theme-container {
-                background: var(--nav-bg);
-                padding: 0.5rem;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                position: fixed;
-                top: 0;
-                width: 100%;
-                z-index: 1100;
-            }
-            .theme-selector {
-                padding: 0.5rem;
-                font-size: 1rem;
-                border-radius: 5px;
-                background: var(--btn-bg);
-                color: var(--nav-text);
-                border: none;
-                outline: none;
-                cursor: pointer;
-                transition: background 0.3s;
-            }
-            .theme-selector option {
-                background: var(--nav-bg);
-                color: var(--nav-text);
-            }
-            .theme-selector:hover, .theme-selector:focus {
-                background: var(--btn-hover);
-            }
-            /* Hamburger menu styles */
-            .hamburger {
-                display: none;
-                background: var(--btn-bg);
-                color: var(--nav-text);
-                border: none;
-                font-size: 1.5rem;
-                padding: 0.5rem 1rem;
-                cursor: pointer;
-                border-radius: 5px;
-                transition: background 0.3s;
-            }
-            .hamburger:hover, .hamburger:focus {
-                background: var(--btn-hover);
-            }
-            /* Navigation bar styles */
-            nav {
-                background: var(--nav-bg);
-                padding: 1rem;
-                position: fixed;
-                top: calc(50px + 0.5rem); /* Account for theme-container height */
-                width: 100%;
-                z-index: 1000;
-                text-align: center;
-                transition: transform 0.3s ease;
-            }
-            nav ul {
-                list-style: none;
-                display: flex;
-                justify-content: center;
-                gap: 1.5rem;
-                align-items: center;
-                flex-wrap: wrap;
-                margin: 0;
-                padding: 0;
-            }
-            nav li {
-                display: inline-block;
-            }
-            nav a {
-                color: var(--nav-text);
-                text-decoration: none;
-                font-size: 1.1rem;
-                position: relative;
-                transition: color 0.3s;
-                display: block;
-            }
-            nav a:hover, nav a:focus, nav a.active {
-                color: var(--nav-hover);
-                outline: 2px solid var(--nav-hover);
-            }
-            nav a::after {
-                content: '';
-                position: absolute;
-                width: 0;
-                height: 2px;
-                bottom: -4px;
-                left: 0;
-                background: var(--nav-hover);
-                transition: width 0.3s;
-            }
-            nav a:hover::after, nav a:focus::after, nav a.active::after {
-                width: 100%;
-            }
-            /* Slideshow styles */
-            .slideshow-container {
-                position: relative;
-                max-width: 100%;
-                margin: 1rem auto;
-                overflow: hidden;
-            }
-            .slideshow-slide {
-                display: none;
-                text-align: center;
-                opacity: 0;
-                transition: opacity 0.5s ease-in-out;
-            }
-            .slideshow-slide.active {
-                display: block;
-                opacity: 1;
-            }
-            .slideshow-slide img {
-                max-width: 100%;
-                height: auto;
-                max-height: 300px;
-                object-fit: cover;
-                border-radius: 8px;
-            }
-            .slideshow-nav {
-                position: absolute;
-                top: 50%;
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                transform: translateY(-50%);
-            }
-            .slideshow-nav button {
-                background: var(--btn-bg);
-                color: var(--nav-text);
-                border: none;
-                padding: 0.5rem 1rem;
-                cursor: pointer;
-                font-size: 1.5rem;
-                transition: background 0.3s;
-            }
-            .slideshow-nav button:hover, .slideshow-nav button:focus {
-                background: var(--btn-hover);
-            }
-            .slideshow-controls {
-                text-align: center;
-                margin-top: 0.5rem;
-            }
-            .slideshow-controls button {
-                background: var(--btn-bg);
-                color: var(--nav-text);
-                border: none;
-                padding: 0.5rem 1rem;
-                cursor: pointer;
-                border-radius: 5px;
-                transition: background 0.3s;
-            }
-            .slideshow-controls button:hover, .slideshow-controls button:focus {
-                background: var(--btn-hover);
-            }
-            /* Section styles */
-            section {
-                background: var(--section-bg);
-                padding: 2rem;
-                margin-bottom: 1.5rem;
-                border-radius: 8px;
-                box-shadow: 0 4px 8px var(--section-shadow);
-                opacity: 0;
-                transform: translateY(20px);
-                transition: opacity 0.5s ease, transform 0.5s ease;
-            }
-            section.fade-in {
+            to {
                 opacity: 1;
                 transform: translateY(0);
             }
-            section h2 {
-                color: var(--heading-color);
-                font-size: 2rem;
-                margin-bottom: 1rem;
+        }
+
+        @keyframes slideInLeft {
+            from {
                 opacity: 0;
-                transform: translateX(-20px);
-                transition: opacity 0.5s ease, transform 0.5s ease;
+                transform: translateX(-50px);
             }
-            section.fade-in h2 {
+            to {
                 opacity: 1;
                 transform: translateX(0);
             }
-            .about-container {
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--color-primary);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: 2px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--color-surface);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--color-shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--color-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 50px var(--color-shadow);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: var(--color-surface);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px var(--color-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--color-shadow);
+        }
+
+        .skill-name {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skill-level {
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--color-border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: 4px;
+            width: 0;
+            transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .skill-item.animate .progress-fill {
+            width: var(--skill-level);
+        }
+
+        /* Slideshow */
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: 2rem auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px var(--color-shadow);
+        }
+
+        .slide {
+            display: none;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(100%); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Movies Grid */
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .movie-card {
+            background: var(--color-surface);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--color-shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px var(--color-shadow);
+        }
+
+        .movie-poster {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .movie-info {
+            padding: 1.5rem;
+        }
+
+        .movie-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(var(--color-teal-500-rgb), 0.3);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--color-surface);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px var(--color-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--color-shadow);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            transform: scale(1.1);
+        }
+
+        .contact-link {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--color-primary-hover);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
                 display: flex;
-                gap: 1rem;
-                align-items: center;
-                flex-wrap: wrap;
             }
-            .about-photo {
-                max-width: 200px;
-                border-radius: 8px;
-            }
-            .skills-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 1rem;
-            }
-            .skill-item {
-                background: var(--skill-bg);
-                padding: 1rem;
-                border-radius: 5px;
-                text-align: center;
-            }
-            .skill-item .percentage {
-                color: var(--contrast-text);
-                font-weight: bold;
-            }
-            .project, .achievement {
-                margin-bottom: 1.5rem;
-            }
-            .project h3, .achievement h3 {
-                color: var(--heading-color);
-                margin-bottom: 0.5rem;
-            }
-            .movies-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 1.5rem;
-            }
-            .movie-card {
-                background: var(--skill-bg);
-                padding: 1rem;
-                border-radius: 8px;
-                transition: transform 0.3s ease;
-            }
-            .movie-card:hover {
-                transform: translateY(-5px);
-            }
-            .movie-poster img {
-                max-width: 100%;
-                border-radius: 5px;
-            }
-            .photos-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 1rem;
-            }
-            .photo-item {
-                position: relative;
-                cursor: pointer;
-            }
-            .photo-item img {
-                max-width: 100%;
-                border-radius: 5px;
-                transition: opacity 0.3s;
-            }
-            .photo-item img.loading {
-                opacity: 0.5;
-            }
-            .download-btn {
-                display: block;
-                text-align: center;
-                background: var(--btn-bg);
-                color: var(--nav-text);
-                padding: 0.5rem;
-                border-radius: 5px;
-                text-decoration: none;
-                margin-top: 0.5rem;
-                transition: background 0.3s, transform 0.3s;
-            }
-            .download-btn:hover, .download-btn:focus {
-                background: var(--btn-hover);
-                transform: scale(1.05);
-            }
-            .movie-download-btn {
-                display: inline-block;
-                background: var(--btn-bg);
-                color: var(--nav-text);
-                padding: 0.3rem 0.6rem;
-                border-radius: 5px;
-                text-decoration: none;
-                font-size: 0.9rem;
-                margin-left: 0.5rem;
-                cursor: pointer;
-                transition: background 0.3s, transform 0.3s;
-            }
-            .movie-download-btn:hover, .movie-download-btn:focus {
-                background: var(--btn-hover);
-                transform: scale(1.05);
-            }
-            .videos-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 1.5rem;
-            }
-            .video-card {
-                background: var(--skill-bg);
-                padding: 1rem;
-                border-radius: 8px;
-            }
-            .video-player video, .video-player iframe {
-                max-width: 100%;
-                border-radius: 5px;
-            }
-            .btn {
-                display: inline-block;
-                background: var(--btn-bg);
-                color: var(--nav-text);
-                padding: 0.5rem 1rem;
-                border-radius: 5px;
-                text-decoration: none;
-                transition: background 0.3s, transform 0.3s;
-                cursor: pointer;
-            }
-            .btn:hover, .btn:focus {
-                background: var(--btn-hover);
-                transform: scale(1.05);
-            }
-            /* Search bar styles */
-            .search-container {
-                margin-bottom: 1.5rem;
-                display: flex;
-                gap: 0.5rem;
-                align-items: center;
-            }
-            .search-input {
-                padding: 0.5rem;
-                font-size: 1rem;
-                border-radius: 5px;
-                border: 1px solid var(--text-color);
-                background: var(--section-bg);
-                color: var(--text-color);
-                width: 100%;
-                max-width: 300px;
-                transition: border-color 0.3s;
-            }
-            .search-input:focus {
-                border-color: var(--btn-bg);
-                outline: none;
-            }
-            .search-btn {
-                background: var(--btn-bg);
-                color: var(--nav-text);
-                border: none;
-                padding: 0.5rem 1rem;
-                border-radius: 5px;
-                cursor: pointer;
-                transition: background 0.3s;
-            }
-            .search-btn:hover, .search-btn:focus {
-                background: var(--btn-hover);
-            }
-            /* Screen styles */
-            .screen {
-                display: none;
-                padding: 2rem;
-                background: var(--section-bg);
-                max-width: 1200px;
-                margin: 0 auto;
-            }
-            .screen.active {
-                display: block;
-            }
-            .screen-content {
-                max-width: 100%;
-                text-align: center;
-            }
-            .screen-content .movie-poster img {
-                max-width: 100%;
-                height: auto;
-                border-radius: 8px;
-                margin-bottom: 1rem;
-            }
-            .screen-content .description {
-                margin-bottom: 1.5rem;
-                font-size: 1.2rem;
-            }
-            .screen-content .download-link {
-                display: inline-block;
-                background: var(--btn-bg);
-                color: var(--nav-text);
-                padding: 0.75rem 1.5rem;
-                border-radius: 5px;
-                text-decoration: none;
-                font-size: 1rem;
-                transition: background 0.3s, transform 0.3s;
-            }
-            .screen-content .download-link:hover, .screen-content .download-link:focus {
-                background: var(--btn-hover);
-                transform: scale(1.05);
-            }
-            /* Photo URLs list */
-            .photo-urls {
-                margin-top: 2rem;
-                padding: 1rem;
-                background: var(--skill-bg);
-                border-radius: 8px;
-            }
-            .photo-urls h3 {
-                color: var(--heading-color);
-                margin-bottom: 1rem;
-            }
-            .photo-urls ul {
-                list-style: none;
-                padding: 0;
-            }
-            .photo-urls li {
-                margin-bottom: 0.5rem;
-                word-break: break-all;
-            }
-            .photo-urls a {
-                color: var(--btn-bg);
-                text-decoration: none;
-            }
-            .photo-urls a:hover, .photo-urls a:focus {
-                text-decoration: underline;
-            }
-            /* Photo modal styles */
-            .photo-modal {
-                display: none;
+
+            .nav-menu {
                 position: fixed;
-                top: 0;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: var(--color-surface);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px var(--color-shadow);
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
                 left: 0;
-                width: 100%;
-                height: 100%;
-                background: var(--modal-bg);
-                z-index: 200;
-                justify-content: center;
-                align-items: center;
-                role: dialog;
-                aria-labelledby: modal-heading;
             }
-            .photo-modal.active {
-                display: flex;
+
+            .nav-menu li {
+                margin: 1rem 0;
             }
-            .modal-content {
-                position: relative;
-                max-width: 90%;
-                max-height: 90%;
-                text-align: center;
+
+            .nav-link {
+                color: var(--color-text);
             }
-            .modal-content img {
-                max-width: 100%;
-                max-height: 80vh;
-                border-radius: 8px;
+
+            .hero h1 {
+                font-size: 2.5rem;
             }
-            .close-modal {
-                position: absolute;
-                top: -1.5rem;
-                right: -1.5rem;
-                background: var(--btn-bg);
-                color: var(--nav-text);
-                border: none;
-                padding: 0.5rem;
-                cursor: pointer;
-                border-radius: 50%;
-                transition: background 0.3s;
+
+            .section {
+                padding: 3rem 1rem;
             }
-            .close-modal:hover, .close-modal:focus {
-                background: var(--btn-hover);
+
+            .cards-grid,
+            .skills-grid,
+            .movies-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
-            /* Footer styles */
-            footer {
-                background: var(--footer-bg);
-                color: var(--footer-text);
-                text-align: center;
-                padding: 1rem;
-                margin-top: auto;
-            }
-            /* Back to top button */
-            .back-to-top {
-                position: fixed;
-                bottom: 1rem;
-                right: 1rem;
-                background: var(--btn-bg);
-                color: var(--nav-text);
-                padding: 0.5rem 1rem;
-                border-radius: 5px;
-                text-decoration: none;
+
+            .particle {
                 display: none;
-                transition: background 0.3s;
-                z-index: 100;
             }
-            .back-to-top.show {
-                display: block;
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
             }
-            .back-to-top:hover, .back-to-top:focus {
-                background: var(--btn-hover);
+
+            .section-title {
+                font-size: 2rem;
             }
-            /* Loading spinner */
-            .loading-spinner {
-                display: none;
-                border: 4px solid var(--skill-bg);
-                border-top: 4px solid var(--btn-bg);
-                border-radius: 50%;
-                width: 24px;
-                height: 24px;
-                animation: spin 1s linear infinite;
-                margin: 0 auto;
+
+            .card {
+                padding: 1.5rem;
             }
-            @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-            /* Screen reader only */
-            .sr-only {
-                position: absolute;
-                width: 1px;
-                height: 1px;
-                padding: 0;
-                margin: -1px;
-                overflow: hidden;
-                clip: rect(0, 0, 0, 0);
-                border: 0;
-            }
-            /* Load more button */
-            .load-more-btn {
-                display: block;
-                margin: 1rem auto;
-                text-align: center;
-            }
-            /* Media queries for responsiveness */
-            @media (max-width: 768px) {
-                header h1 {
-                    font-size: 2rem;
-                }
-                .theme-container {
-                    padding: 0.5rem 1rem;
-                }
-                .hamburger {
-                    display: block;
-                }
-                nav {
-                    transform: translateY(-100%);
-                    top: calc(50px + 0.5rem);
-                    max-height: calc(100vh - 60px);
-                    overflow-y: auto;
-                    transition: transform 0.3s ease;
-                }
-                nav.active {
-                    transform: translateY(0);
-                }
-                nav ul {
-                    flex-direction: column;
-                    gap: 0.5rem;
-                    padding: 1rem;
-                }
-                nav a {
-                    padding: 0.5rem;
-                    font-size: 1rem;
-                }
-                .slideshow-slide img {
-                    max-height: 200px;
-                }
-                .movies-grid, .photos-grid, .videos-grid {
-                    grid-template-columns: 1fr;
-                }
-                .about-container {
-                    flex-direction: column;
-                }
-                .about-photo {
-                    max-width: 100%;
-                }
-                .screen-content .movie-poster img {
-                    max-width: 80%;
-                }
-            }
-            @media (max-width: 480px) {
-                header {
-                    padding: 2rem 0.5rem;
-                }
-                section, .screen {
-                    padding: 1rem;
-                }
-                .theme-selector {
-                    font-size: 0.9rem;
-                    padding: 0.3rem;
-                }
-                .hamburger {
-                    padding: 0.3rem 0.6rem;
-                    font-size: 1.2rem;
-                }
-                .slideshow-nav button {
-                    padding: 0.3rem 0.6rem;
-                    font-size: 1.2rem;
-                }
-                .screen-content .download-link {
-                    padding: 0.5rem 1rem;
-                    font-size: 0.9rem;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <!-- Parallax background elements -->
-        <div class="parallax-container">
-            <div class="parallax-layer parallax-back">
-                <div class="floating-shape shape-1"></div>
-                <div class="floating-shape shape-2"></div>
-                <div class="floating-shape shape-3"></div>
-                <div class="floating-shape shape-4"></div>
-                <div class="floating-shape shape-5"></div>
-            </div>
-            <div class="parallax-layer parallax-mid">
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-2 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 2rem;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Typing Animation */
+        .typing-text {
+            overflow: hidden;
+            border-right: 3px solid var(--color-primary);
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--color-primary); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-background);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-primary-hover);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader">
+            <div class="loader-text">Ruko bhai...</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
             </div>
         </div>
-        
-        <!-- Startup audio -->
-        <audio id="startupAudio" preload="auto">
-            <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMcBzWN1PTPfC4EKG/A7tqQQAoWYbjm6KhWFAlFnuDyv2McBzaL1PTPfC4EKW7A7tmNPQwYZbrk6KdVFAlGnuDxwGMcBzaL1PTPfC4EKW6/7tqOPwwZZLnl5qBSFAlEn9/xxmcdbECF2PPpgysYZLrm6aBVFAhFn9/xxmcdbECF2PPpgysYZ7zl6aFUEwhDnt7zwGQcbkOI2/TqhS0YXKDU7NeCKwxAktjxzHEiCSJ7z/DAj0ASCGq/6+J/JA0tbsjr2o09DBhjtuXnpVQUCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1wQYTc9OuELRZcpNPt1oUsC0CM2/TQdSQJIG7F6t5/Jg0fbcjq2Y09DBhjtuXnpVQUCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCEWe3+/EZB1vQoXa9OqDKxhmu+fpn1MSCIQ==" type="audio/wav">
-            Your browser does not support the audio element.
-        </audio>
-        
-        <!-- Theme selector and hamburger toggle -->
-        <div class="theme-container">
-            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMenu()">?</button>
-            <select class="theme-selector" onchange="changeTheme(this.value)" aria-label="Select theme">
-                <option value="light">Light Theme</option>
-                <option value="dark" selected>Dark Theme</option>
-                <option value="blue">Blue Theme</option>
-                <option value="green">Green Theme</option>
-            </select>
-        </div>
-        <!-- Navigation bar -->
-        <nav role="navigation" id="nav-menu">
-            <ul>
-                <li><a href="#about" aria-current="page">About</a></li>
-                <li><a href="javascript:void(0)" data-screen="movies">Movies</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="javascript:void(0)" data-screen="achievements">Achievements</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="javascript:void(0)" data-screen="photos">Photos</a></li>
-                <li><a href="javascript:void(0)" data-screen="videos">Videos</a></li>
-                <li><a href="#contact">Contact</a></li>
+    </div>
+
+    <!-- Floating Particles -->
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">SS</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="#movies" class="nav-link">Movies</a></li>
+                <li class="nav-item"><a href="#photos" class="nav-link">Photos</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-        </nav>
-        <!-- Header -->
-        <header id="header" aria-labelledby="header-title" class="animated-header">
+            <div class="nav-controls">
+                <select class="theme-selector" id="themeSelector">
+                    <option value="light">Light Theme</option>
+                    <option value="dark">Dark Theme</option>
+                    <option value="blue">Blue Theme</option>
+                    <option value="green">Green Theme</option>
+                </select>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Samrat Singh</h1>
+            <p class="typing-text">Science Student </p>
+            <a href="#about" class="cta-button">See more</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>ME</h3>
+                    <p>I am Samrat Singh, a passionate Computer Science student from Bihar. I built this website using GitHub because GitHub provides free website deployment!</p>
+                </div>
+                <div class="card">
+                    <h3></h3>
+                    <p>2026</p>
+                </div>
+                <div class="card">
+                    <h3>How i made this website!!</h3>
+                    <p>1)create a prompt for the design </p>
+                    <p>2)install a html editor </p>
+                    <p>3)Use AI's like (grok,perplexity,copilot)  </p>
+                    <p>4)learn to use git-hub </p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+     <header id="header" aria-labelledby="header-title" class="animated-header">
             <div class="header-bg-animation"></div>
             <h1 class="text-animation">
                 <span id="header-title" class="typewriter">;)</span>
                 <span class="fade-in-text">Men are brave</span>
-                
+
             </h1>
-            
-            <p class="subtitle-animation"> 1 | 2 | 3 </p>
-            <div class="orbit">🌍🌍Earth is Flat</div>
 
-            <style>
-            .orbit {
-              position: relative;
-              animation: orbit 5s linear infinite;
-            }
-            @keyframes orbit {
-              0% { transform: rotate(0deg) translateX(50px) rotate(0deg); }
-              100% { transform: rotate(360deg) translateX(50px) rotate(-360deg); }
-            }
-            </style>
-            <div class="skill-item"><span class="percentage"> <marquee behaviour="scroll" direction="left">website expanding everyday.Tap left corner menu bar for all tabs,Android is not optimised some elements may overlaps eachother</marquee></span></div>
-            <h1 style="color: transparent; -webkit-text-stroke: 1px black;">Samrat.sr</h1>
-                <div>
-            <progress value="70" max="100"></progress>
-            <div class="skill-item"><span class="percentage"><h2 style="text-shadow: 2px 2px 5px gray;">Movies gallary is live</h2></marquee> </span></div>
-            <a href="https://samrat07-git.github.io/movies/" style="
-              display:inline-block;
-              padding:12px 24px;
-              background:linear-gradient(135deg, #007BFF, #00C6FF);
-              color:#fff;
-              font-size:16px;
-              font-weight:bold;
-              text-decoration:none;
-              border-radius:8px;
-              box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-              transition: all 0.3s ease;
-            "
-            onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 10px rgba(0,0,0,0.2)';"
-            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.1)';"
-            >
-            🚀 Visit Now
-            </a>
-            
-        </header>
-        <!-- Slideshow with dynamic photo integration -->
-        <div class="slideshow-container" aria-live="polite">
-            <div class="slideshow-slide">
-                <img src="https://bpb-us-w2.wpmucdn.com/u.osu.edu/dist/5/40003/files/2016/11/3051694-game-of-thrones-characters_091710-169q4hp.jpg" alt="Game of Thrones characters" loading="lazy">
-            </div>
-            <div class="slideshow-slide">
-                <img src="https://ntvb.tmsimg.com/assets/p18828973_b_h10_aa.jpg?w=960&h=540" alt="Movie poster" loading="lazy">
-            </div>
-            <div class="slideshow-slide">
-                <img src="https://www.billboard.com/wp-content/uploads/media/Descendants-of-the-Sun-2016-billboard-650.jpg?w=650&h=430&crop=1" alt="Descendants of the Sun poster" loading="lazy">
-            </div>
-            <div class="slideshow-slide">
-                <img src="https://blogassets.airtel.in/wp-content/uploads/2024/10/wallpapersden.com_poster-of-house-of-the-dragon_1920x1080.jpg" alt="House of the Dragon poster" loading="lazy">
-            </div>
-            <div class="slideshow-slide">
-                <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/lord-of-the-rings-upcoming-movies-third-age-focus-tolkien.jpg?q=70&fit=crop&w=1140&h=&dpr=1" alt="Lord of the Rings poster" loading="lazy">
-            </div>
-            <div class="slideshow-slide">
-                <img src="https://m.economictimes.com/thumb/msid-118899715,width-1600,height-900,resizemode-4,imgsize-91184/mufasa-the-lion-king.jpg" alt="Mufasa: The Lion King poster" loading="lazy">
-            </div>
-            <div class="slideshow-slide">
-                <img src="https://www.theasburycollegian.com/wp-content/uploads/2023/02/via-Getty-Images-1024x576.jpeg" alt="Movie scene" loading="lazy">
-            </div>
-            <div class="slideshow-slide">
-                <img src="https://wallpaperaccess.com/full/11201454.jpg" alt="Plus 2 building at St. Joseph's School with students gathered outside" loading="lazy">
-            </div>
-            <div class="slideshow-slide">
-                <img src="https://i.cdn.newsbytesapp.com/images/l42220240415122808.jpeg" alt="Students participating in a sports event at St. Joseph's School" loading="lazy">
-            </div>
-            <div class="slideshow-slide">
-                <img src="https://www.filmmakersacademy.com/wp-content/uploads/2022/06/The-Look-of-Top-Gun-2-1280x720.jpg" alt="Laptop screen displaying lines of programming code" loading="lazy">
-            </div>
-
-             <div class="slideshow-slide">
-                <img src="https://wallpaperaccess.com/full/36626.jpg" alt="Laptop screen displaying lines of programming code" loading="lazy">
-            </div>
-
-             <div class="slideshow-slide">
-                <img src="https://wallpaperaccess.com/full/36626.jpg" alt="Laptop screen displaying lines of programming code" loading="lazy">
-            </div>
-
-             <div class="slideshow-slide">
-                <img src="https://www.filmmakersacademy.com/wp-content/uploads/2022/06/The-Look-of-Top-Gun-2-1280x720.jpg" alt="Laptop screen displaying lines of programming code" loading="lazy">
-            </div>
-
-             <div class="slideshow-slide">
-                <img src="https://www.filmmakersacademy.com/wp-content/uploads/2022/06/The-Look-of-Top-Gun-2-1280x720.jpg" alt="Laptop screen displaying lines of programming code" loading="lazy">
-            </div>
-
-             <div class="slideshow-slide">
-                <img src="https://www.filmmakersacademy.com/wp-content/uploads/2022/06/The-Look-of-Top-Gun-2-1280x720.jpg" alt="Laptop screen displaying lines of programming code" loading="lazy">
-            </div>
-
-            <div class="slideshow-nav">
-                <button type="button" onclick="changeSlide(-1)" aria-label="Previous slide" tabindex="0">?</button>
-                <button type="button" onclick="changeSlide(1)" aria-label="Next slide" tabindex="0">?</button>
-            </div>
-            <div class="slideshow-controls">
-                <button type="button" id="pauseResumeBtn" onclick="toggleSlideshow()" aria-label="Pause slideshow">Pause</button>
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Class 10th (ICSE)</h3>
+                    <p><strong>School:</strong> Saint Joseph's School, Pakartalla-Kahalgaon</p>
+                    <p></p>
+                </div>
+                <div class="card">
+                    <h3>Class 12th (CBSE)</h3>
+                    <p><strong>School:</strong> Saint Joseph's School, NTPC Kahalgaon</p>
+                    <p></p>
+                </div>
             </div>
         </div>
-        <!-- Main content sections -->
-        <main>
-            <section id="about" aria-labelledby="about-heading">
-                <h2 id="about-heading">About Me</h2>
-                <div class="flower">
-                  <div class="petal"></div>
-                  <div class="petal"></div>
-                  <div class="petal"></div>
-                  <div class="petal"></div>
-                </div>
+    </section>
 
-                <style>
-                .flower {
-                  position: relative;
-                  width: 100px;
-                  height: 100px;
-                  margin: 50px auto;
-                }
-                .petal {
-                  position: absolute;
-                  width: 50px;
-                  height: 50px;
-                  background: radial-gradient(circle, pink 40%, red 100%);
-                  border-radius: 50%;
-                  animation: bloom 2s infinite ease-in-out;
-                }
-                .petal:nth-child(1) { top: 0; left: 25px; }
-                .petal:nth-child(2) { left: 0; top: 25px; }
-                .petal:nth-child(3) { right: 0; top: 25px; }
-                .petal:nth-child(4) { bottom: 0; left: 25px; }
-
-                @keyframes bloom {
-                  0% { transform: scale(0.8); opacity: 0.5; }
-                  50% { transform: scale(1.2); opacity: 1; }
-                  100% { transform: scale(1); opacity: 0.8; }
-                }
-                </style>
-                <div class="skill-item">Note: <span class="percentage">More content will be added regularly</span></div>
-                <div class="about-container">
-                    
-                    <p> I built this website using GitHub as because github provide free website deployment!</p>
-                    <img src="data:image/jpeg;base64,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" loading="lazy">
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-name">
+                        Python
+                        <span class="skill-level">begginer</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="--skill-level: 85%;"></div>
+                    </div>
                 </div>
-            </section>
-            <section id="education" aria-labelledby="education-heading">
-                <h2 id="education-heading">Education</h2>
-                <ul>
-                    <style>
-                    @keyframes fall {
-                      to { transform: translateY(100vh); }
-                    }
-                    .emoji {
-                      position: absolute;
-                      animation: fall 3s infinite;
-                    }
-                    </style>
-                    <h1 style="color: orange; text-shadow: 0 0 10px green;">🔥Bihar🔥</h1>
-                    <div class="emoji">🎉🎉🎉🎉🎉🎉🎉🎉</div>
-                    <li><strong>Class 10th (ICSE)</strong> - Saint Joseph's School, Pakartalla-Kahalgaon<br>.</li>
-                    <li><strong>Class 12th (CBSE)</strong> - Saint Joseph's School, NTPC Kahalgaon </li>
-                </ul>
-            </section>
-            <section id="movies-preview" aria-labelledby="movies-preview-heading">
-                <h2 id="movies-preview-heading">Movies</h2>
-                <p>Explore my curated collection of favorite movies, featuring a mix of sci-fi, drama, and action genres with detailed descriptions and posters.</p>
-                <a href="https://samrat07-git.github.io/movies/" class="btn" data-screen="movies">View Movies</a>
-            </section>
-            <section id="achievements-preview" aria-labelledby="achievements-preview-heading">
-                <h2 id="achievements-preview-heading">Achievements</h2>
-                <svg viewBox="0 0 100 100" width="100">
-                  <defs>
-                    <filter id="goo">
-                      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-                      <feColorMatrix in="blur" mode="matrix"
-                        values="1 0 0 0 0  
-                                0 1 0 0 0  
-                                0 0 1 0 0  
-                                0 0 0 20 -10" result="goo" />
-                      <feBlend in="SourceGraphic" in2="goo" />
-                    </filter>
-                  </defs>
-                  <circle cx="30" cy="50" r="10" fill="#0ff">
-                    <animate attributeName="cx" values="30;70;30" dur="2s" repeatCount="indefinite" />
-                  </circle>
-                </svg>
-                <p>No achivement but -----.</p>
-                <a href="javascript:void(0)" class="btn" data-screen="achievements">View Achievements</a>
-            </section>
-            <section id="photos-preview" aria-labelledby="photos-preview-heading">
-                <h2 id="photos-preview-heading">Photos</h2>
-                <canvas id="particles" width="300" height="300"></canvas>
-                <script>
-                const canvas = document.getElementById("particles");
-                const ctx = canvas.getContext("2d");
-                let particles = Array.from({length: 50}, () => ({
-                  x: Math.random() * canvas.width,
-                  y: Math.random() * canvas.height,
-                  r: Math.random() * 3 + 1
-                }));
-                function draw() {
-                  ctx.clearRect(0, 0, canvas.width, canvas.height);
-                  particles.forEach(p => {
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                    ctx.fillStyle = "#0ff";
-                    ctx.fill();
-                    p.y -= 0.5;
-                    if (p.y < 0) p.y = canvas.height;
-                  });
-                  requestAnimationFrame(draw);
-                }
-                draw();
-                </script>
-                <p>View my collection.</p>
-                <a href="javascript:void(0)" class="btn" data-screen="photos">View Photos</a>
-            </section>
-            <section id="videos-preview" aria-labelledby="videos-preview-heading">
-                <h2 id="videos-preview-heading">Videos</h2>
-                <h1 class="glitch"></h1>
-
-                <style>
-                .glitch {
-                  color: white;
-                  position: relative;
-                  font-size: 48px;
-                }
-                .glitch::before, .glitch::after {
-                  content: "Error";
-                  position: absolute;
-                  left: 0;
-                }
-                .glitch::before {
-                  color: red;
-                  animation: glitch 0.3s infinite;
-                }
-                .glitch::after {
-                  color: blue;
-                  animation: glitch 0.3s infinite reverse;
-                }
-                @keyframes glitch {
-                  0% { left: 2px; }
-                  50% { left: -2px; }
-                  100% { left: 2px; }
-                }
-                </style>
-                <p>Watch a selection of videos, including animations and tech-related content I enjoy or have created.</p>
-               
-                <a href="javascript:void(0)" class="btn" data-screen="videos">View Videos</a>
-            </section>
-            <section id="skills" aria-labelledby="skills-heading">
-                <h2 id="skills-heading">Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-item">Python <span class="percentage">!</span></div>
-                    <div class="skill-item">-- <span class="percentage">!</span></div>
-                    <div class="skill-item">Unity Engine <span class="percentage">!</span></div>
-                    <div class="skill-item">AI <span class="percentage">!</span></div>
-                    <div class="skill-item">-- <span class="percentage">!</span></div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        Unity Engine
+                        <span class="skill-level">Intermediate</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="--skill-level: 70%;"></div>
+                    </div>
                 </div>
-            </section>
-            <section id="projects" aria-labelledby="projects-heading">
-                <h2 id="projects-heading">Projects</h2>
-                <div class="skill-item">Note: <span class="percentage">Website URLs will be updated soon!</span></div>
-                <div class="project">
-                    <h3>Movies Downloading website</h3>
-                    <p></p>
-                    <a href="https://samrat07-git.github.io/movies/" class="btn" target="_blank">click to view</a>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        Artificial Intelligence
+                        <span class="skill-level">Learning</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="--skill-level: 60%;"></div>
+                    </div>
                 </div>
-                <div class="project">
-                    <h1 class="flicker">Click to view</h1>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        Web Development
+                        <span class="skill-level">just started</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="--skill-level: 75%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <style>
-                    .flicker {
-                      color: #fff;
-                      animation: flicker 1.5s infinite;
-                    }
-                    @keyframes flicker {
-                      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-                      20%, 22%, 24%, 55% { opacity: 0; }
-                    }
-                    </style>
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Movies Downloading Website</h3>
+                    <p>A comprehensive platform for downloading movies with a user-friendly interface and smooth navigation.</p>
+                    <a href="https://samrat07-git.github.io/movies/" target="_blank" class="cta-button" style="display: inline-block; margin-top: 1rem;">View Project</a>
+                </div>
+                <div class="card">
                     <h3>Simple Calculator</h3>
-                    <p>A web-based calculator application.</p>
-                    <a href="https://samrat07-git.github.io/calculator/" class="btn" target="_blank">View Calculator</a>
-                    <div class="skill-item">-- <span class="percentage">click to view!</span></div>
-                </div>
-            </section>
-            <section id="contact" aria-labelledby="contact-heading">
-                <h2 id="contact-heading">Contact</h2>
-                <h2>Click the Circle!</h2>
-                <div id="circle" style="
-                  width: 100px;
-                  height: 100px;
-                  background: #4CAF50;
-                  border-radius: 50%;
-                  position: absolute;
-                  top: 100px;
-                  left: 100px;
-                  cursor: pointer;
-                "></div>
-
-                <p id="score" style="font-size: 20px;">Score: 0</p>
-
-                <script>
-                let score = 0;
-                const circle = document.getElementById("circle");
-                const scoreDisplay = document.getElementById("score");
-
-                circle.onclick = () => {
-                  score++;
-                  scoreDisplay.textContent = "Score: " + score;
-                  circle.style.top = Math.random() * 400 + "px";
-                  circle.style.left = Math.random() * 600 + "px";
-                };
-                </script>
-                <div class="skill-item">Note: <span class="percentage">Only Instagram URL provided; others to be updated</span></div>
-
-                <p>Instagram: <a href="" target="_blank">insta/@samratsingh</a></p>
-
-                <p>GitHub: <a href="https://github.com/samrat07-git" target="_blank">github.com/samrat07</a></p>
-                <a href="./assets/resume.pdf" class="btn" download>Download Resume</a>
-            </section>
-        </main>
-        <!-- Movies screen -->
-        <div id="movies-screen" class="screen">
-            <div class="screen-content">
-                <div class="skill-item">{*-*}<span class="percentage">download !</span></div>
-                <h2 id="movies-screen-heading">Movies</h2>
-                <div class="skill-item">{*-*}<span class="percentage">Here are some best movie and series</span></div>
-                <div class="search-container">
-                    <input type="text" class="search-input" id="movieSearch" placeholder="Search movies..." aria-label="Search movies by title">
-                    <button class="search-btn" onclick="searchMovies()">Search</button>
-                </div>
-                <div class="movies-grid">
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/8d8f28105415493.619ded067937d.jpg" alt="Interstellar movie poster" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-
-                             <a href="https://mvlink.site/19104">720p ^click</a>
-                        </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://wallpapercat.com/w/full/d/c/9/126712-1080x1920-iphone-1080p-game-of-thrones-background.jpg" alt="Game of Thrones poster" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                             <a href="https://mvlink.site/19104">720p ^click</a>
-                        </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/the-expendables-3-2014-dual-audio-hindi-english-480p-720p-1080p-740x1110.jpg" alt="The Dark Knight movie poster" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                            <p><strong>The Expendables 3</strong>
-                            <a href="https://mvlink.site/13818">720p ^click</a>
-                        </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1582238792i/8565270.jpg" alt="Inception movie poster" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                            <p><strong>Inception (2010)</strong> <a href="javascript:void(0)" class="movie-download-btn" data-image="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1582238792i/8565270.jpg" data-title="Inception (2010)" aria-label="View download page for Inception">Download</a></p>
-                        </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://static0.colliderimages.com/wordpress/wp-content/uploads/sharedimages/2025/06/01295258_poster_w780.jpg" alt="Parasite movie poster" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                            <p><strong>Parasite (2019)</strong> <a href="javascript:void(0)" class="movie-download-btn" data-image="https://static0.colliderimages.com/wordpress/wp-content/uploads/sharedimages/2025/06/01295258_poster_w780.jpg" data-title="Parasite (2019)" aria-label="View download page for Parasite">Download</a></p>
-                        </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://images.justwatch.com/poster/202546506/s718/descendants-of-the-sun.jpg" alt="Descendants of the Sun poster" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                            <p><strong>Descendants of the Sun</strong> <a href="javascript:void(0)" class="movie-download-btn" data-image="https://images.justwatch.com/poster/202546506/s718/descendants-of-the-sun.jpg" data-title="Descendants of the Sun" aria-label="View download page for Descendants of the Sun">Download</a></p>
-                        </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/uOOtwVbSr4QDjAGIifLDwpb2Pdl-740x1110.jpg" alt="stranger things" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                        <p><strong>Stranger Things</strong>
-                        <p><strong></strong> <a href="https://mvlink.site/web/3023" >SEASON 1</a></p>
-                        <p><strong></strong> <a href="https://mvlink.site/web/3026" >SEASON 2</a></p>
-                        <p><strong></strong> <a href="https://mvlink.site/web/3249" >SEASON 3</a></p>
-                        <p><strong></strong> <a href="https://mvlink.site/web/11571" >SEASON 4</a></p>
-                        </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://musicart.xboxlive.com/7/8a8d5100-0000-0000-0000-000000000002/504/image.jpg" alt="The Lord of the Rings poster" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                            <p><strong>the lord of rings</strong> <a href="javascript:void(0)" class="movie-download-btn" data-image="https://musicart.xboxlive.com/7/8a8d5100-0000-0000-0000-000000000002/504/image.jpg" data-title="the lord of rings" aria-label="View download page for The Lord of the Rings">Download</a></p>
-                        </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/oIAMQ42lzSd6ksvGe4WFMKqT0ja-740x1110.jpg" alt="Reacher poster" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                            <p><strong>Reacher</strong> <a href="https://mvlink.site/web/8013" >">SEASON 1</a></p>
-                            <p><strong>Reacher</strong> <a href="https://mvlink.site/web/8159" >">SEASON 2</a></p>
-                            <p><strong>Reacher</strong> <a href="https://mvlink.site/web/11973" >">SEASON 3</a></p>
-                        </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/tDHWWReefmOOjBCJZUck8cNwssk-740x1109.jpg" alt="adolesense" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                        <p><strong>Adolescence</strong>
-                        <p><strong>click</strong> <a href="https://mvlink.site/web/11295" >SEASON 1</a></p>
-                        </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/hqRb1wyIVsaMukZElPBUXoJPqrR-740x1110.jpg" alt="Reacher poster" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                            <p><strong>Attack on titan </strong>
-                            <p><strong></strong> <a href="https://mvlink.site/web/10420" >season 1</a></p
-                            <p><strong></strong> <a href="https://mvlink.site/web/10690." >season 2</a></p
-                            <p><strong></strong> <a href="https://mvlink.site/web/10792" >season 3</a></p
-                            <p><strong></strong> <a href="https://mvlink.site/11687" >season 4</a></p
-                        </div>
-                    </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/avatar-the-way-of-water-2022-dual-audio-hindi-english-480p-720p-1080p-1-740x1110.jpg" alt="Unbroken poster" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                            <p><strong>Avatar way of water</strong> <a href="https://mvlink.site/13635" >720p click</a></p
-                        </div>
-                    </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://joshmovies.com/wp-content/uploads/2025/05/z53D72EAOxGRqdr7KXXWp9dJiDe-740x1110.jpg" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                            mission impossible
-                            <a href="https://mvlink.site/26632">720p ^click</a>
-                        </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/2iafrubNKwB7iA7z8Y1TkHyOrsh-740x1110.jpg" alt="baki" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                        <p><strong>Baki</strong>
-                        <p><strong>click</strong> <a href="https://mvlink.site/web/11349" >SEASON 1</a></p>
-                        </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/6fMGktEDXMZZPACJ5cWkVQ6TSte-740x1110.jpg" alt="The Pit" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                        <p><strong>The Pit</strong>
-                        <p><strong>click</strong> <a href="https://mvlink.site/web/11677" >SEASON 1</a></p>
-                        </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/area-51-2015-dual-audio-hindi-english-480p-720p-1080p-740x1110.jpg" alt="Peaky Blinders poster" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                             <p><strong>Area 51</strong> <a href="https://mvlink.site/11687" >720p click</a></p
-                        </div>
-                    </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/fight-club-1999-dual-audio-hindi-english-480p-720p-1080p-740x1110.jpg" alt="Peaky Blinders poster" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                             <p><strong>Fight club</strong> <a href="https://mvlink.site/11266" >720p click</a></p
-                        </div>
-                    </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/doraemon-nobita-s-chronicle-of-the-moon-exploration-2019-dual-audio-hindi-japanese-480p-720p-1080p-740x1047.jpg" alt="Peaky Blinders poster" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                            <p><strong>Doremon nobita</strong> <a href="https://mvlink.site/11525" >720p click</a></p
-                        </div>
-                    </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/in-my-dreams-2014-dual-audio-hindi-english-480p-720p-1080p-740x1110.jpg" alt="Peaky Blinders poster" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                            <p><strong>In my dreams</strong> <a href="https://mvlink.site/11443" >720p click</a></p
-                        </div>
-                    </div>
-                    </div>
-                    <div class="movie-card">
-                        <div class="movie-poster">
-                            <img src="https://joshmovies.com/wp-content/uploads/2025/06/the-contractor-2022-dual-audio-hindi-english-480p-720p-1080p-740x1110.jpg" alt="Peaky Blinders poster" loading="lazy">
-                        </div>
-                        <div class="movie-description">
-                             <p><strong>the contractor</strong> <a href="https://mvlink.site/11166" >720p click</a></p
-                        </div>
-                    </div>
-                    </div>
-                    <div class="skill-item">-- <span class="percentage">! gallary expanding...............</span></div>
+                    <p>A web-based calculator application built with HTML, CSS, and JavaScript featuring a clean and responsive design.</p>
+                    <a href="https://samrat07-git.github.io/calculator/" target="_blank" class="cta-button" style="display: inline-block; margin-top: 1rem;">View Project</a>
                 </div>
             </div>
         </div>
-        <!-- Achievements screen -->
-        <div id="achievements-screen" class="screen">
-            <div class="screen-content">
-                <h2 id="achievements-screen-heading">Achievements</h2>
-                <div class="skill-item">-- <span class="percentage">No Achivements...:(</span></div>
-                <div class="achievement">
-                    <h3>Academic Excellence</h3>
-                    <p>Null(.</p>
-                </div>
-                <div class="achievement">
-                    <h3>national kho-kho</h3>
-                    <p></p>
-                </div>
-                <div class="achievement">
-                    <h3>---------</h3>
-                    <p>.</p>
-                </div>
-                <div class="achievement">
-                    <h3>Unity Game Prototype</h3>
-                    <p>completed online course .</p>
-                </div>
-            </div>
-        </div>
-        <!-- Photos screen -->
-        <div id="photos-screen" class="screen">
-            <div class="screen-content">
-                <h2 id="photos-heading">Photos</h2>
-                <div class="skill-item"><span class="percentage">No photos uploded yet</span></div>
-                <div class="photos-grid">
-                    <!-- Photos added dynamically -->
-                </div>
-                <button class="btn load-more-btn">Load More</button>
-                <div class="photo-urls">
-                    <h3>Saved Photo URLs</h3>
-                    <ul id="photoUrlsList"></ul>
-                </div>
-            </div>
-        </div>
-        <!-- Videos screen -->
-        <div id="videos-screen" class="screen">
-            <div class="screen-content">
-                <h2 id="videos-screen-heading">Videos</h2>
-                <p>A curated collection of videos showcasing animations, tech-related content, and creative projects I enjoy or have contributed to.</p>
-                <div class="videos-grid">
-                    <div class="video-card">
-                        <div class="video-player">
-                            <video controls preload="none" poster="./assets/video-poster1.jpg">
-                                <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4" type="video/mp4">
-                                <track src="./assets/captions1.vtt" kind="captions" srclang="en" label="English">
-                                <p>Video failed to load.</p>
-                            </video>
-                        </div>
-                        <p>Animation Showcase</p>
+    </section>
+
+    <!-- Movies Section -->
+    <section id="movies" class="section">
+        <div class="container">
+            <h2 class="section-title">Favorite Movies</h2>
+            <div class="movies-grid">
+                <div class="movie-card">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/8d8f28105415493.619ded067937d.jpg" alt="Interstellar" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Interstellar</h3>
+                        <button class="download-btn" onclick="window.open('https://mvlink.site/19104', '_blank')">Download</button>
                     </div>
-                    <div class="video-card">
-                        <div class="video-player">
-                            <iframe width="100%" height="200" src="https://www.youtube.com/embed/iqlH4okiQqg" title="Unity Course Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-                        </div>
-                        <p>Unity Course Tutorial</p>
+                </div>
+                <div class="movie-card">
+                    <img src="https://wallpapercat.com/w/full/d/c/9/126712-1080x1920-iphone-1080p-game-of-thrones-background.jpg" alt="Game of Thrones" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Game of Thrones</h3>
+                        <button class="download-btn" onclick="window.open('https://mvlink.site/19104', '_blank')">Download</button>
                     </div>
-                    <div class="video-card">
-                        <div class="video-player">
-                            <video controls preload="none" poster="./assets/video-poster2.jpg">
-                                <source src="https://scontent-sjc3-1.cdninstagram.com/o1/v/t16/f2/AQPcd-H90znNtocDP7GcG9slUJ_lFEoCszEQp_2Urt3FklXyFdbwJYyPSyV9Y1ANNxiu7XAKt_H9EWCYRt8jDLVtuWRYVyKjuLc9MGc.mp4?stp=dst-mp4&efg=eyJxZV9ncm91cHMiOiJbXCJpZ193ZWJfZGVsaXZlcnlfdnRzX290ZlwiXSIsInZlbmNvZGVfdGFnIjoidnRzX3ZvZF91cmxnZW4uY2xpcHMuYzIuNzIwLmJhc2VsaW5lIn0&_nc_cat=104&vs=1734737040759611_539552067&_nc_vs=HBksFQIYUmlnX3hwdl9yZWVsc19wZXJtYW5lbnRfc3JfcHJvZC9DMjQ3REE3N0I4NjdBQUNDN0FGMEExNjNCNkI4MDk5OV92aWRlb19kYXNoaW5pdC5tcDQVAALIARIAFQIYOnBhc3N0aHJvdWdoX2V2ZXJzdG9yZS9HRWdFR3g0UWl5cTBwMTRFQUZ6ZVVNWWtJdUlJYnFfRUFBQUYVAgLIARIAKAAYABsAFQAAJs6NqML9hc8%2FFQIoAkMzLBdAN8zMzMzMzRgSZGFzaF9iYXNlbGluZV8xX3YxEQB1%2Fgdl5p0BAA%3D%3D&ccb=9-4&oh=00_AfOCnbPY9uO693Qk6LOSK7OBqM2eg0KdJsQj0bpLbzwXLA&oe=6855C3AA&_nc_sid=10d13b" type="video/mp4">
-                                <track src="./assets/captions2.vtt" kind="captions" srclang="en" label="English">
-                                <p>Video failed to load.</p>
-                            </video>
+                </div>
+                <div class="movie-card">
+                    <img src="https://joshmovies.com/wp-content/uploads/2025/06/the-expendables-3-2014-dual-audio-hindi-english-480p-720p-1080p-740x1110.jpg" alt="The Expendables 3" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">The Expendables 3</h3>
+                        <button class="download-btn" onclick="window.open('https://mvlink.site/13818', '_blank')">Download</button>
+                    </div>
+                </div>
+                <div class="movie-card">
+                    <img src="data:image/jpeg;base64,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" alt="Stranger Things" class="movie-poster">
+                    <div class="movie-info">
+                        <h3 class="movie-title">Stranger Things</h3>
+                        <div style="display: grid; gap: 0.5rem; margin-top: 1rem;">
+                            <button class="download-btn" onclick="window.open('https://mvlink.site/web/3023', '_blank')">Season 1</button>
+                            <button class="download-btn" onclick="window.open('https://mvlink.site/web/3026', '_blank')">Season 2</button>
+                            <button class="download-btn" onclick="window.open('https://mvlink.site/web/3249', '_blank')">Season 3</button>
+                            <button class="download-btn" onclick="window.open('https://mvlink.site/web/11571', '_blank')">Season 4</button>
                         </div>
-                        <p>Tech Demo</p>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Download screen -->
-        <div id="download-screen" class="screen">
-            <div class="screen-content">
-                <h2 id="download-screen-heading">Movie Poster Download</h2>
-                <div class="movie-poster">
-                    <img id="downloadMovieImage" src="" alt="Movie poster" loading="lazy">
+    </section>
+
+    <!-- Photos Section -->
+    <section id="photos" class="section">
+        <div class="container">
+            <h2 class="section-title">Gallery</h2>
+            <div class="slideshow-container">
+                <div class="slide active">
+                    <img src="https://bpb-us-w2.wpmucdn.com/u.osu.edu/dist/5/40003/files/2016/11/3051694-game-of-thrones-characters_091710-169q4hp.jpg" alt="Game of Thrones Characters">
                 </div>
-                <p class="description" id="downloadMovieDescription"></p>
-                <a id="downloadMovieLink" href="" class="download-link" download>Download Poster</a>
+                <div class="slide">
+                    <img src="https://ntvb.tmsimg.com/assets/p18828973_b_h10_aa.jpg?w=960&h=540" alt="Movie Scene">
+                </div>
+                <div class="slide">
+                    <img src="https://www.billboard.com/wp-content/uploads/media/Descendants-of-the-Sun-2016-billboard-650.jpg?w=650&h=430&crop=1" alt="Descendants of the Sun">
+                </div>
+                <div class="slide">
+                    <img src="https://blogassets.airtel.in/wp-content/uploads/2024/10/wallpapersden.com_poster-of-house-of-the-dragon_1920x1080.jpg" alt="House of the Dragon">
+                </div>
+                <div class="slide">
+                    <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/lord-of-the-rings-upcoming-movies-third-age-focus-tolkien.jpg?q=70&fit=crop&w=1140&h=&dpr=1" alt="Lord of the Rings">
+                </div>
+
+                <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="next" onclick="changeSlide(1)">&#10095;</button>
             </div>
         </div>
-        <!-- Photo modal -->
-        <div class="photo-modal" id="photoModal" aria-labelledby="modal-heading">
-            <div class="modal-content">
-                <h2 id="modal-heading" class="sr-only">Enlarged Photo View</h2>
-                <button type="button" class="close-modal" aria-label="Close modal">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="6" x2="6" y2="18" />
-                        <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                </button>
-                <img src="" alt="">
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="fab fa-github contact-icon"></i>
+                    <h3>GitHub</h3>
+                    <a href="https://github.com/samrat07-git" target="_blank" class="contact-link">@samrat07-git</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-instagram contact-icon"></i>
+                    <h3>Instagram</h3>
+                    <a href="#" class="contact-link">@samratsingh</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-file-pdf contact-icon"></i>
+                    <h3>Resume</h3>
+                    <a href="./assets/resume.pdf" target="_blank" class="contact-link">Download PDF</a>
+                </div>
             </div>
         </div>
-        <!-- Footer -->
-        <footer>
-            <p>©2025 Samrat Singh. All rights reserved.</p>
-        </footer>
-        <!-- Back to top button -->
-        <a href="#" class="back-to-top" aria-label="Back to top">?</a>
-        <!-- JavaScript -->
-        <script defer>
-            // Theme switching
-            function changeTheme(theme) {
-                document.documentElement.setAttribute('data-theme', theme);
-                localStorage.setItem('theme', theme);
+    </section>
+
+    <script>
+        class PortfolioAnimations {
+            constructor() {
+                this.currentSlide = 0;
+                this.slides = [];
+                this.lastScrollTop = 0;
+                this.init();
             }
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            changeTheme(savedTheme);
-            document.querySelector('.theme-selector').value = savedTheme;
 
-            // Hamburger menu toggle
-            function toggleMenu() {
-                const nav = document.getElementById('nav-menu');
-                const hamburger = document.querySelector('.hamburger');
-                const isExpanded = nav.classList.toggle('active');
-                hamburger.setAttribute('aria-expanded', isExpanded);
+            init() {
+                this.setupLoadingScreen();
+                this.createParticles();
+                this.setupNavigation();
+                this.setupScrollAnimations();
+                this.setupSlideshow();
+                this.setupThemeSelector();
+                this.setupMobileMenu();
+                this.setupSmoothScrolling();
+                this.setupSkillAnimations();
+                this.handleScrollDirection();
+                this.setupIntersectionObserver();
+            }
+
+            // Loading Screen Animation
+            setupLoadingScreen() {
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        const loadingScreen = document.getElementById('loadingScreen');
+                        loadingScreen.classList.add('hidden');
+
+                        setTimeout(() => {
+                            loadingScreen.remove();
+                        }, 500);
+                    }, 2000);
+                });
+            }
+
+            // Create Floating Particles
+            createParticles() {
+                const particlesContainer = document.getElementById('particles');
+                const particleCount = window.innerWidth > 768 ? 50 : 25;
+
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 6 + 's';
+                    particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                    particle.style.opacity = Math.random() * 0.5 + 0.1;
+
+                    particlesContainer.appendChild(particle);
+                }
+            }
+
+            // Navigation Setup
+            setupNavigation() {
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const targetId = link.getAttribute('href');
+                        const targetSection = document.querySelector(targetId);
+
+                        if (targetSection) {
+                            targetSection.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+            }
+
+            // Scroll Animations
+            setupScrollAnimations() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, observerOptions);
+
+                const sections = document.querySelectorAll('.section');
+                sections.forEach(section => {
+                    observer.observe(section);
+                });
             }
 
             // Slideshow
-            let slideIndex = 0;
-            let slideshowInterval;
-            const slides = document.querySelectorAll('.slideshow-slide');
-            const pauseResumeBtn = document.getElementById('pauseResumeBtn');
+            setupSlideshow() {
+                this.slides = document.querySelectorAll('.slide');
 
-            function showSlide(index) {
-                if (slides.length === 0) {
-                    console.warn('No slides available');
-                    return;
-                }
-                slides.forEach(slide => slide.classList.remove('active'));
-                slideIndex = (index + slides.length) % slides.length;
-                slides[slideIndex].classList.add('active');
+                // Auto-advance slideshow
+                setInterval(() => {
+                    this.changeSlide(1);
+                }, 5000);
             }
 
-            function changeSlide(n) {
-                showSlide(slideIndex + n);
+            changeSlide(direction) {
+                this.slides[this.currentSlide].classList.remove('active');
+                this.currentSlide = (this.currentSlide + direction + this.slides.length) % this.slides.length;
+                this.slides[this.currentSlide].classList.add('active');
             }
 
-            function startSlideshow() {
-                slideshowInterval = setInterval(() => changeSlide(1), 4000);
-                pauseResumeBtn.textContent = 'Pause';
-                pauseResumeBtn.setAttribute('aria-label', 'Pause slideshow');
+            // Theme Selector
+            setupThemeSelector() {
+                const themeSelector = document.getElementById('themeSelector');
+                const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
+
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                themeSelector.value = savedTheme;
+
+                themeSelector.addEventListener('change', (e) => {
+                    const theme = e.target.value;
+                    document.documentElement.setAttribute('data-theme', theme);
+                    localStorage.setItem('portfolio-theme', theme);
+                });
             }
 
-            function toggleSlideshow() {
-                if (slideshowInterval) {
-                    clearInterval(slideshowInterval);
-                    slideshowInterval = null;
-                    pauseResumeBtn.textContent = 'Resume';
-                    pauseResumeBtn.setAttribute('aria-label', 'Resume slideshow');
-                } else {
-                    startSlideshow();
-                }
-            }
+            // Mobile Menu
+            setupMobileMenu() {
+                const hamburger = document.getElementById('hamburger');
+                const navMenu = document.getElementById('navMenu');
 
-            if (slides.length) {
-                showSlide(0);
-                startSlideshow();
-            }
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
 
-            // Load photos with pagination
-            let photoCount = 10;
-            const photosGrid = document.querySelector('.photos-grid');
-            const slideshowContainer = document.querySelector('.slideshow-container');
-
-            function loadPhotos() {
-                for (let i = photosGrid.children.length; i < photoCount; i++) {
-                    const img = document.createElement('img');
-                    img.src = `https://source.unsplash.com/random/200x200?nature,${i}`;
-                    img.alt = `Random nature image ${i+1}`;
-                    img.loading = 'lazy';
-                    img.dataset.download = img.src;
-                    img.addEventListener('error', () => {
-                        img.src = 'https://via.placeholder.com/200x200?text=Image+Not+Found';
-                        img.alt = 'Placeholder image';
+                // Close mobile menu when clicking on a link
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
                     });
-                    const photoItem = document.createElement('div');
-                    photoItem.classList.add('photo-item');
-                    photoItem.appendChild(img);
-                    photosGrid.appendChild(photoItem);
-
-                    // Add to slideshow
-                    const slide = document.createElement('div');
-                    slide.classList.add('slideshow-slide');
-                    const imgClone = img.cloneNode(true);
-                    imgClone.removeAttribute('data-download');
-                    slide.appendChild(imgClone);
-                    slideshowContainer.insertBefore(slide, document.querySelector('.slideshow-nav'));
-                }
-                updateSlides();
-            }
-
-            function updateSlides() {
-                const newSlides = document.querySelectorAll('.slideshow-slide');
-                if (newSlides.length) {
-                    slides.forEach(slide => slide.classList.remove('active'));
-                    slideIndex = 0;
-                    newSlides[0].classList.add('active');
-                }
-            }
-
-            document.addEventListener('DOMContentLoaded', loadPhotos);
-            document.querySelector('.load-more-btn').addEventListener('click', () => {
-                photoCount += 10;
-                loadPhotos();
-                saveAndDisplayPhotoUrls();
-            });
-
-            // Save and display photo URLs
-            function saveAndDisplayPhotoUrls() {
-                const photos = document.querySelectorAll('.photos-grid img');
-                const photoUrls = Array.from(photos).map(img => img.src);
-                localStorage.setItem('photoUrls', JSON.stringify(photoUrls));
-                const photoUrlsList = document.getElementById('photoUrlsList');
-                photoUrlsList.innerHTML = '';
-                photoUrls.forEach(url => {
-                    const li = document.createElement('li');
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.textContent = url;
-                    a.target = '_blank';
-                    li.appendChild(a);
-                    photoUrlsList.appendChild(li);
                 });
             }
 
-            // Movie search functionality
-            function searchMovies() {
-                const input = document.getElementById('movieSearch').value.toLowerCase();
-                const movieCards = document.querySelectorAll('.movie-card');
-                movieCards.forEach(card => {
-                    const title = card.querySelector('.movie-description p').textContent.toLowerCase();
-                    card.style.display = title.includes(input) ? 'block' : 'none';
+            // Smooth Scrolling
+            setupSmoothScrolling() {
+                // Smooth scroll is handled by CSS scroll-behavior
+            }
+
+            // Skill Animations
+            setupSkillAnimations() {
+                const skillObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate');
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                const skillItems = document.querySelectorAll('.skill-item');
+                skillItems.forEach(item => {
+                    skillObserver.observe(item);
                 });
             }
 
-            // Navigation and screens
-            const navLinks = document.querySelectorAll('nav a');
-            const screens = document.querySelectorAll('.screen');
-            const mainContent = document.querySelector('main');
-            const viewButtons = document.querySelectorAll('.btn[data-screen]');
+            // Handle Scroll Direction for Navbar
+            handleScrollDirection() {
+                const navbar = document.getElementById('navbar');
 
-            function showMainContent() {
-                screens.forEach(screen => screen.classList.remove('active'));
-                mainContent.style.display = 'block';
-                navLinks.forEach(link => link.classList.remove('active'));
-                const targetLink = document.querySelector(`nav a[href="#${window.location.hash.slice(1)}"]`);
-                if (targetLink) targetLink.classList.add('active');
-            }
+                window.addEventListener('scroll', () => {
+                    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-            function showScreen(screenId) {
-                mainContent.style.display = 'none';
-                screens.forEach(screen => screen.classList.toggle('active', screen.id === screenId));
-                navLinks.forEach(link => link.classList.toggle('active', link.dataset.screen === screenId.replace('-screen', '')));
-                document.getElementById('nav-menu').classList.remove('active');
-                if (screenId === 'movies-screen') {
-                    document.getElementById('movieSearch').value = '';
-                    searchMovies(); // Reset search when opening movies tab
-                }
-            }
-
-            // Download screen functionality
-            function showDownloadScreen(imageUrl, title) {
-                const downloadScreen = document.getElementById('download-screen');
-                const imageElement = document.getElementById('downloadMovieImage');
-                const descriptionElement = document.getElementById('downloadMovieDescription');
-                const downloadLinkElement = document.getElementById('downloadMovieLink');
-
-                if (imageUrl && title) {
-                    imageElement.src = imageUrl;
-                    imageElement.alt = `${title} movie poster`;
-                    descriptionElement.textContent = title;
-                    downloadLinkElement.href = imageUrl;
-                    downloadLinkElement.download = `${title.replace(/ /g, '_').toLowerCase()}_poster.jpg`;
-                    downloadLinkElement.style.display = 'inline-block';
-                } else {
-                    imageElement.src = 'https://via.placeholder.com/400x600?text=Image+Not+Found';
-                    imageElement.alt = 'Placeholder image';
-                    descriptionElement.textContent = 'Movie information not available.';
-                    downloadLinkElement.style.display = 'none';
-                }
-
-                mainContent.style.display = 'none';
-                screens.forEach(screen => screen.classList.toggle('active', screen.id === 'download-screen'));
-                navLinks.forEach(link => link.classList.remove('active')); // No nav link is active for download screen
-                document.getElementById('nav-menu').classList.remove('active');
-            }
-
-            // Download button event listener
-            document.addEventListener('click', e => {
-                if (e.target.classList.contains('movie-download-btn')) {
-                    e.preventDefault();
-                    const imageUrl = e.target.dataset.image;
-                    const title = e.target.dataset.title;
-                    showDownloadScreen(imageUrl, title);
-                }
-            });
-
-            // Image error handling for download screen
-            const downloadImage = document.getElementById('downloadMovieImage');
-            downloadImage.addEventListener('error', () => {
-                downloadImage.src = 'https://via.placeholder.com/400x600?text=Image+Not+Found';
-                downloadImage.alt = 'Placeholder image';
-                document.getElementById('downloadMovieLink').style.display = 'none';
-            });
-
-            navLinks.forEach(link => {
-                link.addEventListener('click', e => {
-                    e.preventDefault();
-                    if (link.dataset.screen) {
-                        showScreen(`${link.dataset.screen}-screen`);
-                        window.location.hash = '';
+                    if (currentScrollTop > this.lastScrollTop && currentScrollTop > 100) {
+                        navbar.classList.add('hidden');
                     } else {
-                        showMainContent();
-                        const sectionId = link.getAttribute('href').slice(1);
-                        const section = document.getElementById(sectionId);
-                        if (section) {
-                            section.scrollIntoView({ behavior: 'smooth' });
-                            window.location.hash = sectionId;
-                        }
+                        navbar.classList.remove('hidden');
                     }
-                });
-            });
 
-            viewButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const screenId = button.dataset.screen;
-                    showScreen(`${screenId}-screen`);
-                });
-            });
-
-            // Handle deep linking
-            if (window.location.hash) {
-                const sectionId = window.location.hash.slice(1);
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    showMainContent();
-                    section.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    showMainContent();
-                }
+                    this.lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+                }, false);
             }
 
-            // Section fade-in animation
-            const sections = document.querySelectorAll('section');
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            sections.forEach(section => observer.observe(section));
-
-            // Photo modal
-            const modal = document.getElementById('photoModal');
-            const modalImg = modal.querySelector('img');
-            const closeModalBtn = modal.querySelector('.close-modal');
-
-            document.addEventListener('click', e => {
-                if (e.target.tagName === 'IMG' && e.target.closest('.photo-item')) {
-                    modal.classList.add('active');
-                    modalImg.src = e.target.src;
-                    modalImg.alt = e.target.alt;
-                    modalImg.setAttribute('aria-label', e.target.alt);
-                }
-            });
-
-            closeModalBtn.addEventListener('click', () => modal.classList.remove('active'));
-            modal.addEventListener('click', e => {
-                if (e.target === modal) modal.classList.remove('active');
-            });
-
-            // Image and video error handling
-            document.querySelectorAll('img').forEach(img => {
-                img.addEventListener('error', () => {
-                    img.src = 'https://via.placeholder.com/200x200?text=Image+Not+Found';
-                    img.alt = 'Placeholder image';
-                });
-                img.addEventListener('load', () => img.classList.remove('loading'));
-                img.classList.add('loading');
-            });
-
-            const videos = document.querySelectorAll('video');
-            videos.forEach(video => {
-                video.addEventListener('error', () => {
-                    video.poster = './assets/video-error.jpg';
-                    video.innerHTML = '<p>Video failed to load.</p>';
-                });
-            });
-
-            // Video lazy loading
-            const videoObserver = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.load();
-                        videoObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            videos.forEach(video => videoObserver.observe(video));
-
-            // Back to top button
-            const backToTop = document.querySelector('.back-to-top');
-            window.addEventListener('scroll', () => {
-                backToTop.classList.toggle('show', window.scrollY > 500);
-            });
-
-            // Keyboard navigation for slideshow and search
-            document.addEventListener('keydown', e => {
-                if (e.key === 'ArrowLeft') changeSlide(-1);
-                if (e.key === 'ArrowRight') changeSlide(1);
-                if (e.key === 'Escape' && modal.classList.contains('active')) modal.classList.remove('active');
-            });
-
-            // Search bar event listener
-            document.getElementById('movieSearch').addEventListener('input', searchMovies);
-
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', e => {
-                const nav = document.getElementById('nav-menu');
-                const hamburger = document.querySelector('.hamburger');
-                if (!nav.contains(e.target) && !hamburger.contains(e.target) && nav.classList.contains('active')) {
-                    nav.classList.remove('active');
-                    hamburger.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            // Startup voice message and animations
-            function initializeWebsite() {
-                // Add loading screen
-                const loadingScreen = document.createElement('div');
-                loadingScreen.id = 'loading-screen';
-                loadingScreen.innerHTML = `
-                    <div class="loading-content">
-                        <div class="loading-spinner-advanced"></div>
-                        <h2 class="loading-text">Initializing...</h2>
-                    </div>
-                `;
-                document.body.appendChild(loadingScreen);
-
-                // Voice synthesis for startup message
-                function speakMessage() {
-                    if ('speechSynthesis' in window) {
-                        const utterance = new SpeechSynthesisUtterance('Hello I am Samrat');
-                        utterance.rate = 0.8;
-                        utterance.pitch = 1;
-                        utterance.volume = 0.7;
-                        
-                        // Set voice to a more natural one if available
-                        const voices = speechSynthesis.getVoices();
-                        const preferredVoice = voices.find(voice => 
-                            voice.name.includes('Google') || 
-                            voice.name.includes('Alex') || 
-                            voice.lang.startsWith('en')
-                        );
-                        if (preferredVoice) utterance.voice = preferredVoice;
-                        
-                        speechSynthesis.speak(utterance);
-                    }
-                }
-
-                // Initialize parallax effects
-                function initParallax() {
-                    const parallaxLayers = document.querySelectorAll('.parallax-layer');
-                    const shapes = document.querySelectorAll('.floating-shape');
-                    const particles = document.querySelectorAll('.particle');
-
-                    window.addEventListener('scroll', () => {
-                        const scrolled = window.pageYOffset;
-                        const rate = scrolled * -0.5;
-                        const rate2 = scrolled * -0.3;
-
-                        parallaxLayers[0].style.transform = `translateY(${rate}px)`;
-                        if (parallaxLayers[1]) {
-                            parallaxLayers[1].style.transform = `translateY(${rate2}px)`;
-                        }
-                    });
-
-                    // Animate floating shapes
-                    shapes.forEach((shape, index) => {
-                        shape.style.animationDelay = `${index * 0.5}s`;
-                    });
-
-                    // Animate particles
-                    particles.forEach((particle, index) => {
-                        particle.style.animationDelay = `${index * 0.3}s`;
-                    });
-                }
-
-                // Mouse movement parallax effect
-                function initMouseParallax() {
-                    document.addEventListener('mousemove', (e) => {
-                        const shapes = document.querySelectorAll('.floating-shape');
-                        const x = e.clientX / window.innerWidth;
-                        const y = e.clientY / window.innerHeight;
-
-                        shapes.forEach((shape, index) => {
-                            const speed = (index + 1) * 0.02;
-                            const xPos = (x - 0.5) * speed * 100;
-                            const yPos = (y - 0.5) * speed * 100;
-                            shape.style.transform = `translate(${xPos}px, ${yPos}px)`;
-                        });
-                    });
-                }
-
-                // Simulate loading time and then start
-                setTimeout(() => {
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingScreen.remove();
-                        speakMessage();
-                        initParallax();
-                        initMouseParallax();
-                        
-                        // Trigger header animations
-                        document.querySelector('.animated-header').classList.add('loaded');
-                        
-                        // Start typewriter effect
-                        startTypewriter();
-                    }, 500);
-                }, 2000);
+            // Intersection Observer Setup
+            setupIntersectionObserver() {
+                // Already handled in other methods
             }
+        }
 
-            // Typewriter effect for header
-            function startTypewriter() {
-                const text = "Samrat.sr";
-                const element = document.getElementById('header-title');
-                element.textContent = '';
-                
-                let i = 0;
-                const typeTimer = setInterval(() => {
-                    element.textContent += text.charAt(i);
-                    i++;
-                    if (i > text.length) {
-                        clearInterval(typeTimer);
-                        element.classList.add('typing-complete');
-                    }
-                }, 150);
+        // Global functions for slideshow controls
+        function changeSlide(direction) {
+            if (window.portfolioApp) {
+                window.portfolioApp.changeSlide(direction);
             }
+        }
 
-            // Initialize everything when DOM is loaded
-            document.addEventListener('DOMContentLoaded', initializeWebsite);
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', () => {
+            window.portfolioApp = new PortfolioAnimations();
+        });
 
-            // Structured data for JSON SEO
-            const structuredData = {
-                "@context": "https://schema.org",
-                "@type": "Person",
-                "name": "Samrat Singh",
-                "jobTitle": "Computer Science Student",
-                "url": "https://samrat07-git.github.io/portfolio/",
-                "sameAs": [
-                    "https://www.instagram.com/samrat._.s",
-                    "https://github.com/samrat07-git"
-                ]
-            };
-            const script = document.createElement('script');
-            script.type = 'application/ld+json';
-            script.textContent = JSON.stringify(structuredData);
-            document.head.appendChild(script);
-        </script>
-    </body>
+        // Handle window resize for particles
+        window.addEventListener('resize', () => {
+            const particlesContainer = document.getElementById('particles');
+            if (particlesContainer) {
+                particlesContainer.innerHTML = '';
+                if (window.portfolioApp) {
+                    window.portfolioApp.createParticles();
+                }
+            }
+        });
+    </script>
+</body>
 </html>
+
